@@ -1,5 +1,8 @@
 package com.university.equationsapp.util;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -8,10 +11,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * This helper class can be used to unit test the get/set methods of JavaBean-style Value Objects.
@@ -125,12 +124,6 @@ public class JavaBeanTester {
 
         } else if (clazz.isEnum()) {
             return clazz.getEnumConstants()[0];
-
-     // Add your own rules here
-       /* //Addeb by Alberto Ramirez
-        } else if (clazz == List.class){
-        	return ArrayList.newInstance(clazz.getComponentType(), 1);
-        	return new ArrayList();*/
             
         } else {
             fail("Unable to build an instance of class " + clazz.getName() + ", please add some code to the " 
