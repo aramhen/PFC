@@ -1,9 +1,18 @@
 package com.university.equationsapp.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -12,58 +21,61 @@ import java.util.List;
  */
 @Entity
 @Table(name="problems")
-@NamedQuery(name="Problem.findAll", query="SELECT p FROM Problem p")
 public class Problem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name = "idProblems")
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int idProblems;
 
-	private String ecuations;
+	@Column(name = "equations", length = 45)
+	private String equations;
 
+	@Column(name = "endDate")
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 
+	@Column(name = "initDate")
 	@Temporal(TemporalType.DATE)
 	private Date initDate;
 
-	private String numVariables;
+	@Column(name = "numVariables")
+	private int numVariables;
 
+	@Column(name = "solution", length = 45)
 	private String solution;
 
 	@Column(nullable = false, columnDefinition = "TINYINT", length = 1)
 	private boolean uniqueAnswer;
 
-	//bi-directional many-to-one association to Method
+	//many-to-one association to Method
 	@ManyToOne
-	@JoinColumn(name="method")
-	private Method methodBean;
+	@JoinColumn(name = "method", table = "Method", referencedColumnName = "idMethods", nullable = false)
+	private Method methodRef;
 
-	//bi-directional many-to-one association to Teacher
+	//many-to-one association to Teacher
 	@ManyToOne
-	@JoinColumn(name="teacher")
-	private Teacher teacherBean;
+	@JoinColumn(name = "teacher", table = "Teachers", referencedColumnName = "idTeachers", nullable = false)
+	private Teacher teacherRef;
 
 	public int getIdProblems() {
 		return this.idProblems;
 	}
-
 	public void setIdProblems(int idProblems) {
 		this.idProblems = idProblems;
 	}
 
-	public String getEcuations() {
-		return this.ecuations;
+	public String getEquations() {
+		return this.equations;
 	}
-
-	public void setEcuations(String ecuations) {
-		this.ecuations = ecuations;
+	public void setEquations(String equations) {
+		this.equations = equations;
 	}
 
 	public Date getEndDate() {
 		return this.endDate;
 	}
-
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
@@ -71,49 +83,43 @@ public class Problem implements Serializable {
 	public Date getInitDate() {
 		return this.initDate;
 	}
-
 	public void setInitDate(Date initDate) {
 		this.initDate = initDate;
 	}
 
-	public String getNumVariables() {
+	public int getNumVariables() {
 		return this.numVariables;
 	}
-
-	public void setNumVariables(String numVariables) {
+	public void setNumVariables(int numVariables) {
 		this.numVariables = numVariables;
 	}
 
 	public String getSolution() {
 		return this.solution;
 	}
-
 	public void setSolution(String solution) {
 		this.solution = solution;
 	}
-
+	
 	public boolean isUniqueAnswer() {
-		return this.uniqueAnswer;
+		return uniqueAnswer;
 	}
-
 	public void setUniqueAnswer(boolean uniqueAnswer) {
 		this.uniqueAnswer = uniqueAnswer;
 	}
-
-	public Method getMethodBean() {
-		return this.methodBean;
+	
+	public Method getMethodRef() {
+		return methodRef;
 	}
-
-	public void setMethodBean(Method methodBean) {
-		this.methodBean = methodBean;
+	public void setMethodRef(Method methodRef) {
+		this.methodRef = methodRef;
 	}
-
-	public Teacher getTeacherBean() {
-		return this.teacherBean;
+	
+	public Teacher getTeacherRef() {
+		return teacherRef;
 	}
-
-	public void setTeacherBean(Teacher teacherBean) {
-		this.teacherBean = teacherBean;
+	public void setTeacherRef(Teacher teacherRef) {
+		this.teacherRef = teacherRef;
 	}
 
 }

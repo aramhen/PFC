@@ -1,8 +1,13 @@
 package com.university.equationsapp.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 /**
@@ -11,19 +16,20 @@ import java.util.List;
  */
 @Entity
 @Table(name="methods")
-@NamedQuery(name="Method.findAll", query="SELECT m FROM Method m")
 public class Method implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name = "idMethods")
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int idMethods;
 
+	@Column(name = "methodName", length = 45)
 	private String methodName;
 
 	public int getIdMethods() {
 		return this.idMethods;
 	}
-
 	public void setIdMethods(int idMethods) {
 		this.idMethods = idMethods;
 	}
@@ -31,7 +37,6 @@ public class Method implements Serializable {
 	public String getMethodName() {
 		return this.methodName;
 	}
-
 	public void setMethodName(String methodName) {
 		this.methodName = methodName;
 	}

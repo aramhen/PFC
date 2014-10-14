@@ -23,7 +23,7 @@ public class Answer implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date answerDate;
 
-	@Column(name = "solution")
+	@Column(name = "solution", length = 45)
 	private String solution;
 
 	@Column(name = "steps")
@@ -43,7 +43,6 @@ public class Answer implements Serializable {
 	public int getIdAnswers() {
 		return this.idAnswers;
 	}
-
 	public void setIdAnswers(int idAnswers) {
 		this.idAnswers = idAnswers;
 	}
@@ -51,7 +50,6 @@ public class Answer implements Serializable {
 	public Date getAnswerDate() {
 		return this.answerDate;
 	}
-
 	public void setAnswerDate(Date answerDate) {
 		this.answerDate = answerDate;
 	}
@@ -59,7 +57,6 @@ public class Answer implements Serializable {
 	public String getSolution() {
 		return this.solution;
 	}
-
 	public void setSolution(String solution) {
 		this.solution = solution;
 	}
@@ -67,7 +64,6 @@ public class Answer implements Serializable {
 	public String getSteps() {
 		return this.steps;
 	}
-
 	public void setSteps(String steps) {
 		this.steps = steps;
 	}
@@ -75,7 +71,6 @@ public class Answer implements Serializable {
 	public Problem getProblemRef() {
 		return this.problemRef;
 	}
-
 	public void setProblemRef(Problem problemRef) {
 		this.problemRef = problemRef;
 	}
@@ -83,7 +78,6 @@ public class Answer implements Serializable {
 	public Student getStudentRef() {
 		return this.studentRef;
 	}
-
 	public void setStudentRef(Student studentRef) {
 		this.studentRef = studentRef;
 	}
