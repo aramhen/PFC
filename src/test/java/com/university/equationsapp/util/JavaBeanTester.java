@@ -30,7 +30,6 @@ public class JavaBeanTester {
     public static <T> void test(final Class<T> clazz, final String... skipThese) throws IntrospectionException {
         final PropertyDescriptor[] props = Introspector.getBeanInfo(clazz).getPropertyDescriptors();
         nextProp: for (PropertyDescriptor prop : props) {
-        	System.out.println(prop);
          // Check the list of properties that we don't want to test
             for (String skipThis : skipThese) {
                 if (skipThis.equals(prop.getName())) {
@@ -51,7 +50,6 @@ public class JavaBeanTester {
                     try{
                      // Build a value of the correct type to be passed to the set method
                         Object value = buildValue(returnType);
-                        System.out.println(value);
                         
                      // Build an instance of the bean that we are testing (each property test gets a new instance)
                         T bean = clazz.newInstance();
