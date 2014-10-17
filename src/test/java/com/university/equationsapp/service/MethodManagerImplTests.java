@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import java.beans.IntrospectionException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.university.equationsapp.domain.Method;
-import com.university.equationsapp.util.JavaBeanTester;
 
 public class MethodManagerImplTests {
 	

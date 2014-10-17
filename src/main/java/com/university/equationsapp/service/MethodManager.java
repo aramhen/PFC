@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.university.equationsapp.domain.Method;
 
-interface MethodManager extends Serializable{
+public interface MethodManager extends Serializable{
 	
 	public List<Method> getMethods();
 
