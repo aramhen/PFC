@@ -51,12 +51,12 @@ public class Problem implements Serializable {
 
 	//many-to-one association to Method
 	@ManyToOne
-	@JoinColumn(name = "method", table = "Method", referencedColumnName = "idMethods", nullable = false)
+	@JoinColumn(name = "method", referencedColumnName = "idMethods", nullable = false)
 	private Method methodRef;
 
 	//many-to-one association to Teacher
 	@ManyToOne
-	@JoinColumn(name = "teacher", table = "Teachers", referencedColumnName = "idTeachers", nullable = false)
+	@JoinColumn(name = "teacher", referencedColumnName = "idTeachers", nullable = false)
 	private Teacher teacherRef;
 
 	public int getIdProblems() {

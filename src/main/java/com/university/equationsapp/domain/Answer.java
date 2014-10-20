@@ -33,12 +33,12 @@ public class Answer implements Serializable {
 
 	//many-to-one association to Problem
 	@ManyToOne
-    @JoinColumn(name = "problem", table = "problems", referencedColumnName = "idProblems", nullable = false)
+    @JoinColumn(name = "problem", referencedColumnName = "idProblems", nullable = false)
 	private Problem problemRef;
 
 	//many-to-one association to Student
 	@ManyToOne
-	@JoinColumn(name = "student", table = "students", referencedColumnName = "idStudents", nullable = false)
+	@JoinColumn(name = "student", referencedColumnName = "idStudents", nullable = false)
 	private Student studentRef;
 
 	/**

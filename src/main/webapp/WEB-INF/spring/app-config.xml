@@ -13,7 +13,8 @@
 		<!-- Configures the @Controller programming model -->
 		<mvc:annotation-driven/>
 
-		<!-- Evita que tengamos que poner en el controlador la ruta a las jsps, el la pone con este prefijo
+		<!-- ARH TODO revisar comentarios
+			Evita que tengamos que poner en el controlador la ruta a las jsps, el la pone con este prefijo
 			y ademas añade de sufijo el .jsp, así sólo hay que poner el nombre de las jsps -->
 		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
