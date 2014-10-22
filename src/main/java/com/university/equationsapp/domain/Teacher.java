@@ -9,19 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 /**
  * The persistent class for the teachers database table.
  * 
  */
 @Entity
-@Table(name="teachers")
+@Table(name = "teachers")
 public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idTeachers")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idTeachers;
 
 	@Column(name = "email", length = 50)
@@ -39,6 +38,7 @@ public class Teacher implements Serializable {
 	public int getIdTeachers() {
 		return this.idTeachers;
 	}
+
 	public void setIdTeachers(int idTeachers) {
 		this.idTeachers = idTeachers;
 	}
@@ -46,6 +46,7 @@ public class Teacher implements Serializable {
 	public String getEmail() {
 		return this.email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -53,6 +54,7 @@ public class Teacher implements Serializable {
 	public String getName() {
 		return this.name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -60,6 +62,7 @@ public class Teacher implements Serializable {
 	public String getNumDoc() {
 		return this.numDoc;
 	}
+
 	public void setNumDoc(String numDoc) {
 		this.numDoc = numDoc;
 	}
@@ -67,6 +70,7 @@ public class Teacher implements Serializable {
 	public String getPassword() {
 		return this.password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}

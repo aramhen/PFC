@@ -3,21 +3,32 @@ package com.university.equationsapp.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the answers database table.
+ * 
  * @author Burt
  *
  */
 @Entity
-@Table(name="answers")
+@Table(name = "answers")
 public class Answer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idAnswers")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idAnswers;
 
 	@Column(name = "answerDate")
@@ -33,7 +44,7 @@ public class Answer implements Serializable {
 
 	//many-to-one association to Problem
 	@ManyToOne
-    @JoinColumn(name = "problem", referencedColumnName = "idProblems", nullable = false)
+	@JoinColumn(name = "problem", referencedColumnName = "idProblems", nullable = false)
 	private Problem problemRef;
 
 	//many-to-one association to Student
@@ -43,13 +54,16 @@ public class Answer implements Serializable {
 
 	/**
 	 * Gets the unique id of the answer (Table answers)
+	 * 
 	 * @return the unique id of the answer (Table answers)
 	 */
 	public int getIdAnswers() {
 		return this.idAnswers;
 	}
+
 	/**
 	 * Sets the unique id of the answer (Table answers)
+	 * 
 	 * @param idAnswers the unique id of the answer (Table answers)
 	 */
 	public void setIdAnswers(int idAnswers) {
@@ -58,13 +72,16 @@ public class Answer implements Serializable {
 
 	/**
 	 * Gets the date of the student's answer (Table answers)
+	 * 
 	 * @return the date of the student's answer (Table answers)
 	 */
 	public Date getAnswerDate() {
 		return this.answerDate;
 	}
+
 	/**
 	 * Sets the date of the student's answer (Table answers)
+	 * 
 	 * @param answerDate the date of the student's answer (Table answers)
 	 */
 	public void setAnswerDate(Date answerDate) {
@@ -73,13 +90,16 @@ public class Answer implements Serializable {
 
 	/**
 	 * Gets the student's solution (Table answers)
+	 * 
 	 * @return the student's solution (Table answers)
 	 */
 	public String getSolution() {
 		return this.solution;
 	}
+
 	/**
 	 * Sets the student's solution (Table answers)
+	 * 
 	 * @param solution the student's solution (Table answers)
 	 */
 	public void setSolution(String solution) {
@@ -88,13 +108,16 @@ public class Answer implements Serializable {
 
 	/**
 	 * Gets the student's steps (Table answers)
+	 * 
 	 * @return the student's steps (Table answers)
 	 */
 	public String getSteps() {
 		return this.steps;
 	}
+
 	/**
 	 * Sets the student's steps (Table answers)
+	 * 
 	 * @param steps the student's steps (Table answers)
 	 */
 	public void setSteps(String steps) {
@@ -103,13 +126,16 @@ public class Answer implements Serializable {
 
 	/**
 	 * Gets the problem answered by the student (Table answers referencing table problems)
+	 * 
 	 * @return the problem answered by the student (Table answers referencing table problems)
 	 */
 	public Problem getProblemRef() {
 		return this.problemRef;
 	}
+
 	/**
 	 * Sets the problem answered by the student (Table answers referencing table problems)
+	 * 
 	 * @param problemRef the problem answered by the student (Table answers referencing table problems)
 	 */
 	public void setProblemRef(Problem problemRef) {
@@ -118,27 +144,30 @@ public class Answer implements Serializable {
 
 	/**
 	 * Gets the student who is answering (Table answers referencing table students)
+	 * 
 	 * @return the student who is answering (Table answers referencing table students)
 	 */
 	public Student getStudentRef() {
 		return this.studentRef;
 	}
+
 	/**
 	 * Sets the student who is answering (Table answers referencing table students)
+	 * 
 	 * @param studentRef the student who is answering (Table answers referencing table students)
 	 */
 	public void setStudentRef(Student studentRef) {
 		this.studentRef = studentRef;
 	}
-	
+
 	/**
 	 * @return idAnswers, answerDate, solution, id of problemRef, id of studentRef
 	 */
 	@Override
 	public String toString() {
-		return "Answer [idAnswers=" + idAnswers + ", answerDate=" + answerDate
-				+ ", solution=" + solution + ", problemRef id=" + problemRef.getIdProblems()
-				+ ", studentRef id=" + studentRef.getIdStudents() + "]";
+		return "Answer [idAnswers=" + idAnswers + ", answerDate=" + answerDate + ", solution=" + solution
+				+ ", problemRef id=" + problemRef.getIdProblems() + ", studentRef id=" + studentRef.getIdStudents()
+				+ "]";
 	}
 
 }

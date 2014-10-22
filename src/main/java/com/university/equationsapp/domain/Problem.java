@@ -14,19 +14,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 /**
  * The persistent class for the problems database table.
  * 
  */
 @Entity
-@Table(name="problems")
+@Table(name = "problems")
 public class Problem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idProblems")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idProblems;
 
 	@Column(name = "equations", length = 45)
@@ -62,6 +61,7 @@ public class Problem implements Serializable {
 	public int getIdProblems() {
 		return this.idProblems;
 	}
+
 	public void setIdProblems(int idProblems) {
 		this.idProblems = idProblems;
 	}
@@ -69,6 +69,7 @@ public class Problem implements Serializable {
 	public String getEquations() {
 		return this.equations;
 	}
+
 	public void setEquations(String equations) {
 		this.equations = equations;
 	}
@@ -76,6 +77,7 @@ public class Problem implements Serializable {
 	public Date getEndDate() {
 		return this.endDate;
 	}
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
@@ -83,6 +85,7 @@ public class Problem implements Serializable {
 	public Date getInitDate() {
 		return this.initDate;
 	}
+
 	public void setInitDate(Date initDate) {
 		this.initDate = initDate;
 	}
@@ -90,6 +93,7 @@ public class Problem implements Serializable {
 	public int getNumVariables() {
 		return this.numVariables;
 	}
+
 	public void setNumVariables(int numVariables) {
 		this.numVariables = numVariables;
 	}
@@ -97,27 +101,31 @@ public class Problem implements Serializable {
 	public String getSolution() {
 		return this.solution;
 	}
+
 	public void setSolution(String solution) {
 		this.solution = solution;
 	}
-	
+
 	public boolean isUniqueAnswer() {
 		return uniqueAnswer;
 	}
+
 	public void setUniqueAnswer(boolean uniqueAnswer) {
 		this.uniqueAnswer = uniqueAnswer;
 	}
-	
+
 	public Method getMethodRef() {
 		return methodRef;
 	}
+
 	public void setMethodRef(Method methodRef) {
 		this.methodRef = methodRef;
 	}
-	
+
 	public Teacher getTeacherRef() {
 		return teacherRef;
 	}
+
 	public void setTeacherRef(Teacher teacherRef) {
 		this.teacherRef = teacherRef;
 	}

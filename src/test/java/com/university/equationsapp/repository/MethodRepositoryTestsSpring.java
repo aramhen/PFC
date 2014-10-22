@@ -15,6 +15,7 @@ import com.university.equationsapp.domain.Method;
 
 /**
  * Test of MethodRepository using spring-test
+ * 
  * @author Burt
  *
  */

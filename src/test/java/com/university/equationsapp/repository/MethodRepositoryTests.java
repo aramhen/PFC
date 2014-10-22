@@ -13,6 +13,7 @@ import com.university.equationsapp.domain.Method;
 
 /**
  * Test of MethodRepository using JUNIT
+ * 
  * @author Burt
  *
  */
