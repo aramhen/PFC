@@ -11,42 +11,56 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.university.equationsapp.domain.Method;
+import com.university.equationsapp.repository.InMemoryMethodRepository;
+import com.university.equationsapp.repository.MethodRepository;
 
 public class MethodManagerImplTests {
 
+//	private ApplicationContext context;
 	private MethodManagerImpl methodManager;
+	private MethodRepository methodRepository;
 
-	private List<Method> methods;
+//	private List<Method> methods;
 	private static int METHODS_NUMBER = 2;
 	private static String METHOD_GAUSS = "Gauss";
 	private static String METHOD_ADDITION = "Addition";
 
+//	@InjectMocks
+//    final private MethodManagerImpl methodManagerk = new MethodManagerImpl();
+
 	@Before
 	public void setUp() throws Exception {
+//		context = new ClassPathXmlApplicationContext("classpath:test-context.xml");
+//		methodRepository = (MethodRepository) context.getBean("methodRepository");
 		methodManager = new MethodManagerImpl();
 
 		//Set up data test
-		methods = new ArrayList<Method>();
+		List<Method> methods = new ArrayList<Method>();
 		Method method = new Method();
 		method.setMethodName(METHOD_GAUSS);
 		methods.add(method);
 		method = new Method();
 		method.setMethodName(METHOD_ADDITION);
 		methods.add(method);
-		methodManager.setMethods(methods);
+		methodRepository = new InMemoryMethodRepository(methods);
+		methodManager.setMethodRepository(methodRepository);
+
+//		Mockito.when(methodManager.getMethods()).thenReturn(methods);
 	}
 
 	@Test
-	public void testGetProductsWithNoProducts() {
+	public void testGetMethodsNull() {
 		methodManager = new MethodManagerImpl();
-		assertNull(methodManager.getMethods());
+		InMemoryMethodRepository tmpRep = new InMemoryMethodRepository(null);
+		methodManager.setMethodRepository(tmpRep);
+		assertNull(methodManager.getMethodList());
 	}
 
 	@Test
 	public void testGetMethods() {
-		List<Method> methods = methodManager.getMethods();
+		List<Method> methods = methodManager.getMethodList();
 		assertNotNull(methods);
-		assertEquals(METHODS_NUMBER, methodManager.getMethods().size());
+		assertEquals(METHODS_NUMBER, methodManager.getMethodList().size());
 
 		Method method = methods.get(0);
 		assertEquals(METHOD_GAUSS, method.getMethodName());
