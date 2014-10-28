@@ -7,6 +7,8 @@ import com.university.equationsapp.domain.Method;
 
 public interface MethodManager extends Serializable {
 
-	public List<Method> getMethods();
+	public List<Method> getMethodList();
+
+	public Method getMethod(String methodName);
 
 }

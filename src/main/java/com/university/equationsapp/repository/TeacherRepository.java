@@ -4,6 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.university.equationsapp.domain.Teacher;
 
-public interface TeacherRepository  extends CrudRepository<Teacher, Integer>, TeacherRepositoryCustom {
+public interface TeacherRepository extends CrudRepository<Teacher, Integer>, TeacherRepositoryCustom {
+
+	Teacher findByName(String teacherName);
 
 }
