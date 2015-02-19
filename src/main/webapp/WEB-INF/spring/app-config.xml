@@ -12,8 +12,15 @@
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
 	<context:component-scan base-package="com.university.equationsapp.web" />
 
-	<!-- Configures the @Controller programming model -->
-	<mvc:annotation-driven />
+	<!-- Esto me permite usar los mensajes de validación personalizados, debo indicarlos por anotacion en 
+		los campos del bean asociado a la jsp y los busca luego en el messages.properties -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+	<!-- Configures the @Controller programming model ARH TODO he añadido validator="validator" para la 
+		validacion para indcarle que use el bean validator creado arriba -->
+	<mvc:annotation-driven validator="validator" />
 
 	<!-- ARH TODO revisar comentarios Evita que tengamos que poner en el controlador la ruta a las jsps, 
 		el la pone con este prefijo y ademas añade de sufijo el .jsp, así sólo hay que poner el nombre de las 

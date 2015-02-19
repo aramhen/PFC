@@ -16,7 +16,7 @@ public class CreateProblem {
 
 	//Las variables las limito de 2 a 3, asi no se puede introducir un valor no permitido editanto el html del formulario
 	@NotNull
-	@Range(min = WebConstants.NUM_VARIABLES_MIN, max = WebConstants.NUM_VARIABLES_MAX)
+	@Range(min = WebConstants.NUM_VARIABLES_MIN, max = WebConstants.NUM_VARIABLES_MAX, message = "{createproblem.validation.numvariables}")
 	private int numVariables;
 
 	@NotNull

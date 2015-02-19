@@ -34,7 +34,7 @@ public class ProblemManagerImpl implements ProblemManager {
 		return this.problemRepository.getProblemList();
 	}
 
-	//Here we parse the web object createProblem to a respository object Problem
+	//Here we parse the web object createProblem to a repository object Problem
 	public void createProblem(CreateProblem createProblem) {
 		Problem problem = new Problem();
 		problem.setEndDate(createProblem.getEndDate());
@@ -66,7 +66,7 @@ public class ProblemManagerImpl implements ProblemManager {
 
 		int idTeacher = createProblem.getIdTeacher();
 		//TODO ARH !!!!!!!!! Ahora mismo seteo a pincho a un profesor mientras veo como lo recupero
-		idTeacher = 1; //<<<<---- Esto hay que quitarlo!!!!!
+		idTeacher = 1; //TODO ARH <<<<---- Esto hay que quitarlo!!!!!
 		problem.setTeacherRef(teacherRepository.findOne(idTeacher));
 
 		problemRepository.save(problem);

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +62,7 @@ public class CreateProblemController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(CreateProblem createProblem, BindingResult result, Model model) {
+	public String onSubmit(@Valid CreateProblem createProblem, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "createproblem";
 		}
@@ -117,5 +118,4 @@ public class CreateProblemController {
 //	    createProblem.setEndDate(cal.getTime());
 
 	}
-
 }
