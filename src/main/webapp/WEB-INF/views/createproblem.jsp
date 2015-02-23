@@ -6,6 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title><spring:message code="CP_title" /></title>
 <style>
 .error {
@@ -89,7 +90,7 @@ body {
 							<label>idMethods:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-7">
+							<div class="col-xs-6">
 								<form:select path="idMethod" class="form-control">
 									<form:option value="0" label="${CP_idMethodSelect}"></form:option>
 									<form:options items="${methodList}" itemLabel="methodName" itemValue="idMethods" />
@@ -105,7 +106,7 @@ body {
 							<label>numVariables:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-7">
+							<div class="col-xs-6">
 								<form:select path="numVariables" class="form-control">
 									<form:option value="0" label="${CP_numVariablesSelect}"></form:option>
 									<form:options items="${numVariablesList}" />
@@ -124,7 +125,7 @@ body {
 							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_equation1" /></label>
 							</div>
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<form:input path="equation1" class="form-control" />
 							</div>
 							<div>
@@ -135,7 +136,7 @@ body {
 							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_equation2" /></label>
 							</div>
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<form:input path="equation2" class="form-control" />
 							</div>
 							<div>
@@ -146,7 +147,7 @@ body {
 							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_equation3" /></label>
 							</div>
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<form:input path="equation3" class="form-control" />
 							</div>
 							<div>
@@ -159,7 +160,7 @@ body {
 							<label>initDate:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-7">
+							<div class="col-xs-6">
 								<div id="sandbox-container-initDate">
 									<div class="input-group date">
 										<form:input path="initDate" type="text" class="form-control" placeholder="dd/mm/yyyy" />
@@ -177,7 +178,7 @@ body {
 							<label>endDate:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-7">
+							<div class="col-xs-6">
 								<div id="sandbox-container-initDate">
 									<div class="input-group date">
 										<form:input path="endDate" type="text" class="form-control" placeholder="dd/mm/yyyy" />
@@ -193,8 +194,8 @@ body {
 
 					<div class="form-group">
 						<div class="row">
-							<div class="col-xs-7">
-								<label><spring:message code="CP_uniqueAnswerCheckbox" /></label> <label class="checkbox-inline"><form:checkbox path="uniqueAnswer" /></label>
+							<div class="col-xs-6">
+								<label class="checkbox-inline"><label><spring:message code="CP_uniqueAnswerCheckbox" /></label><form:checkbox path="uniqueAnswer" /></label>
 							</div>
 							<div>
 								<form:errors path="uniqueAnswer" cssClass="alert_eq alert-danger" />
@@ -203,8 +204,8 @@ body {
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-xs-7">
-								<label><spring:message code="CP_solutionCheckbox" /></label> <label class="checkbox-inline"><form:checkbox path="solutionCheck" /></label>
+							<div class="col-xs-6">
+								<label class="checkbox-inline"><label><spring:message code="CP_solutionCheckbox" /></label><form:checkbox path="solutionCheck" /></label>
 							</div>
 							<div>
 								<form:errors path="solutionCheck" cssClass="alert_eq alert-danger" />
@@ -216,7 +217,7 @@ body {
 							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableX" /></label>
 							</div>
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<form:input path="variableX" disabled="true" class="form-control" />
 							</div>
 							<div>
@@ -227,7 +228,7 @@ body {
 							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
 							</div>
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<form:input path="variableY" disabled="true" class="form-control" />
 							</div>
 							<div>
@@ -238,7 +239,7 @@ body {
 							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
 							</div>
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<form:input path="variableZ" disabled="true" class="form-control" />
 							</div>
 							<div>
