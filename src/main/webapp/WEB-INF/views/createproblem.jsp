@@ -23,15 +23,25 @@ body {
 
 .alert_eq {
 	padding: 6px 18px;
-	margin-bottom: 20px;
+	margin-bottom: 3px;
 	border: 1px solid transparent;
 	border-radius: 4px;
 	float: left;
 	max-width: 41.66666667%;
 }
 
-.margin_lf_eq {
-	margin-left: 15px;
+.body_width_eq {
+	max-width: 900px;
+}
+
+.row {
+	margin-right: 0px !important;
+}
+
+.subrow{
+	margin-left: 3%; 
+	margin-right: -3%;
+	margin-bottom: 12px;
 }
 </style>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -67,7 +77,7 @@ body {
 	</nav>
 
 
-	<div class="container">
+	<div class="container body_width_eq">
 		<div class="starter-template">
 			<h1 class="page-header">Create Problem++</h1>
 			<div class="panel panel-default">
@@ -78,7 +88,7 @@ body {
 							<label>idMethods:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-5">
+							<div class="col-xs-7">
 								<form:select path="idMethod" class="form-control">
 									<form:option value="0" label="${CP_idMethodSelect}"></form:option>
 									<form:options items="${methodList}" itemLabel="methodName" itemValue="idMethods" />
@@ -94,7 +104,7 @@ body {
 							<label>numVariables:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-5">
+							<div class="col-xs-7">
 								<form:select path="numVariables" class="form-control">
 									<form:option value="0" label="${CP_numVariablesSelect}"></form:option>
 									<form:options items="${numVariablesList}" />
@@ -110,10 +120,10 @@ body {
 							<label>equations:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-1" style="margin-left: 3%; margin-right: -3%;">
+							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_equation1" /></label>
 							</div>
-							<div class="col-xs-4">
+							<div class="col-xs-6">
 								<form:input path="equation1" class="form-control" />
 							</div>
 							<div>
@@ -121,10 +131,10 @@ body {
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-xs-1" style="margin-left: 3%; margin-right: -3%;">
+							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_equation2" /></label>
 							</div>
-							<div class="col-xs-4">
+							<div class="col-xs-6">
 								<form:input path="equation2" class="form-control" />
 							</div>
 							<div>
@@ -132,10 +142,10 @@ body {
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-xs-1" style="margin-left: 3%; margin-right: -3%;">
+							<div class="col-xs-1 subrow">
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_equation3" /></label>
 							</div>
-							<div class="col-xs-4">
+							<div class="col-xs-6">
 								<form:input path="equation3" class="form-control" />
 							</div>
 							<div>
@@ -148,7 +158,7 @@ body {
 							<label>initDate:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-5">
+							<div class="col-xs-7">
 								<div id="sandbox-container-initDate">
 									<div class="input-group date">
 										<form:input path="initDate" type="text" class="form-control" placeholder="dd/mm/yyyy" />
@@ -166,7 +176,7 @@ body {
 							<label>endDate:</label>
 						</div>
 						<div class="row">
-							<div class="col-xs-5">
+							<div class="col-xs-7">
 								<div id="sandbox-container-initDate">
 									<div class="input-group date">
 										<form:input path="endDate" type="text" class="form-control" placeholder="dd/mm/yyyy" />
@@ -181,31 +191,62 @@ body {
 					</div>
 
 					<div class="form-group">
-						<label><spring:message code="CP_uniqueAnswerCheckbox" /></label> <label class="checkbox-inline"> <form:checkbox path="uniqueAnswer" />
-						</label>
+						<div class="row">
+							<div class="col-xs-7">
+								<label><spring:message code="CP_uniqueAnswerCheckbox" /></label> <label class="checkbox-inline"><form:checkbox path="uniqueAnswer" /></label>
+							</div>
+							<div>
+								<form:errors path="uniqueAnswer" cssClass="alert_eq alert-danger" />
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
-						<label><spring:message code="CP_solutionCheckbox" /></label> <label class="checkbox-inline"> <form:checkbox path="solutionCheck" />
-						</label>
+						<div class="row">
+							<div class="col-xs-7">
+								<label><spring:message code="CP_solutionCheckbox" /></label> <label class="checkbox-inline"><form:checkbox path="solutionCheck" /></label>
+							</div>
+							<div>
+								<form:errors path="solutionCheck" cssClass="alert_eq alert-danger" />
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-offset-2 subfield"><spring:message code="CP_variableX" /></label>
-						<div>
-							<form:input path="variableX" disabled="true" class="form-control col-md-offset-2 width75_eq" />
+						<div class="row">
+							<div class="col-xs-1 subrow">
+								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableX" /></label>
+							</div>
+							<div class="col-xs-6">
+								<form:input path="variableX" disabled="true" class="form-control" />
+							</div>
+							<div>
+								<form:errors path="variableX" cssClass="alert_eq alert-danger" />
+							</div>
 						</div>
-						<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
-						<div>
-							<form:input path="variableY" disabled="true" class="form-control col-md-offset-2 width75_eq" />
+						<div class="row">
+							<div class="col-xs-1 subrow">
+								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
+							</div>
+							<div class="col-xs-6">
+								<form:input path="variableY" disabled="true" class="form-control" />
+							</div>
+							<div>
+								<form:errors path="variableY" cssClass="alert_eq alert-danger" />
+							</div>
 						</div>
-						<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
-						<div>
-							<form:input path="variableZ" disabled="true" class="form-control col-md-offset-2 width75_eq" />
+						<div class="row">
+							<div class="col-xs-1 subrow">
+								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
+							</div>
+							<div class="col-xs-6">
+								<form:input path="variableZ" disabled="true" class="form-control" />
+							</div>
+							<div>
+								<form:errors path="variableZ" cssClass="alert_eq alert-danger" />
+							</div>
 						</div>
 					</div>
-					<div class="form-group"></div>
 					<button type="submit" class="btn btn-default">Create</button>
 				</form:form>
-
 				<div class="panel-body"></div>
 			</div>
 
@@ -213,114 +254,6 @@ body {
 	</div>
 	<!-- /.container -->
 
-
-
-	<div id="page-wrapper">
-		<div class="row">
-			<div class="col-lg-6">
-				<h1 class="page-header">Create Problem++</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Choose the options to create a problem:++</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-7">
-								<form:form method="post" commandName="createProblem">
-									<div class="form-group">
-										<label>idMethods:</label>
-										<form:select path="idMethod" class="form-control">
-											<form:option value="0" label="${CP_idMethodSelect}"></form:option>
-											<form:options items="${methodList}" itemLabel="methodName" itemValue="idMethods" />
-										</form:select>
-									</div>
-									<div class="form-group row">
-										<div>
-											<label>numVariables:</label>
-										</div>
-										<div>
-											<form:select path="numVariables" class="form-control">
-												<form:option value="0" label="${CP_numVariablesSelect}"></form:option>
-												<form:options items="${numVariablesList}" />
-											</form:select>
-										</div>
-										<div>
-											<form:errors path="numVariables" cssClass="alert_eq alert-danger" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label>equations:</label>
-									</div>
-									<div class="form-group">
-										<label class="col-md-offset-2 subfield"><spring:message code="CP_equation1" /></label>
-										<div>
-											<form:input path="equation1" class="form-control col-md-offset-2 width75_eq" />
-											<form:errors path="equation1" cssClass="alert_eq alert-danger margin_left_eq" />
-										</div>
-										<label class="col-md-offset-2 subfield"><spring:message code="CP_equation2" /></label>
-										<div>
-											<form:input path="equation2" class="form-control col-md-offset-2 width75_eq" />
-											<form:errors path="equation2" cssClass="error margin_left_eq" />
-										</div>
-										<label class="col-md-offset-2 subfield"><spring:message code="CP_equation3" /></label>
-										<div>
-											<form:input path="equation3" class="form-control col-md-offset-2 width75_eq" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label>initDate:</label>
-										<div id="sandbox-container-initDate">
-											<div class="input-group date">
-												<form:input path="initDate" type="text" class="form-control" placeholder="dd/mm/yyyy" />
-												<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label>endDate:</label>
-										<div id="sandbox-container-endDate">
-											<div class="input-group date">
-												<form:input path="endDate" type="text" class="form-control" placeholder="dd/mm/yyyy" />
-												<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label><spring:message code="CP_uniqueAnswerCheckbox" /></label> <label class="checkbox-inline"> <form:checkbox path="uniqueAnswer" />
-										</label>
-									</div>
-									<div class="form-group">
-										<label><spring:message code="CP_solutionCheckbox" /></label> <label class="checkbox-inline"> <form:checkbox path="solutionCheck" />
-										</label>
-									</div>
-									<div class="form-group">
-										<label class="col-md-offset-2 subfield"><spring:message code="CP_variableX" /></label>
-										<div>
-											<form:input path="variableX" disabled="true" class="form-control col-md-offset-2 width75_eq" />
-										</div>
-										<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
-										<div>
-											<form:input path="variableY" disabled="true" class="form-control col-md-offset-2 width75_eq" />
-										</div>
-										<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
-										<div>
-											<form:input path="variableZ" disabled="true" class="form-control col-md-offset-2 width75_eq" />
-										</div>
-									</div>
-									<div class="form-group"></div>
-									<button type="submit" class="btn btn-default">Create</button>
-								</form:form>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
 	<script type="text/javascript">
 		$('#sandbox-container-initDate .input-group.date').datepicker({
 			format : "dd/mm/yyyy",
