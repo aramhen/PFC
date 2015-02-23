@@ -46,6 +46,7 @@ body {
 </style>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <link id="bs-css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="resources/bootstrap/datepicker3.css" type="text/css" />
 
