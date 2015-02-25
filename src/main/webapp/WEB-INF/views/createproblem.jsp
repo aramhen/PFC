@@ -279,21 +279,30 @@ body {
 		});
 		$(document).ready(function() {
 			$("#numVariables").change(function() {
-				$("select option:selected").each(function() {
 					if ($(this).prop("value") == "2") {
 						$('#equation1').removeAttr("disabled");
 						$('#equation2').removeAttr("disabled");
 						$('#equation3').prop('disabled', true);
+						$('#solutionCheck1').removeAttr("disabled");
+						$("#variableZ").attr("disabled", true);
 					} else if ($(this).prop("value") == "3") {
 						$('#equation1').removeAttr("disabled");
 						$('#equation2').removeAttr("disabled");
 						$('#equation3').removeAttr("disabled");
-					} else {
+						$('#solutionCheck1').removeAttr("disabled");
+						 if ($('#solutionCheck1').is(":checked")) {
+							$('#variableZ').removeAttr("disabled");
+						}
+					} else{
 						$('#equation1').prop('disabled', true);
 						$('#equation2').prop('disabled', true);
 						$('#equation3').prop('disabled', true);
+						$("#solutionCheck1").prop('checked', false);
+						$("#variableX").attr("disabled", true);
+						$("#variableY").attr("disabled", true);
+						$("#variableZ").attr("disabled", true);
+						$("#solutionCheck1").attr("disabled", true);
 					}
-				});
 			}).change();
 			$("#solutionCheck1").click(function() {
 				$("#variableX").attr("disabled", !this.checked);
