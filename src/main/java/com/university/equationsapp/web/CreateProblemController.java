@@ -24,6 +24,7 @@ import com.university.equationsapp.service.MethodManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
 import com.university.equationsapp.web.constants.WebConstants;
+import com.university.equationsapp.web.dto.CreateProblemDTO;
 
 @Controller
 @RequestMapping(value = "/createproblem.htm")
@@ -48,28 +49,28 @@ public class CreateProblemController {
 	private ArrayList<Integer> numVariablesList = new ArrayList<Integer>();
 
 	@RequestMapping(method = RequestMethod.GET)
-	protected CreateProblem formBackingObject(HttpServletRequest request, Model model) throws ServletException {
-		CreateProblem createProblem = new CreateProblem();
+	protected CreateProblemDTO formBackingObject(HttpServletRequest request, Model model) throws ServletException {
+		CreateProblemDTO createProblemDTO = new CreateProblemDTO();
 		/*
 		 * createInventory.setProductRef(new Product()); createInventory.setQuantity(0);
 		 */
 		model.addAttribute("now", new Date().toString());
 
-		//Inicialize data in createProblem
-		initCreateProblem(createProblem);
+		//Inicialize data in createProblemDTO
+		initCreateProblem(createProblemDTO);
 
-		return createProblem;
+		return createProblemDTO;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(@Valid CreateProblem createProblem, BindingResult result, Model model) {
+	public String onSubmit(@Valid CreateProblemDTO createProblemDTO, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "createproblem";
 		}
 
-		problemManager.createProblem(createProblem);
+		problemManager.createProblem(createProblemDTO);
 
-		System.out.println("-*-*-*-*-* Creating problem" + createProblem.getEndDate());
+		System.out.println("-*-*-*-*-* Creating problem" + createProblemDTO.getEndDate());
 		return "redirect:/problemcreated.htm";
 	}
 
@@ -107,15 +108,15 @@ public class CreateProblemController {
 	}
 
 	//Initialize object createProblem which backs the form in the jsp
-	private void initCreateProblem(CreateProblem createProblem) {
+	private void initCreateProblem(CreateProblemDTO createProblemDTO) {
 
 		Calendar cal = Calendar.getInstance();
 		//We put actual date in initDate
-//	    createProblem.setInitDate(cal.getTime());
+//	    createProblemDTO.setInitDate(cal.getTime());
 
 		cal.add(Calendar.MONTH, 1);
 		//We put actual date plus a month in endDate
-//	    createProblem.setEndDate(cal.getTime());
+//	    createProblemDTO.setEndDate(cal.getTime());
 
 	}
 }

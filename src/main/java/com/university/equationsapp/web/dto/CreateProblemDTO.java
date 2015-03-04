@@ -1,42 +1,45 @@
-package com.university.equationsapp.web;
+package com.university.equationsapp.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.university.equationsapp.web.constants.WebConstants;
 
-public class CreateProblem {
+public class CreateProblemDTO {
 
 	@NotNull
+	@Min(value = 1, message = "{createproblem.validation.idmethod}")
 	private int idMethod;
 
-	//Las variables las limito de 2 a 3, asi no se puede introducir un valor no permitido editanto el html del formulario
+	//TODO ARH Las variables las limito de 2 a 3, asi no se puede introducir un valor no permitido editanto el html del formulario
 	@NotNull
 	@Range(min = WebConstants.NUM_VARIABLES_MIN, max = WebConstants.NUM_VARIABLES_MAX, message = "{createproblem.validation.numvariables}")
 	private int numVariables;
 
-	@NotNull
+	@NotBlank
 	private String equation1;
-
-	@NotNull
+	@NotBlank
 	private String equation2;
-
-	@NotNull
 	private String equation3;
 
+	@NotBlank
 	private String variableX;
+	@NotBlank
 	private String variableY;
+	@NotBlank
 	private String variableZ;
 
 	private boolean solutionCheck;
 
 	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	//Eso lo he usado para poder ponerle formato a la fecha al mostrarse en el input por defecto, si diero error de libreria joda hay que incluir
+	//Eso lo he usado para poder ponerle formato a la fecha al mostrarse en el input por defecto, si diera error de libreria joda hay que incluir
 	/*
 	 * <dependency> <groupid>joda-time</groupid> <artifactid>joda-time</artifactid> <version>1.6.2</version>
 	 * <scope>runtime</scope> </dependency>
@@ -48,8 +51,12 @@ public class CreateProblem {
 
 	private boolean uniqueAnswer;
 
+	@NotNull
 	//Hay que ver como consigo esto, de sesion, cookies o lo que sea
 	private int idTeacher;
+
+	@NotBlank
+	private String title;
 
 	public int getIdMethod() {
 		return idMethod;
@@ -72,7 +79,7 @@ public class CreateProblem {
 	}
 
 	public void setEquation1(String equation1) {
-		this.equation1 = equation1;
+		this.equation1 = equation1.trim();
 	}
 
 	public String getEquation2() {
@@ -80,7 +87,7 @@ public class CreateProblem {
 	}
 
 	public void setEquation2(String equation2) {
-		this.equation2 = equation2;
+		this.equation2 = equation2.trim();
 	}
 
 	public String getEquation3() {
@@ -88,7 +95,7 @@ public class CreateProblem {
 	}
 
 	public void setEquation3(String equation3) {
-		this.equation3 = equation3;
+		this.equation3 = equation3.trim();
 	}
 
 	public String getVariableX() {
@@ -96,7 +103,7 @@ public class CreateProblem {
 	}
 
 	public void setVariableX(String variableX) {
-		this.variableX = variableX;
+		this.variableX = variableX.trim();
 	}
 
 	public String getVariableY() {
@@ -104,7 +111,7 @@ public class CreateProblem {
 	}
 
 	public void setVariableY(String variableY) {
-		this.variableY = variableY;
+		this.variableY = variableY.trim();
 	}
 
 	public String getVariableZ() {
@@ -112,7 +119,7 @@ public class CreateProblem {
 	}
 
 	public void setVariableZ(String variableZ) {
-		this.variableZ = variableZ;
+		this.variableZ = variableZ.trim();
 	}
 
 	public Date getInitDate() {
@@ -153,6 +160,14 @@ public class CreateProblem {
 
 	public void setIdTeacher(int idTeacher) {
 		this.idTeacher = idTeacher;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title.trim();
 	}
 
 }

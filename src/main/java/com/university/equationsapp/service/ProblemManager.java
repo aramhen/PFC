@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.university.equationsapp.domain.Problem;
-import com.university.equationsapp.web.CreateProblem;
+import com.university.equationsapp.web.dto.CreateProblemDTO;
 
 public interface ProblemManager extends Serializable {
 
@@ -12,6 +12,6 @@ public interface ProblemManager extends Serializable {
 
 	public Problem getProblemByNumVariables(int numVariables);
 
-	public void createProblem(CreateProblem createProblem);
+	public void createProblem(CreateProblemDTO createProblemDTO);
 
 }

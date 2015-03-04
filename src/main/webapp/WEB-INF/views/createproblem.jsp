@@ -39,24 +39,27 @@ body {
 	margin-right: 0px !important;
 }
 
-.subrow{
-	margin-left: 3%; 
+.subrow {
+	margin-left: 3%;
 	margin-right: -3%;
 	margin-bottom: 12px;
 }
 
-.panel-heading{
+.panel-heading {
 	margin-bottom: 5px;
 }
+
+.font_checkbox_eq {
+	font-weight: 700;
+}
+
+.margin_chexkbox_eq {
+	margin: 0px !important;
+}
 </style>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<link id="bs-css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="resources/bootstrap/datepicker3.css" type="text/css" />
-
-<script type="text/javascript" src="<c:url value="/resources/bootstrap/bootstrap-datepicker.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap/locale/bootstrap-datepicker.es.js" />"></script>
+<link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
+<link rel="stylesheet" href="resources/bootstrap/datepicker-plugin/datepicker3.css" type="text/css" />
 
 </head>
 <body>
@@ -88,7 +91,7 @@ body {
 			<h1 class="page-header">Create Problem++</h1>
 			<div class="panel panel-default">
 				<div class="panel-heading">Choose the options to create a problem:++</div>
-				<form:form method="post" commandName="createProblem" style="text-align:left; margin-left:15px;">
+				<form:form method="post" commandName="createProblemDTO" style="text-align:left; margin-left:15px;">
 					<div class="form-group">
 						<div class="row col-xs-12">
 							<label>Title:</label>
@@ -212,7 +215,9 @@ body {
 					<div class="form-group">
 						<div class="row">
 							<div class="col-xs-8">
-								<label class="checkbox-inline"><label><spring:message code="CP_uniqueAnswerCheckbox" /></label><form:checkbox path="uniqueAnswer" /></label>
+								<div class="checkbox margin_chexkbox_eq">
+									<label> <form:checkbox path="uniqueAnswer" /><span class="font_checkbox_eq"><spring:message code="CP_uniqueAnswerCheckbox" /></span></label>
+								</div>
 							</div>
 							<div>
 								<form:errors path="uniqueAnswer" cssClass="alert_eq alert-danger" />
@@ -222,7 +227,9 @@ body {
 					<div class="form-group">
 						<div class="row">
 							<div class="col-xs-8">
-								<label class="checkbox-inline"><label><spring:message code="CP_solutionCheckbox" /></label><form:checkbox path="solutionCheck" /></label>
+								<div class="checkbox margin_chexkbox_eq" id="solutionCheckdiv">
+									<label> <form:checkbox path="solutionCheck" /><span class="font_checkbox_eq"><spring:message code="CP_solutionCheckbox" /></span></label>
+								</div>
 							</div>
 							<div>
 								<form:errors path="solutionCheck" cssClass="alert_eq alert-danger" />
@@ -235,7 +242,7 @@ body {
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableX" /></label>
 							</div>
 							<div class="col-xs-7">
-								<form:input path="variableX" disabled="true" class="form-control" />
+								<form:input path="variableX" class="form-control" />
 							</div>
 							<div>
 								<form:errors path="variableX" cssClass="alert_eq alert-danger" />
@@ -246,7 +253,7 @@ body {
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
 							</div>
 							<div class="col-xs-7">
-								<form:input path="variableY" disabled="true" class="form-control" />
+								<form:input path="variableY" class="form-control" />
 							</div>
 							<div>
 								<form:errors path="variableY" cssClass="alert_eq alert-danger" />
@@ -257,7 +264,7 @@ body {
 								<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
 							</div>
 							<div class="col-xs-7">
-								<form:input path="variableZ" disabled="true" class="form-control" />
+								<form:input path="variableZ" class="form-control" />
 							</div>
 							<div>
 								<form:errors path="variableZ" cssClass="alert_eq alert-danger" />
@@ -272,6 +279,11 @@ body {
 		</div>
 	</div>
 	<!-- /.container -->
+
+	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap/datepicker-plugin/bootstrap-datepicker.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap/datepicker-plugin/locale/bootstrap-datepicker.es.js" />"></script>
 
 	<script type="text/javascript">
 		$('#sandbox-container-initDate .input-group.date').datepicker({
@@ -296,38 +308,46 @@ body {
 		});
 		$(document).ready(function() {
 			$("#numVariables").change(function() {
-					if ($(this).prop("value") == "2") {
-						$('#equation1').removeAttr("disabled");
-						$('#equation2').removeAttr("disabled");
-						$('#equation3').prop('disabled', true);
-						$('#solutionCheck1').removeAttr("disabled");
-						$("#variableZ").attr("disabled", true);
-					} else if ($(this).prop("value") == "3") {
-						$('#equation1').removeAttr("disabled");
-						$('#equation2').removeAttr("disabled");
-						$('#equation3').removeAttr("disabled");
-						$('#solutionCheck1').removeAttr("disabled");
-						 if ($('#solutionCheck1').is(":checked")) {
-							$('#variableZ').removeAttr("disabled");
-						}
-					} else{
-						$('#equation1').prop('disabled', true);
-						$('#equation2').prop('disabled', true);
-						$('#equation3').prop('disabled', true);
-						$("#solutionCheck1").prop('checked', false);
-						$("#variableX").attr("disabled", true);
-						$("#variableY").attr("disabled", true);
-						$("#variableZ").attr("disabled", true);
-						$("#solutionCheck1").attr("disabled", true);
+				if ($(this).prop("value") == "2") {
+					$('#equation1').removeAttr("disabled");
+					$('#equation2').removeAttr("disabled");
+					$('#equation3').prop('disabled', true);
+					$('#solutionCheckdiv').removeClass("disabled");
+					$("#solutionCheck1").removeAttr("disabled");
+					$("#variableZ").attr("disabled", true);
+				} else if ($(this).prop("value") == "3") {
+					$('#equation1').removeAttr("disabled");
+					$('#equation2').removeAttr("disabled");
+					$('#equation3').removeAttr("disabled");
+					$('#solutionCheckdiv').removeClass("disabled");
+					$("#solutionCheck1").removeAttr("disabled");
+					if ($('#solutionCheck1').is(":checked")) {
+						$('#variableZ').removeAttr("disabled");
 					}
+				} else {
+					$('#equation1').prop('disabled', true);
+					$('#equation2').prop('disabled', true);
+					$('#equation3').prop('disabled', true);
+					$("#solutionCheck1").prop('checked', false);
+					$("#variableX").prop("disabled", true);
+					$("#variableY").prop("disabled", true);
+					$("#variableZ").prop("disabled", true);
+					$("#solutionCheckdiv").addClass("disabled");
+					$("#solutionCheck1").prop("disabled", true);					
+				}
 			}).change();
 			$("#solutionCheck1").click(function() {
-				$("#variableX").attr("disabled", !this.checked);
-				$("#variableY").attr("disabled", !this.checked);
+				$("#variableX").prop("disabled", !this.checked);
+				$("#variableY").prop("disabled", !this.checked);
 				if ($('#numVariables').find(":selected").text() == "3") {
-					$("#variableZ").attr("disabled", !this.checked);
+					$("#variableZ").prop("disabled", !this.checked);
 				}
 			});
+			if (!$('#solutionCheck1').is(":checked")) {
+				$("#variableX").prop("disabled", true);
+				$("#variableY").prop("disabled", true);
+				$("#variableZ").prop("disabled", true);
+			}
 		});
 	</script>
 </body>

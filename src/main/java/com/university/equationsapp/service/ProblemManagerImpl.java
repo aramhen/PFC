@@ -10,7 +10,7 @@ import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.repository.MethodRepository;
 import com.university.equationsapp.repository.ProblemRepository;
 import com.university.equationsapp.repository.TeacherRepository;
-import com.university.equationsapp.web.CreateProblem;
+import com.university.equationsapp.web.dto.CreateProblemDTO;
 
 @Service
 public class ProblemManagerImpl implements ProblemManager {
@@ -34,38 +34,38 @@ public class ProblemManagerImpl implements ProblemManager {
 		return this.problemRepository.getProblemList();
 	}
 
-	//Here we parse the web object createProblem to a repository object Problem
-	public void createProblem(CreateProblem createProblem) {
+	//Here we parse the web object createProblemDTO to a repository object Problem
+	public void createProblem(CreateProblemDTO createProblemDTO) {
 		Problem problem = new Problem();
-		problem.setEndDate(createProblem.getEndDate());
-		problem.setInitDate(createProblem.getInitDate());
-		problem.setUniqueAnswer(createProblem.isUniqueAnswer());
-		problem.setNumVariables(createProblem.getNumVariables());
-		problem.setTitle(createProblem.getTitle());
+		problem.setEndDate(createProblemDTO.getEndDate());
+		problem.setInitDate(createProblemDTO.getInitDate());
+		problem.setUniqueAnswer(createProblemDTO.isUniqueAnswer());
+		problem.setNumVariables(createProblemDTO.getNumVariables());
+		problem.setTitle(createProblemDTO.getTitle());
 
 		StringBuilder sb = new StringBuilder();
 		//TODO ARH validaciones de si viene vacio etc mal o ya viene comprobado?
-		sb.append(createProblem.getEquation1().trim()).append(CommonConstants.SEPARATOR);
-		sb.append(createProblem.getEquation2().trim());
+		sb.append(createProblemDTO.getEquation1().trim()).append(CommonConstants.SEPARATOR);
+		sb.append(createProblemDTO.getEquation2().trim());
 		if (problem.getNumVariables() > 2) {
-			sb.append(CommonConstants.SEPARATOR).append(createProblem.getEquation3().trim());
+			sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getEquation3().trim());
 		}
 		problem.setEquations(sb.toString());
 
-		if (createProblem.isSolutionCheck()) {
+		if (createProblemDTO.isSolutionCheck()) {
 			sb = new StringBuilder();
-			sb.append(createProblem.getVariableX().trim()).append(CommonConstants.SEPARATOR);
-			sb.append(createProblem.getVariableY().trim());
+			sb.append(createProblemDTO.getVariableX().trim()).append(CommonConstants.SEPARATOR);
+			sb.append(createProblemDTO.getVariableY().trim());
 			if (problem.getNumVariables() > 2) {
-				sb.append(CommonConstants.SEPARATOR).append(createProblem.getVariableZ().trim());
+				sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getVariableZ().trim());
 			}
 			problem.setSolution(sb.toString());
 		}
 
 		//TODO ARH habrá que ver si hay que hacer aquí control de errores o ya viene controlado de fuera que no me metan nada que no sea mio
-		problem.setMethodRef(methodRepository.findByIdMethods(createProblem.getIdMethod()));
+		problem.setMethodRef(methodRepository.findByIdMethods(createProblemDTO.getIdMethod()));
 
-		int idTeacher = createProblem.getIdTeacher();
+		int idTeacher = createProblemDTO.getIdTeacher();
 		//TODO ARH !!!!!!!!! Ahora mismo seteo a pincho a un profesor mientras veo como lo recupero
 		idTeacher = 1; //TODO ARH <<<<---- Esto hay que quitarlo!!!!!
 		problem.setTeacherRef(teacherRepository.findOne(idTeacher));
