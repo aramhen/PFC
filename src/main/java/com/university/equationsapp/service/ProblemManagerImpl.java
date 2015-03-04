@@ -41,6 +41,7 @@ public class ProblemManagerImpl implements ProblemManager {
 		problem.setInitDate(createProblem.getInitDate());
 		problem.setUniqueAnswer(createProblem.isUniqueAnswer());
 		problem.setNumVariables(createProblem.getNumVariables());
+		problem.setTitle(createProblem.getTitle());
 
 		StringBuilder sb = new StringBuilder();
 		//TODO ARH validaciones de si viene vacio etc mal o ya viene comprobado?

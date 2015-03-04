@@ -28,7 +28,10 @@ public class Problem implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idProblems;
 
-	@Column(name = "equations", length = 45)
+	@Column(name = "title", length = 45)
+	private String title;
+
+	@Column(name = "equations", length = 90)
 	private String equations;
 
 	@Column(name = "endDate")
@@ -128,6 +131,14 @@ public class Problem implements Serializable {
 
 	public void setTeacherRef(Teacher teacherRef) {
 		this.teacherRef = teacherRef;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

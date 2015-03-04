@@ -18,7 +18,7 @@ body {
 }
 
 .starter-template {
-	padding: 40px 15px;
+	padding: 15px 15px;
 	text-align: center;
 }
 
@@ -43,6 +43,10 @@ body {
 	margin-left: 3%; 
 	margin-right: -3%;
 	margin-bottom: 12px;
+}
+
+.panel-heading{
+	margin-bottom: 5px;
 }
 </style>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -85,6 +89,19 @@ body {
 			<div class="panel panel-default">
 				<div class="panel-heading">Choose the options to create a problem:++</div>
 				<form:form method="post" commandName="createProblem" style="text-align:left; margin-left:15px;">
+					<div class="form-group">
+						<div class="row col-xs-12">
+							<label>Title:</label>
+						</div>
+						<div class="row">
+							<div class="col-xs-8">
+								<form:input path="title" class="form-control" />
+							</div>
+							<div>
+								<form:errors path="title" cssClass="alert_eq alert-danger" />
+							</div>
+						</div>
+					</div>
 					<div class="form-group">
 						<div class="row col-xs-12">
 							<label>idMethods:</label>
