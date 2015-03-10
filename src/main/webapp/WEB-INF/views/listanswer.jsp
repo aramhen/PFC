@@ -21,7 +21,65 @@ body {
 </style>
 
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
+<link rel="stylesheet" href="resources/datatables/css/jquery.dataTables-1.10.5.css" type="text/css" />
+<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/js/jquery.dataTables-1.10.5.js" />"></script>
 
+<script type="text/javascript">
+	//Plug-in to fetch page data 
+	jQuery.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
+		return {
+			"iStart" : oSettings._iDisplayStart,
+			"iEnd" : oSettings.fnDisplayEnd(),
+			"iLength" : oSettings._iDisplayLength,
+			"iTotal" : oSettings.fnRecordsTotal(),
+			"iFilteredTotal" : oSettings.fnRecordsDisplay(),
+			"iPage" : oSettings._iDisplayLength === -1 ? 0 : Math
+					.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+			"iTotalPages" : oSettings._iDisplayLength === -1 ? 0 : Math
+					.ceil(oSettings.fnRecordsDisplay()
+							/ oSettings._iDisplayLength)
+		};
+	};
+
+	$(document).ready(function() {
+
+		$("#example").dataTable({
+			"bProcessing" : true,
+			"bServerSide" : true,
+			"sort" : "position",
+			//bStateSave variable you can use to save state on client cookies: set value "true" 
+			"bStateSave" : false,
+			//Default: Page display length
+			"iDisplayLength" : 10,
+			//We will use below variable to track page number on server side(For more information visit: http://legacy.datatables.net/usage/options#iDisplayStart)
+			"iDisplayStart" : 0,
+			"fnDrawCallback" : function() {
+				//Get page numer on client. Please note: number start from 0 So
+				//for the first page you will see 0 second page 1 third page 2...
+				//Un-comment below alert to see page number
+				//alert("Current page number: "+this.fnPagingInfo().iPage);    
+			},
+			"sAjaxSource" : "listanswerpagination.htm",
+			"aoColumns" : [ {
+				"mData" : "idAnswers"
+			}, {
+				"mData" : "problemRef.title"
+			}, {
+				"mData" : "studentRef.name"
+			}, {
+				"mData" : "answerDate"
+			}, {
+				"mData" : "solution"
+			}, {
+				"mData" : "steps"
+			},
+
+			]
+		});
+
+	});
+</script>
 </head>
 <body>
 
@@ -48,19 +106,35 @@ body {
 
 		<div class="center-template">
 			<h1 class="page-header">List Answers++</h1>
-			<p class="lead">
-				Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.
-			</p>
+			<form:form action="" method="GET">
+				<h2>
+					Spring MVC pagination using data tables<br>
+					<br>
+				</h2>
+				<table width="70%" style="border: 3px; background: rgb(243, 244, 248);">
+					<tr>
+						<td>
+							<table id="example" class="display" cellspacing="0" width="100%">
+								<thead>
+									<tr>
+										<th>idAnswers</th>
+										<th>problem</th>
+										<th>student</th>
+										<th>answerDate</th>
+										<th>solution</th>
+										<th>steps</th>
+									</tr>
+								</thead>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</form:form>
 		</div>
 
 	</div>
 	<!-- /.container -->
-
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>
 </html>
