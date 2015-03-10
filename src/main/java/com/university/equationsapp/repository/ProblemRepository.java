@@ -8,4 +8,6 @@ public interface ProblemRepository extends CrudRepository<Problem, Integer>, Pro
 
 	Problem findByNumVariables(int numVariables);
 
+	Problem findByIdProblems(int idProblems);
+
 }

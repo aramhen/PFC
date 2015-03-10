@@ -17,7 +17,7 @@ body {
 	padding-top: 50px;
 }
 
-.starter-template {
+.center-template {
 	padding: 15px 15px;
 	text-align: center;
 }
@@ -87,7 +87,7 @@ body {
 
 
 	<div class="container body_width_eq">
-		<div class="starter-template">
+		<div class="center-template">
 			<h1 class="page-header">Create Problem++</h1>
 			<div class="panel panel-default">
 				<div class="panel-heading">Choose the options to create a problem:++</div>
