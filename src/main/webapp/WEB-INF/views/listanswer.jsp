@@ -12,18 +12,29 @@
 <style>
 body {
 	padding-top: 50px;
+
 }
 
 .center-template {
 	padding: 15px 15px;
 	text-align: center;
 }
+
+
+
+.dataTables_length {
+	float: left;
+}
 </style>
 
-<link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
-<link rel="stylesheet" href="resources/datatables/css/jquery.dataTables-1.10.5.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
+<link rel="stylesheet" type="text/css" href="resources/datatables/plugins/bootstrap/dataTables.bootstrap.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/1.0.4/css/dataTables.responsive.css">
+
 <script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/datatables/js/jquery.dataTables-1.10.5.js" />"></script>
+<script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.4/js/dataTables.responsive.js"></script>
+<script type="text/javascript" src="resources/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 
 <script type="text/javascript">
 	//Plug-in to fetch page data 
@@ -43,8 +54,9 @@ body {
 	};
 
 	$(document).ready(function() {
-
-		$("#example").dataTable({
+		$("#answers").dataTable({
+			"language": {"url": "../equationsapp/resources/datatables/i18n/Spanish.json"},
+			"responsive" : true,
 			"bProcessing" : true,
 			"bServerSide" : true,
 			"sort" : "position",
@@ -108,26 +120,19 @@ body {
 			<h1 class="page-header">List Answers++</h1>
 			<form:form action="" method="GET">
 				<h2>
-					Spring MVC pagination using data tables<br>
-					<br>
+					Spring MVC pagination using data tables<br> <br>
 				</h2>
-				<table width="70%" style="border: 3px; background: rgb(243, 244, 248);">
-					<tr>
-						<td>
-							<table id="example" class="display" cellspacing="0" width="100%">
-								<thead>
-									<tr>
-										<th>idAnswers</th>
-										<th>problem</th>
-										<th>student</th>
-										<th>answerDate</th>
-										<th>solution</th>
-										<th>steps</th>
-									</tr>
-								</thead>
-							</table>
-						</td>
-					</tr>
+				<table id="answers" class="table table-striped table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>idAnswers</th>
+							<th>problem</th>
+							<th>student</th>
+							<th>answerDate</th>
+							<th>solution</th>
+							<th>steps</th>
+						</tr>
+					</thead>
 				</table>
 			</form:form>
 		</div>
