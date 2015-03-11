@@ -14,7 +14,7 @@ public class AnswerToJsonObject {
 
 	String sColumns;
 
-	List<Answer> aaData;
+	List<ListAnswerDTO> aaData;
 
 	public int getiTotalRecords() {
 		return iTotalRecords;
@@ -48,12 +48,12 @@ public class AnswerToJsonObject {
 		this.sColumns = sColumns;
 	}
 
-	public List<Answer> getAaData() {
+	public List<ListAnswerDTO> getAaData() {
 		return aaData;
 	}
 
-	public void setAaData(List<Answer> aaData) {
-		this.aaData = aaData;
+	public void setAaData(List<ListAnswerDTO> answersList) {
+		this.aaData = answersList;
 	}
 
 }

@@ -1,11 +1,12 @@
 package com.university.equationsapp.web;
 
 import java.io.IOException;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +22,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.university.equationsapp.common.constants.CommonConstants;
 import com.university.equationsapp.domain.Answer;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
 import com.university.equationsapp.web.dto.AnswerToJsonObject;
+import com.university.equationsapp.web.dto.ListAnswerDTO;
 
 @Controller
 public class ListAnswerController {
@@ -47,7 +50,7 @@ public class ListAnswerController {
 
 	}
 
-	@RequestMapping(value = "/listanswerpagination.htm", method = RequestMethod.GET, produces = "application/json", headers="Accept=*/*")
+	@RequestMapping(value = "/listanswerpagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
 	public @ResponseBody String springPaginationDataTables(HttpServletRequest request) throws IOException {
 
 		//Fetch the page number from client
@@ -59,16 +62,16 @@ public class ListAnswerController {
 		String searchParameter = request.getParameter("sSearch");
 
 		//Fetch Page display length
-		Integer pageDisplayLength = Integer.valueOf(request.getParameter("iDisplayLength"));
+//		Integer pageDisplayLength = Integer.valueOf(request.getParameter("iDisplayLength"));
 
 		//Create page list data
-		List<Answer> answersList = answerManager.getAnswerList();
+		List<ListAnswerDTO> answersList = getListAnswerDTO(answerManager.getAnswerList());
 
 		//Here is server side pagination logic. Based on the page number you could make call 
 		//to the data base create new list and send back to the client. For demo I am shuffling 
 		//the same list to show data randomly
 		if (pageNumber == 1) {
-			Collections.shuffle(answersList);
+
 		} else if (pageNumber == 2) {
 			Collections.shuffle(answersList);
 		} else {
@@ -78,42 +81,61 @@ public class ListAnswerController {
 		//Search functionality: Returns filtered list based on search parameter
 		answersList = getListBasedOnSearchParameter(searchParameter, answersList);
 
-		AnswerToJsonObject personJsonObject = new AnswerToJsonObject();
+		int answerSize = answersList.size();
+		AnswerToJsonObject answerJsonObject = new AnswerToJsonObject();
 		//Set Total display record
-		personJsonObject.setiTotalDisplayRecords(500);
+		answerJsonObject.setiTotalDisplayRecords(answerSize);
 		//Set Total record
-		personJsonObject.setiTotalRecords(500);
-		personJsonObject.setAaData(answersList);
+		answerJsonObject.setiTotalRecords(answerSize);
+		answerJsonObject.setAaData(answersList);
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String json2 = gson.toJson(personJsonObject);
+		String json2 = gson.toJson(answerJsonObject);
 
 		return json2;
 	}
 
-	private List<Answer> getListBasedOnSearchParameter(String searchParameter, List<Answer> answersList) {
+	private List<ListAnswerDTO> getListBasedOnSearchParameter(String searchParameter, List<ListAnswerDTO> answersList) {
 
 		if (null != searchParameter && !searchParameter.equals("")) {
-			List<Answer> answersListForSearch = new ArrayList<Answer>();
+			List<ListAnswerDTO> answersListForSearch = new ArrayList<ListAnswerDTO>();
 			searchParameter = searchParameter.toUpperCase();
-			for (Answer answer : answersList) {
-
-				Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				String dateF = formatter.format(answer.getAnswerDate());
-
-				if (String.valueOf(answer.getIdAnswers()).indexOf(searchParameter) != -1
-						|| answer.getProblemRef().getTitle().toUpperCase().indexOf(searchParameter) != -1
-						|| answer.getStudentRef().getName().toUpperCase().indexOf(searchParameter) != -1
-						|| dateF.toUpperCase().indexOf(searchParameter) != -1
+			for (ListAnswerDTO answer : answersList) {
+				if (answer.getProblemTitle().toUpperCase().indexOf(searchParameter) != -1
+						|| answer.getStudentName().toUpperCase().indexOf(searchParameter) != -1
+						|| answer.getAnswerDate().toUpperCase().indexOf(searchParameter) != -1
 						|| answer.getSolution().toUpperCase().indexOf(searchParameter) != -1
 						|| answer.getSteps().toUpperCase().indexOf(searchParameter) != -1) {
 					answersListForSearch.add(answer);
 				}
-
 			}
 			answersList = answersListForSearch;
 			answersListForSearch = null;
 		}
 		return answersList;
+	}
+
+	private List<ListAnswerDTO> getListAnswerDTO(List<Answer> answerList) {
+		ListAnswerDTO tmp = new ListAnswerDTO();
+		Answer node;
+		List<ListAnswerDTO> tmpList = new ArrayList<ListAnswerDTO>();
+
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("ES"));
+		Iterator<Answer> itAnswer = answerList.iterator();
+
+		while (itAnswer.hasNext()) {
+			node = itAnswer.next();
+			tmp = new ListAnswerDTO();
+			tmp.setProblemTitle(node.getProblemRef().getTitle());
+			tmp.setStudentName(node.getStudentRef().getName());
+			tmp.setAnswerDate(format.format(node.getAnswerDate()));
+			tmp.setSolution(node.getSolution().replace(CommonConstants.SEPARATOR, "  "));
+			tmp.setSteps(node.getSteps());
+			tmpList.add(tmp);
+			tmpList.add(tmp);
+			tmpList.add(tmp);
+			tmpList.add(tmp);
+		}
+		return tmpList;
 	}
 }

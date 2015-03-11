@@ -12,18 +12,22 @@
 <style>
 body {
 	padding-top: 50px;
-
 }
 
 .center-template {
 	padding: 15px 15px;
+}
+
+.center {
 	text-align: center;
 }
 
+div.dataTables_info {
+	white-space: normal !important;
+}
 
-
-.dataTables_length {
-	float: left;
+.form-control {
+	width: auto !important;
 }
 </style>
 
@@ -58,7 +62,6 @@ body {
 			"language": {"url": "../equationsapp/resources/datatables/i18n/Spanish.json"},
 			"responsive" : true,
 			"bProcessing" : true,
-			"bServerSide" : true,
 			"sort" : "position",
 			//bStateSave variable you can use to save state on client cookies: set value "true" 
 			"bStateSave" : false,
@@ -74,11 +77,9 @@ body {
 			},
 			"sAjaxSource" : "listanswerpagination.htm",
 			"aoColumns" : [ {
-				"mData" : "idAnswers"
+				"mData" : "problemTitle"
 			}, {
-				"mData" : "problemRef.title"
-			}, {
-				"mData" : "studentRef.name"
+				"mData" : "studentName"
 			}, {
 				"mData" : "answerDate"
 			}, {
@@ -117,15 +118,14 @@ body {
 	<div class="container body_width_eq">
 
 		<div class="center-template">
-			<h1 class="page-header">List Answers++</h1>
+			<h1 class="page-header center">List Answers++</h1>
 			<form:form action="" method="GET">
-				<h2>
+				<h2 class="center">
 					Spring MVC pagination using data tables<br> <br>
 				</h2>
 				<table id="answers" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>idAnswers</th>
 							<th>problem</th>
 							<th>student</th>
 							<th>answerDate</th>

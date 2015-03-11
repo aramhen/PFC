@@ -1,5 +1,6 @@
 package com.university.equationsapp.web.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.Min;
@@ -11,7 +12,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.university.equationsapp.web.constants.WebConstants;
 
-public class CreateProblemDTO {
+public class CreateProblemDTO implements Serializable {
+
+	static final long serialVersionUID = 1L;
 
 	@NotNull
 	@Min(value = 1, message = "{createproblem.validation.idmethod}")
