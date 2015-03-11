@@ -39,7 +39,6 @@ div.dataTables_info {
 <script type="text/javascript" src="<c:url value="/resources/datatables/js/jquery.dataTables-1.10.5.js" />"></script>
 <script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.4/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
-
 <script type="text/javascript">
 	//Plug-in to fetch page data 
 	jQuery.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
