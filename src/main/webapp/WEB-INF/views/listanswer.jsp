@@ -29,6 +29,13 @@ div.dataTables_info {
 .form-control {
 	width: auto !important;
 }
+
+table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
+	table.dataTable.hover tbody tr.even:hover, table.dataTable.display tbody tr:hover,
+	table.dataTable.display tbody tr.odd:hover, table.dataTable.display tbody tr.even:hover
+	{
+	background-color: whitesmoke;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
@@ -122,7 +129,7 @@ div.dataTables_info {
 				<h2 class="center">
 					Spring MVC pagination using data tables<br> <br>
 				</h2>
-				<table id="answers" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="answers" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>problem</th>
