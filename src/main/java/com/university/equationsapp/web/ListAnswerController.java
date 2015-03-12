@@ -132,9 +132,6 @@ public class ListAnswerController {
 			tmp.setSolution(node.getSolution().replace(CommonConstants.SEPARATOR, "  "));
 			tmp.setSteps(node.getSteps());
 			tmpList.add(tmp);
-			tmpList.add(tmp);
-			tmpList.add(tmp);
-			tmpList.add(tmp);
 		}
 		return tmpList;
 	}

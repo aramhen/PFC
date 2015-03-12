@@ -46,41 +46,38 @@ table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
 <script type="text/javascript" src="<c:url value="/resources/datatables/js/jquery.dataTables-1.10.5.js" />"></script>
 <script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.4/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
-<script type="text/javascript">
-	//Plug-in to fetch page data 
-	jQuery.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
-		return {
-			"iStart" : oSettings._iDisplayStart,
-			"iEnd" : oSettings.fnDisplayEnd(),
-			"iLength" : oSettings._iDisplayLength,
-			"iTotal" : oSettings.fnRecordsTotal(),
-			"iFilteredTotal" : oSettings.fnRecordsDisplay(),
-			"iPage" : oSettings._iDisplayLength === -1 ? 0 : Math
-					.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
-			"iTotalPages" : oSettings._iDisplayLength === -1 ? 0 : Math
-					.ceil(oSettings.fnRecordsDisplay()
-							/ oSettings._iDisplayLength)
-		};
-	};
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [["$","$"],["\\(","\\)"]]
+    }
+  });
+  MathJax.Hub.Config({showMathMenu: false});
 
+</script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+<script type="text/javascript">
 	$(document).ready(function() {
+		var userLang = navigator.language || navigator.userLanguage;
+		var tableLang;
+		if((userLang.split('-')[0]).toLowerCase() == 'es') {
+			tableLang = "../equationsapp/resources/datatables/i18n/Spanish.json";
+		}else{
+			tableLang = "../equationsapp/resources/datatables/i18n/English.json";
+		}
+
 		$("#answers").dataTable({
-			"language": {"url": "../equationsapp/resources/datatables/i18n/Spanish.json"},
+			//Set the language
+			"language" : {
+				"url" : tableLang
+			},
+			//Makes the datatable responsive
 			"responsive" : true,
+			//Show a Processing message while data is processing
 			"bProcessing" : true,
 			"sort" : "position",
-			//bStateSave variable you can use to save state on client cookies: set value "true" 
-			"bStateSave" : false,
-			//Default: Page display length
-			"iDisplayLength" : 10,
-			//We will use below variable to track page number on server side(For more information visit: http://legacy.datatables.net/usage/options#iDisplayStart)
-			"iDisplayStart" : 0,
-			"fnDrawCallback" : function() {
-				//Get page numer on client. Please note: number start from 0 So
-				//for the first page you will see 0 second page 1 third page 2...
-				//Un-comment below alert to see page number
-				//alert("Current page number: "+this.fnPagingInfo().iPage);    
-			},
+			"order" : [ [ 0, "asc" ], [ 1, "asc" ] ],
 			"sAjaxSource" : "listanswerpagination.htm",
 			"aoColumns" : [ {
 				"mData" : "problemTitle"
@@ -91,12 +88,26 @@ table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
 			}, {
 				"mData" : "solution"
 			}, {
-				"mData" : "steps"
-			},
-
-			]
+				"mData" : "null",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> View++</button>",
+				"orderable" : false
+			},]
 		});
-
+		$('#answers tbody ').on('click', 'button', function (event) {
+			var table = $("#answers").DataTable();
+		    var row = $(this).closest("tr").get(0);
+		    var aData = table.row(row).data();
+		    $('#myModalLabel').html(aData["studentName"] + " Answer");
+		   	// $("div.modal-body").innerHTML=aData["steps"];
+		    //UpdateMath(aData["steps"]);
+		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
+       		//MathJax.Hub.Queue(["Text", math, "modal-body"]);
+       		$('#mathSpteps').html(aData["steps"]);
+	    	//reprocess the MathOutput Element
+	    	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mathSpteps"]);
+		 	$('#basicModal').modal('show');
+		 	event.stopImmediatePropagation();  //prevents the other on click from firing that fires up the inline editor
+		});
 	});
 </script>
 </head>
@@ -122,7 +133,6 @@ table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
 	</nav>
 
 	<div class="container body_width_eq">
-
 		<div class="center-template">
 			<h1 class="page-header center">List Answers++</h1>
 			<form:form action="" method="GET">
@@ -142,9 +152,26 @@ table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
 				</table>
 			</form:form>
 		</div>
-
 	</div>
 	<!-- /.container -->
+
+	<!-- Modal HTML -->
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body">
+					<div id="mathSpteps"></div>
+				</div>
+				<div class="modal-footer" id="modal-body">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>
