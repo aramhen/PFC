@@ -36,6 +36,11 @@ table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
 	{
 	background-color: whitesmoke;
 }
+/*Fix that on open modal windows page moves*/
+body.modal-open {
+	overflow: inherit;
+	padding-right: inherit !important;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
@@ -95,7 +100,12 @@ table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
 		});
 		$('#answers tbody ').on('click', 'button', function (event) {
 			var table = $("#answers").DataTable();
-		    var row = $(this).closest("tr").get(0);
+		    var row;
+			if($(this).closest('tr').hasClass('child')){
+				row = $(this).closest('tr').prev().get(0);
+			}else{
+				row = $(this).closest("tr").get(0);
+			}
 		    var aData = table.row(row).data();
 		    $('#myModalLabel').html(aData["studentName"] + " Answer");
 		   	// $("div.modal-body").innerHTML=aData["steps"];
