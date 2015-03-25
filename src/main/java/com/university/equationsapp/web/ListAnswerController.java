@@ -27,8 +27,8 @@ import com.university.equationsapp.domain.Answer;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
-import com.university.equationsapp.web.dto.DTOToJsonObject;
-import com.university.equationsapp.web.dto.ListAnswerDTO;
+import com.university.equationsapp.web.json.DTOToJsonObject;
+import com.university.equationsapp.web.json.ListAnswerJsonDTO;
 
 @Controller
 public class ListAnswerController {
@@ -65,7 +65,7 @@ public class ListAnswerController {
 //		Integer pageDisplayLength = Integer.valueOf(request.getParameter("iDisplayLength"));
 
 		//Create page list data
-		List<ListAnswerDTO> answersList = getListAnswerDTO(answerManager.getAnswerList());
+		List<ListAnswerJsonDTO> answersList = getListAnswerDTO(answerManager.getAnswerList());
 
 		//Here is server side pagination logic. Based on the page number you could make call 
 		//to the data base create new list and send back to the client. For demo I am shuffling 
@@ -82,7 +82,7 @@ public class ListAnswerController {
 		answersList = getListBasedOnSearchParameter(searchParameter, answersList);
 
 		int answerSize = answersList.size();
-		DTOToJsonObject<ListAnswerDTO> answerJsonObject = new DTOToJsonObject<ListAnswerDTO>();
+		DTOToJsonObject<ListAnswerJsonDTO> answerJsonObject = new DTOToJsonObject<ListAnswerJsonDTO>();
 		//Set Total display record
 		answerJsonObject.setiTotalDisplayRecords(answerSize);
 		//Set Total record
@@ -95,12 +95,12 @@ public class ListAnswerController {
 		return json2;
 	}
 
-	private List<ListAnswerDTO> getListBasedOnSearchParameter(String searchParameter, List<ListAnswerDTO> answersList) {
+	private List<ListAnswerJsonDTO> getListBasedOnSearchParameter(String searchParameter, List<ListAnswerJsonDTO> answersList) {
 
 		if (null != searchParameter && !searchParameter.equals("")) {
-			List<ListAnswerDTO> answersListForSearch = new ArrayList<ListAnswerDTO>();
+			List<ListAnswerJsonDTO> answersListForSearch = new ArrayList<ListAnswerJsonDTO>();
 			searchParameter = searchParameter.toUpperCase();
-			for (ListAnswerDTO answer : answersList) {
+			for (ListAnswerJsonDTO answer : answersList) {
 				if (answer.getProblemTitle().toUpperCase().indexOf(searchParameter) != -1
 						|| answer.getStudentName().toUpperCase().indexOf(searchParameter) != -1
 						|| answer.getAnswerDate().toUpperCase().indexOf(searchParameter) != -1
@@ -115,17 +115,17 @@ public class ListAnswerController {
 		return answersList;
 	}
 
-	private List<ListAnswerDTO> getListAnswerDTO(List<Answer> answerList) {
-		ListAnswerDTO tmp = new ListAnswerDTO();
+	private List<ListAnswerJsonDTO> getListAnswerDTO(List<Answer> answerList) {
+		ListAnswerJsonDTO tmp = new ListAnswerJsonDTO();
 		Answer node;
-		List<ListAnswerDTO> tmpList = new ArrayList<ListAnswerDTO>();
+		List<ListAnswerJsonDTO> tmpList = new ArrayList<ListAnswerJsonDTO>();
 
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("ES"));
 		Iterator<Answer> itAnswer = answerList.iterator();
 
 		while (itAnswer.hasNext()) {
 			node = itAnswer.next();
-			tmp = new ListAnswerDTO();
+			tmp = new ListAnswerJsonDTO();
 			tmp.setProblemTitle(node.getProblemRef().getTitle());
 			tmp.setStudentName(node.getStudentRef().getName());
 			tmp.setAnswerDate(format.format(node.getAnswerDate()));

@@ -1,8 +1,8 @@
-package com.university.equationsapp.web.dto;
+package com.university.equationsapp.web.json;
 
 import java.io.Serializable;
 
-public class ListAnswerDTO implements Serializable {
+public class ListAnswerJsonDTO implements Serializable {
 
 	/**
 	 * ARH TODO hay que poner solution en formato bonito, ya que de la bbdd vendrá separado por pipes en steps hay que

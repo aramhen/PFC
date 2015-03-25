@@ -10,8 +10,9 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,12 +30,13 @@ import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
-import com.university.equationsapp.web.dto.CreateProblemDTO;
-import com.university.equationsapp.web.dto.DTOToJsonObject;
-import com.university.equationsapp.web.dto.ListProblemDTO;
+import com.university.equationsapp.web.json.DTOToJsonObject;
+import com.university.equationsapp.web.json.ListProblemJsonDTO;
 
 @Controller
 public class ListProblemController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ListProblemController.class);
 
 	@Autowired
 	private ProblemManager problemManager;
@@ -52,17 +54,27 @@ public class ListProblemController {
 		return "listproblem";
 
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(@Valid CreateProblemDTO createProblemDTO, BindingResult result, Model model) {
+	public String onSubmit(@ModelAttribute("Problem") Problem problem, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "createproblem";
+			logger.error("Error processing the result");
+			return "listproblem";
 		}
+		
+		int idProblem = problem.getIdProblems();
+		if(logger.isDebugEnabled()){
+			logger.debug("Deleting problem " + idProblem);
+		}
+		answerManager.deleteByProblemRef(idProblem);
+		problemManager.deleteProblem(idProblem);
+		return "redirect:/listproblem.htm";
+	}
 
-		problemManager.createProblem(createProblemDTO);
-
-		System.out.println("-*-*-*-*-* Creating problem" + createProblemDTO.getEndDate());
-		return "redirect:/problemcreated.htm";
+	//Used to store the submit problem to delete
+	@ModelAttribute("Problem")
+	public Problem idProblem() {
+		return new Problem();
 	}
 
 	@RequestMapping(value = "/listproblempagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
@@ -80,7 +92,7 @@ public class ListProblemController {
 //		Integer pageDisplayLength = Integer.valueOf(request.getParameter("iDisplayLength"));
 
 		//Create page list data
-		List<ListProblemDTO> problemsList = getListProblemDTO(problemManager.getProblemList());
+		List<ListProblemJsonDTO> problemsList = getListProblemDTO(problemManager.getProblemList());
 
 		//Here is server side pagination logic. Based on the page number you could make call 
 		//to the data base create new list and send back to the client. For demo I am shuffling 
@@ -97,7 +109,7 @@ public class ListProblemController {
 		problemsList = getListBasedOnSearchParameter(searchParameter, problemsList);
 
 		int problemSize = problemsList.size();
-		DTOToJsonObject<ListProblemDTO> problemJsonObject = new DTOToJsonObject<ListProblemDTO>();
+		DTOToJsonObject<ListProblemJsonDTO> problemJsonObject = new DTOToJsonObject<ListProblemJsonDTO>();
 		//Set Total display record
 		problemJsonObject.setiTotalDisplayRecords(problemSize);
 		//Set Total record
@@ -110,12 +122,13 @@ public class ListProblemController {
 		return json2;
 	}
 
-	private List<ListProblemDTO> getListBasedOnSearchParameter(String searchParameter, List<ListProblemDTO> problemsList) {
+	private List<ListProblemJsonDTO> getListBasedOnSearchParameter(String searchParameter,
+			List<ListProblemJsonDTO> problemsList) {
 
 		if (null != searchParameter && !searchParameter.equals("")) {
-			List<ListProblemDTO> problemsListForSearch = new ArrayList<ListProblemDTO>();
+			List<ListProblemJsonDTO> problemsListForSearch = new ArrayList<ListProblemJsonDTO>();
 			searchParameter = searchParameter.toUpperCase();
-			for (ListProblemDTO problem : problemsList) {
+			for (ListProblemJsonDTO problem : problemsList) {
 				if (problem.getProblemTitle().toUpperCase().indexOf(searchParameter) != -1
 						|| problem.getTeacherName().toUpperCase().indexOf(searchParameter) != -1
 						|| problem.getMethodName().toUpperCase().indexOf(searchParameter) != -1
@@ -131,18 +144,19 @@ public class ListProblemController {
 		return problemsList;
 	}
 
-	private List<ListProblemDTO> getListProblemDTO(List<Problem> problemList) {
-		ListProblemDTO tmp = new ListProblemDTO();
+	private List<ListProblemJsonDTO> getListProblemDTO(List<Problem> problemList) {
+		ListProblemJsonDTO tmp = new ListProblemJsonDTO();
 		Problem node;
-		List<ListProblemDTO> tmpList = new ArrayList<ListProblemDTO>();
+		List<ListProblemJsonDTO> tmpList = new ArrayList<ListProblemJsonDTO>();
 
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", new Locale("ES"));
 		Iterator<Problem> itProblem = problemList.iterator();
 
 		while (itProblem.hasNext()) {
 			node = itProblem.next();
-			tmp = new ListProblemDTO();
+			tmp = new ListProblemJsonDTO();
 
+			tmp.setIdProblem(String.valueOf(node.getIdProblems()));
 			tmp.setProblemTitle(node.getTitle());
 			tmp.setTeacherName(node.getTeacherRef().getName());
 			tmp.setMethodName(node.getMethodRef().getName());

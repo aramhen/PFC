@@ -1,4 +1,4 @@
-package com.university.equationsapp.web.dto;
+package com.university.equationsapp.web.json;
 
 import java.util.List;
 

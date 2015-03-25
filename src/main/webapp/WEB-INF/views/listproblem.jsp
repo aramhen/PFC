@@ -45,6 +45,10 @@ body.modal-open {
 	overflow: inherit;
 	padding-right: inherit !important;
 }
+
+.modal-header {
+    background-color: #f0f0f0;
+ }
 </style>
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
@@ -94,8 +98,6 @@ body.modal-open {
 				"mData" : "teacherName"
 			}, {
 				"mData" : "methodName"
-			}, {
-				"mData" : "numVariables"
 			}, {
 				"mData" : "uniqueAnswer", "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
 															if(data == "false"){
@@ -171,6 +173,8 @@ body.modal-open {
 			}
 		    var aData = table.row(row).data();
 		    $('#myDeleteModalLabel').html("Delete Problem " + aData["problemTitle"]);
+		    
+		    $('#idProblem').val(aData["idProblem"]);
 		 	$('#deleteModal').modal('show');
 		 	event.stopImmediatePropagation();  //prevents the other on click from firing that fires up the inline editor
 		});
@@ -211,7 +215,6 @@ body.modal-open {
 							<th>problem</th>
 							<th>teacher</th>
 							<th>method</th>
-							<th>variables</th>
 							<th>Multianswer</th>
 							<th>initDate</th>
 							<th>endDate</th>
@@ -252,15 +255,16 @@ body.modal-open {
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myDeleteModalLabel"></h4>
 				</div>
-				<div class="modal-body">
-					<span>Are you sure you want to delete this problem???</span>
-					<form:form method="post" commandName="idProblem">
-					</form:form>
-				</div>
-				<div class="modal-footer">
-					<input class="btn btn-danger" type="submit" value="Send!" id="submit"> 
-					<button type="button" name="delete" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
+				<form:form method="post" commandName="Problem">
+					<div class="modal-body">
+						<span>Are you sure you want to delete this problem???</span>	
+						<form:hidden path="idProblems" id="idProblem"/>
+					</div>
+					<div class="modal-footer">				
+						<input class="btn btn-danger" type="submit" value="Delete!" id="submit"> 
+						<button type="button" name="delete" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
