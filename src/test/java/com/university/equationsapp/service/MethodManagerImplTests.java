@@ -37,10 +37,10 @@ public class MethodManagerImplTests {
 		//Set up data test
 		List<Method> methods = new ArrayList<Method>();
 		Method method = new Method();
-		method.setMethodName(METHOD_GAUSS);
+		method.setName(METHOD_GAUSS);
 		methods.add(method);
 		method = new Method();
-		method.setMethodName(METHOD_ADDITION);
+		method.setName(METHOD_ADDITION);
 		methods.add(method);
 		methodRepository = new InMemoryMethodRepository(methods);
 		methodManager.setMethodRepository(methodRepository);
@@ -63,10 +63,10 @@ public class MethodManagerImplTests {
 		assertEquals(METHODS_NUMBER, methodManager.getMethodList().size());
 
 		Method method = methods.get(0);
-		assertEquals(METHOD_GAUSS, method.getMethodName());
+		assertEquals(METHOD_GAUSS, method.getName());
 
 		method = methods.get(1);
-		assertEquals(METHOD_ADDITION, method.getMethodName());
+		assertEquals(METHOD_ADDITION, method.getName());
 	}
 
 }
