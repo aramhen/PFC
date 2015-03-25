@@ -13,5 +13,7 @@ public interface ProblemManager extends Serializable {
 	public Problem getProblemByNumVariables(int numVariables);
 
 	public void createProblem(CreateProblemDTO createProblemDTO);
+	
+	public void deleteProblem(int idProblem);
 
 }

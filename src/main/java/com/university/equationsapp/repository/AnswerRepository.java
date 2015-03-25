@@ -3,11 +3,16 @@ package com.university.equationsapp.repository;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.university.equationsapp.domain.Answer;
+import com.university.equationsapp.domain.Problem;
 
 public interface AnswerRepository extends CrudRepository<Answer, Integer>, AnswerRepositoryCustom {
 
 	public List<Answer> getAnswerList();
+
+	@Transactional
+	public void deleteByProblemRef(Problem problemRef);
 
 }

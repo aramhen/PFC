@@ -9,4 +9,6 @@ public interface AnswerManager extends Serializable {
 
 	public List<Answer> getAnswerList();
 
+	public void deleteByProblemRef(int idProblem);
+
 }
