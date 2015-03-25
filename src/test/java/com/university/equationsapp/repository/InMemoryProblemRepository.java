@@ -147,4 +147,9 @@ public class InMemoryProblemRepository implements ProblemRepository {
 		return null;
 	}
 
+	public Problem findByIdProblems(int idProblems) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

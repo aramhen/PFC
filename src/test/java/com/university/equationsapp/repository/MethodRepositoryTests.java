@@ -51,19 +51,19 @@ public class MethodRepositoryTests {
 		System.out.println("testFindByIdMethods");
 		Method method = methodRepository.findByIdMethods(1);
 		assertNotNull(method);
-		System.out.println("First Method: " + method.getMethodName());
+		System.out.println("First Method: " + method.getName());
 	}
 
 	/**
 	 * 
 	 */
 	@Test
-	public void testfindByMethodName() {
-		System.out.println("testfindByMethodName");
-		Method method = methodRepository.findByMethodName(METHOD_NAME);
+	public void testfindByName() {
+		System.out.println("testfindByName");
+		Method method = methodRepository.findByName(METHOD_NAME);
 		assertNotNull(method);
 		System.out.println("Gauss Method Id: " + method.getIdMethods());
-		assertEquals(METHOD_NAME, method.getMethodName());
+		assertEquals(METHOD_NAME, method.getName());
 	}
 
 }

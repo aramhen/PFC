@@ -23,8 +23,8 @@ public class Method implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idMethods;
 
-	@Column(name = "methodName", length = 45)
-	private String methodName;
+	@Column(name = "name", length = 45)
+	private String name;
 
 	public int getIdMethods() {
 		return this.idMethods;
@@ -34,12 +34,12 @@ public class Method implements Serializable {
 		this.idMethods = idMethods;
 	}
 
-	public String getMethodName() {
-		return this.methodName;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setMethodName(String methodName) {
-		this.methodName = methodName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

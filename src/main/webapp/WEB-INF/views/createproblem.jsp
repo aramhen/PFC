@@ -113,7 +113,7 @@ body {
 							<div class="col-xs-8">
 								<form:select path="idMethod" class="form-control">
 									<form:option value="0" label="${CP_idMethodSelect}"></form:option>
-									<form:options items="${methodList}" itemLabel="methodName" itemValue="idMethods" />
+									<form:options items="${methodList}" itemLabel="name" itemValue="idMethods" />
 								</form:select>
 							</div>
 							<div>

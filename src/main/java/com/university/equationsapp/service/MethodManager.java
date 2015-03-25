@@ -9,6 +9,6 @@ public interface MethodManager extends Serializable {
 
 	public List<Method> getMethodList();
 
-	public Method getMethod(String methodName);
+	public Method getMethod(String name);
 
 }

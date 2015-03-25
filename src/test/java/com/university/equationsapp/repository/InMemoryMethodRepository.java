@@ -76,7 +76,7 @@ public class InMemoryMethodRepository implements MethodRepository {
 		return null;
 	}
 
-	public Method findByMethodName(String methodName) {
+	public Method findByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

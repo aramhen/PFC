@@ -18,8 +18,8 @@ public class MethodManagerImpl implements MethodManager {
 	@Autowired
 	private MethodRepository methodRepository;
 
-	public Method getMethod(String methodName) {
-		return methodRepository.findByMethodName(methodName);
+	public Method getMethod(String name) {
+		return methodRepository.findByName(name);
 	}
 
 	public List<Method> getMethods2() {
