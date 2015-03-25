@@ -2,9 +2,7 @@ package com.university.equationsapp.web.dto;
 
 import java.util.List;
 
-import com.university.equationsapp.domain.Answer;
-
-public class AnswerToJsonObject {
+public class DTOToJsonObject<T> {
 
 	int iTotalRecords;
 
@@ -14,7 +12,7 @@ public class AnswerToJsonObject {
 
 	String sColumns;
 
-	List<ListAnswerDTO> aaData;
+	List<T> aaData;
 
 	public int getiTotalRecords() {
 		return iTotalRecords;
@@ -48,12 +46,12 @@ public class AnswerToJsonObject {
 		this.sColumns = sColumns;
 	}
 
-	public List<ListAnswerDTO> getAaData() {
+	public List<T> getAaData() {
 		return aaData;
 	}
 
-	public void setAaData(List<ListAnswerDTO> answersList) {
-		this.aaData = answersList;
+	public void setAaData(List<T> aaData) {
+		this.aaData = aaData;
 	}
 
 }

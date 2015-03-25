@@ -27,7 +27,7 @@ import com.university.equationsapp.domain.Answer;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
-import com.university.equationsapp.web.dto.AnswerToJsonObject;
+import com.university.equationsapp.web.dto.DTOToJsonObject;
 import com.university.equationsapp.web.dto.ListAnswerDTO;
 
 @Controller
@@ -82,7 +82,7 @@ public class ListAnswerController {
 		answersList = getListBasedOnSearchParameter(searchParameter, answersList);
 
 		int answerSize = answersList.size();
-		AnswerToJsonObject answerJsonObject = new AnswerToJsonObject();
+		DTOToJsonObject<ListAnswerDTO> answerJsonObject = new DTOToJsonObject<ListAnswerDTO>();
 		//Set Total display record
 		answerJsonObject.setiTotalDisplayRecords(answerSize);
 		//Set Total record
