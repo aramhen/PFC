@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -26,16 +27,21 @@ public class CreateProblemDTO implements Serializable {
 	private int numVariables;
 
 	@NotBlank
+	@Size(min = WebConstants.EQUATION_LENGTH_MIN, max = WebConstants.EQUATION_LENGTH_MAX, message = "{createproblem.validation.equation.size}")
 	private String equation1;
 	@NotBlank
+	@Size(min = WebConstants.EQUATION_LENGTH_MIN, max = WebConstants.EQUATION_LENGTH_MAX, message = "{createproblem.validation.equation.size}")
 	private String equation2;
+	@Size(min = WebConstants.EQUATION_LENGTH_MIN, max = WebConstants.EQUATION_LENGTH_MAX, message = "{createproblem.validation.equation.size}")
 	private String equation3;
 
 	@NotBlank
+	@Size(min = WebConstants.SOLUTION_LENGTH_MIN, max = WebConstants.SOLUTION_LENGTH_MAX, message = "{createproblem.validation.solution.size}")
 	private String variableX;
 	@NotBlank
+	@Size(min = WebConstants.SOLUTION_LENGTH_MIN, max = WebConstants.SOLUTION_LENGTH_MAX, message = "{createproblem.validation.solution.size}")
 	private String variableY;
-	@NotBlank
+	@Size(min = WebConstants.SOLUTION_LENGTH_MIN, max = WebConstants.SOLUTION_LENGTH_MAX, message = "{createproblem.validation.solution.size}")
 	private String variableZ;
 
 	private boolean solutionCheck;
@@ -55,10 +61,11 @@ public class CreateProblemDTO implements Serializable {
 	private boolean uniqueAnswer;
 
 	@NotNull
-	//Hay que ver como consigo esto, de sesion, cookies o lo que sea
+	//TODO ARH Hay que ver como consigo esto, de sesion, cookies o lo que sea
 	private int idTeacher;
 
-	@NotBlank
+	@NotBlank(message = "{createproblem.validation.title}")
+	@Size(min = WebConstants.TITLE_LENGTH_MIN, max = WebConstants.TITLE_LENGTH_MAX, message = "{createproblem.validation.title.size}")
 	private String title;
 
 	public int getIdMethod() {

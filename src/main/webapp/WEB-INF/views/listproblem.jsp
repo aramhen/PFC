@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><spring:message code="LA_title" /></title>
+<title><spring:message code="LP_title" /></title>
 
 <style>
 body {
@@ -99,27 +99,28 @@ body.modal-open {
 			}, {
 				"mData" : "methodName"
 			}, {
-				"mData" : "uniqueAnswer", "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
-															if(data == "false"){
-																return "<span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span>";
-															}else{
-																return "<span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span>";
-															}}
-			}, {
+
 				"mData" : "initDate"
 			}, {
 				"mData" : "endDate"
 			}, {
+				"mData" : "uniqueAnswer", "orderable" : false, "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
+					if(data == "false"){
+						return "<span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span>";
+					}else{
+						return "<span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span>";
+					}}
+			}, {
 				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> View</button>",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
 				"orderable" : false
 			}, {
 				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg solution'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> View</button>",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg solution'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
 				"orderable" : false
 			}, {
 				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-danger btn-mg delete'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete</button>",
+				"defaultContent" : "<button type='button' class='btn btn-danger btn-mg delete'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> "+ $('#button_delete').val() +"</button>",
 				"orderable" : false
 			},]
 		});
@@ -132,7 +133,7 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myModalLabel').html(aData["problemTitle"] + " Equations");
+		    $('#myModalLabel').html(aData["problemTitle"] + " "+ $('#equation').val());
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
@@ -152,7 +153,7 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myModalLabel').html(aData["problemTitle"] + " Solution");
+		    $('#myModalLabel').html(aData["problemTitle"] + " "+ $('#solution').val());
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
@@ -172,7 +173,7 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myDeleteModalLabel').html("Delete Problem " + aData["problemTitle"]);
+		    $('#myDeleteModalLabel').html($('#delete').val() + " " + aData["problemTitle"]);
 		    
 		    $('#idProblem').val(aData["idProblem"]);
 		 	$('#deleteModal').modal('show');
@@ -182,20 +183,21 @@ body.modal-open {
 </script>
 </head>
 <body>
-
+	<!-- Topnav -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">List Problems</a>
+				<span class="navbar-brand"><spring:message code="LP_title" /></span>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="home.htm"><spring:message code="Home" /></a></li>
+					<li class="active"><a href="listproblem.htm"><spring:message code="LP_title" /></a></li>
+					<li><a href="listanswer.htm"><spring:message code="LA_title" /></a></li>
+					<li><a href="createproblem.htm"><spring:message code="CP_title" /></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -204,23 +206,23 @@ body.modal-open {
 
 	<div class="container body_width_eq">
 		<div class="center-template">
-			<h1 class="page-header center">List Problems++</h1>
+			<h1 class="page-header center"><spring:message code="LP_title" /></h1>
 			<form:form action="" method="GET">
 				<h2 class="center">
-					Spring MVC pagination using data tables<br> <br>
+					<spring:message code="LP_subtitle" /><br> <br>
 				</h2>
 				<table id="problems" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>problem</th>
-							<th>teacher</th>
-							<th>method</th>
-							<th>Multianswer</th>
-							<th>initDate</th>
-							<th>endDate</th>
-							<th>equations</th>
-							<th>solution</th>
-							<th>actions</th>
+							<th><spring:message code="LP_table_problem" /></th>
+							<th><spring:message code="LP_table_teacher" /></th>
+							<th><spring:message code="LP_table_method" /></th>
+							<th><spring:message code="LP_table_initDate" /></th>
+							<th><spring:message code="LP_table_endDate" /></th>
+							<th><spring:message code="LP_table_multianswer" /></th>
+							<th><spring:message code="LP_table_equations" /></th>
+							<th><spring:message code="LP_table_solutions" /></th>
+							<th><spring:message code="LP_table_actions" /></th>
 						</tr>
 					</thead>
 				</table>
@@ -257,17 +259,25 @@ body.modal-open {
 				</div>
 				<form:form method="post" commandName="Problem">
 					<div class="modal-body">
-						<span>Are you sure you want to delete this problem???</span>	
+						<span><spring:message code="LP_modal_message" /></span>	
 						<form:hidden path="idProblems" id="idProblem"/>
 					</div>
 					<div class="modal-footer">				
-						<input class="btn btn-danger" type="submit" value="Delete!" id="submit"> 
-						<button type="button" name="delete" class="btn btn-default" data-dismiss="modal">Close</button>
+						<input class="btn btn-danger" type="submit" value=<spring:message code="LP_modal_button_delete" /> id="submit"> 
+						<button type="button" name="delete" class="btn btn-default" data-dismiss="modal"><spring:message code="LP_modal_button_close" /></button>
 					</div>
 				</form:form>
 			</div>
 		</div>
 	</div>
+	
+	<input id="equation" type="hidden" value=<spring:message code="LP_modal_equation" />>
+	<input id="solution" type="hidden" value=<spring:message code="LP_modal_solution" />>
+	<spring:message code="LP_modal_delete" var="LP_modal_delete"/>
+	<input id="delete" type="hidden" value="${LP_modal_delete}">
+	<input id="button_view" type="hidden" value=<spring:message code="LP_table_button_view" />>
+	<input id="button_delete" type="hidden" value=<spring:message code="LP_table_button_delete" />>
+	
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>

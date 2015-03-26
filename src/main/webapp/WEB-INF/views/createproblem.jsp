@@ -63,38 +63,39 @@ body {
 
 </head>
 <body>
-	<spring:message code="CP_idMethodSelect" var="CP_idMethodSelect" />
-	<spring:message code="CP_numVariablesSelect" var="CP_numVariablesSelect" />
-
+	<!-- Topnav -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Create Equations++</a>
+				<span class="navbar-brand"><spring:message code="CP_title" /></span>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="home.htm"><spring:message code="Home" /></a></li>
+					<li><a href="listproblem.htm"><spring:message code="LP_title" /></a></li>
+					<li><a href="listanswer.htm"><spring:message code="LA_title" /></a></li>
+					<li class="active"><a href="createproblem.htm"><spring:message code="CP_title" /></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-
+	
+	<spring:message code="CP_idMethodSelect" var="CP_idMethodSelect" />
+	<spring:message code="CP_numVariablesSelect" var="CP_numVariablesSelect" />
 
 	<div class="container body_width_eq">
 		<div class="center-template">
-			<h1 class="page-header">Create Problem++</h1>
+			<h1 class="page-header"><spring:message code="CP_title" /></h1>
 			<div class="panel panel-default">
-				<div class="panel-heading">Choose the options to create a problem:++</div>
+				<div class="panel-heading"><spring:message code="CP_subtitle" /></div>
 				<form:form method="post" commandName="createProblemDTO" style="text-align:left; margin-left:15px;">
 					<div class="form-group">
 						<div class="row col-xs-12">
-							<label>Title:</label>
+							<label><spring:message code="CP_problemTitle" /></label>
 						</div>
 						<div class="row">
 							<div class="col-xs-8">
@@ -107,7 +108,7 @@ body {
 					</div>
 					<div class="form-group">
 						<div class="row col-xs-12">
-							<label>idMethods:</label>
+							<label><spring:message code="CP_idMethods" /></label>
 						</div>
 						<div class="row">
 							<div class="col-xs-8">
@@ -123,7 +124,7 @@ body {
 					</div>
 					<div class="form-group">
 						<div class="row col-xs-12">
-							<label>numVariables:</label>
+							<label><spring:message code="CP_numVariables" /></label>
 						</div>
 						<div class="row">
 							<div class="col-xs-8">
@@ -139,7 +140,7 @@ body {
 					</div>
 					<div class="form-group">
 						<div class="row col-xs-12">
-							<label>equations:</label>
+							<label><spring:message code="CP_equations" /></label>
 						</div>
 						<div class="row">
 							<div class="col-xs-1 subrow">
@@ -177,7 +178,7 @@ body {
 					</div>
 					<div class="form-group">
 						<div class="row col-xs-12">
-							<label>initDate:</label>
+							<label><spring:message code="CP_InitDate" /></label>
 						</div>
 						<div class="row">
 							<div class="col-xs-8">
@@ -195,11 +196,11 @@ body {
 					</div>
 					<div class="form-group">
 						<div class="row col-xs-12">
-							<label>endDate:</label>
+							<label><spring:message code="CP_EndDate" /></label>
 						</div>
 						<div class="row">
 							<div class="col-xs-8">
-								<div id="sandbox-container-initDate">
+								<div id="sandbox-container-endDate">
 									<div class="input-group date">
 										<form:input path="endDate" type="text" class="form-control" placeholder="dd/mm/yyyy" />
 										<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
@@ -271,11 +272,10 @@ body {
 							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-default">Create</button>
+					<button type="submit" class="btn btn-default"><spring:message code="CP_button_create" /></button>
 				</form:form>
 				<div class="panel-body"></div>
 			</div>
-
 		</div>
 	</div>
 	<!-- /.container -->

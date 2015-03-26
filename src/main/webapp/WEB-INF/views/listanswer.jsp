@@ -94,7 +94,7 @@ body.modal-open {
 				"mData" : "solution"
 			}, {
 				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> View++</button>",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
 				"orderable" : false
 			},]
 		});
@@ -107,7 +107,12 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myModalLabel').html(aData["studentName"] + " Answer");
+		    
+		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
+		    	 $('#myModalLabel').html( $('#answer').val() + aData["studentName"]);
+			}else{
+				 $('#myModalLabel').html(aData["studentName"] + " "+ $('#answer').val());
+			}		   
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
@@ -122,20 +127,21 @@ body.modal-open {
 </script>
 </head>
 <body>
-
+	<!-- Topnav -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">List Answers</a>
+				<span class="navbar-brand"><spring:message code="LA_title" /></span>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="home.htm"><spring:message code="Home" /></a></li>
+					<li><a href="listproblem.htm"><spring:message code="LP_title" /></a></li>
+					<li class="active"><a href="listanswer.htm"><spring:message code="LA_title" /></a></li>
+					<li><a href="createproblem.htm"><spring:message code="CP_title" /></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -144,19 +150,19 @@ body.modal-open {
 
 	<div class="container body_width_eq">
 		<div class="center-template">
-			<h1 class="page-header center">List Answers++</h1>
+			<h1 class="page-header center"><spring:message code="LA_title" /></h1>
 			<form:form action="" method="GET">
 				<h2 class="center">
-					Spring MVC pagination using data tables<br> <br>
+					<spring:message code="LA_subtitle" /><br> <br>
 				</h2>
 				<table id="answers" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>problem</th>
-							<th>student</th>
-							<th>answerDate</th>
-							<th>solution</th>
-							<th>steps</th>
+							<th><spring:message code="LA_table_problem" /></th>
+							<th><spring:message code="LA_table_student" /></th>
+							<th><spring:message code="LA_table_answerDate" /></th>
+							<th><spring:message code="LA_table_solution" /></th>
+							<th><spring:message code="LA_table_steps" /></th>
 						</tr>
 					</thead>
 				</table>
@@ -177,11 +183,16 @@ body.modal-open {
 					<div id="mathSpteps"></div>
 				</div>
 				<div class="modal-footer" id="modal-body">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="LP_modal_button_close" /></button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<spring:message code="LA_modal_answer" var="LA_modal_answer"/>
+	<input id="answer" type="hidden" value="${LA_modal_answer}">
+	<input id="button_view" type="hidden" value=<spring:message code="LA_table_button_view" />>
+	
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>
