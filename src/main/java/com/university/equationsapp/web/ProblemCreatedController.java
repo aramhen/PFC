@@ -1,8 +1,6 @@
 package com.university.equationsapp.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,25 +31,13 @@ public class ProblemCreatedController {
 	@Autowired
 	private MethodManager methodManager;
 
-	private ArrayList<Integer> numVariablesList = new ArrayList<Integer>();
-
 	private static final Logger logger = LoggerFactory.getLogger(ProblemCreatedController.class);
 
 	@RequestMapping(value = "/problemcreated.htm")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String now = (new Date()).toString();
-		logger.info("Returning hello view with " + now);
-		logger.error("error");
-		if (logger.isDebugEnabled()) {
-			System.out.println("SI");
-		}
-		logger.debug("debug");
-
 		Map<String, Object> myModel = new HashMap<String, Object>();
-		myModel.put("now", now);
-
 		return new ModelAndView("problemcreated", "model", myModel);
 	}
 
