@@ -11,8 +11,10 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.university.equationsapp.common.validation.NumVariables;
 import com.university.equationsapp.web.constants.WebConstants;
 
+@NumVariables
 public class CreateProblemDTO implements Serializable {
 
 	static final long serialVersionUID = 1L;
