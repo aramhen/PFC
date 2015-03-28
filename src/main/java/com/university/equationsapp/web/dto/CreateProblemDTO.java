@@ -11,10 +11,10 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.university.equationsapp.common.validation.NumVariables;
+import com.university.equationsapp.common.validation.CreateProblemAnnotation;
 import com.university.equationsapp.web.constants.WebConstants;
 
-@NumVariables
+@CreateProblemAnnotation
 public class CreateProblemDTO implements Serializable {
 
 	static final long serialVersionUID = 1L;
@@ -28,19 +28,15 @@ public class CreateProblemDTO implements Serializable {
 	@Range(min = WebConstants.NUM_VARIABLES_MIN, max = WebConstants.NUM_VARIABLES_MAX, message = "{createproblem.validation.numvariables}")
 	private int numVariables;
 
-	@NotBlank
 	@Size(min = WebConstants.EQUATION_LENGTH_MIN, max = WebConstants.EQUATION_LENGTH_MAX, message = "{createproblem.validation.equation.size}")
 	private String equation1;
-	@NotBlank
 	@Size(min = WebConstants.EQUATION_LENGTH_MIN, max = WebConstants.EQUATION_LENGTH_MAX, message = "{createproblem.validation.equation.size}")
 	private String equation2;
 	@Size(min = WebConstants.EQUATION_LENGTH_MIN, max = WebConstants.EQUATION_LENGTH_MAX, message = "{createproblem.validation.equation.size}")
 	private String equation3;
 
-	@NotBlank
 	@Size(min = WebConstants.SOLUTION_LENGTH_MIN, max = WebConstants.SOLUTION_LENGTH_MAX, message = "{createproblem.validation.solution.size}")
 	private String variableX;
-	@NotBlank
 	@Size(min = WebConstants.SOLUTION_LENGTH_MIN, max = WebConstants.SOLUTION_LENGTH_MAX, message = "{createproblem.validation.solution.size}")
 	private String variableY;
 	@Size(min = WebConstants.SOLUTION_LENGTH_MIN, max = WebConstants.SOLUTION_LENGTH_MAX, message = "{createproblem.validation.solution.size}")
@@ -48,7 +44,7 @@ public class CreateProblemDTO implements Serializable {
 
 	private boolean solutionCheck;
 
-	@NotNull
+	@NotNull(message = "{createproblem.validation.initDate}")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	//Eso lo he usado para poder ponerle formato a la fecha al mostrarse en el input por defecto, si diera error de libreria joda hay que incluir
 	/*
@@ -57,6 +53,7 @@ public class CreateProblemDTO implements Serializable {
 	 */
 	private Date initDate;
 
+	@NotNull(message = "{createproblem.validation.endDate}")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date endDate;
 

@@ -10,8 +10,8 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = NumVariablesValidator.class)
-public @interface NumVariables {
+@Constraint(validatedBy = CreateProblemAnnotationValidator.class)
+public @interface CreateProblemAnnotation {
 	String message() default "Rating not in range";
 
 	// Required by validation runtime

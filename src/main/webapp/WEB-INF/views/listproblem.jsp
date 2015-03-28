@@ -40,15 +40,17 @@ td.uniqueAnswer_column{
 	text-align: center;
 	font-size: 24px;
 }
+td.column_centered{
+	text-align: center;
+}
 /*Fix that on open modal windows page moves*/
 body.modal-open {
 	overflow: inherit;
 	padding-right: inherit !important;
 }
-
-.modal-header {
-    background-color: #f0f0f0;
- }
+.remove_icon{
+	font-size: 24px;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
@@ -111,13 +113,17 @@ body.modal-open {
 						return "<span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span>";
 					}}
 			}, {
-				"mData" : "null",
+				"mData" : "null","sClass": "column_centered",
 				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
 				"orderable" : false
 			}, {
-				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg solution'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
-				"orderable" : false
+				"mData" : "solution","sClass": "column_centered",
+				"orderable" : false, "mRender": function(data, type, row){
+					if(data){
+						return "<button type='button' class='btn btn-default btn-mg solution'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>";
+					}else{
+						return "<span class='glyphicon glyphicon-remove-circle remove_icon ' aria-hidden='true'></span>";
+					}}
 			}, {
 				"mData" : "null",
 				"defaultContent" : "<button type='button' class='btn btn-danger btn-mg delete'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> "+ $('#button_delete').val() +"</button>",
