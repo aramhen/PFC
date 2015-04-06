@@ -55,7 +55,7 @@ public class ListProblemController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/listproblem.htm", method = RequestMethod.POST)
 	public String onSubmit(@ModelAttribute("Problem") Problem problem, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			logger.error("Error processing the result");
@@ -132,7 +132,6 @@ public class ListProblemController {
 				if (problem.getProblemTitle().toUpperCase().indexOf(searchParameter) != -1
 						|| problem.getTeacherName().toUpperCase().indexOf(searchParameter) != -1
 						|| problem.getMethodName().toUpperCase().indexOf(searchParameter) != -1
-						|| problem.getNumVariables().toUpperCase().indexOf(searchParameter) != -1
 						|| problem.getInitDate().toUpperCase().indexOf(searchParameter) != -1
 						|| problem.getEndDate().toUpperCase().indexOf(searchParameter) != -1) {
 					problemsListForSearch.add(problem);

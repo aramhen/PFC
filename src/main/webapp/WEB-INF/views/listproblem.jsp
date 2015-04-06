@@ -108,9 +108,9 @@ body.modal-open {
 			}, {
 				"mData" : "uniqueAnswer", "orderable" : false, "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
 					if(data == "false"){
-						return "<span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span>";
+						return "<span class='glyphicon glyphicon-remove-circle' aria-hidden='true' style='color:#d9534f;'></span>";
 					}else{
-						return "<span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span>";
+						return "<span class='glyphicon glyphicon-ok-circle' aria-hidden='true' style='color:#5cb85c;'></span>";
 					}}
 			}, {
 				"mData" : "null","sClass": "column_centered",
@@ -122,7 +122,7 @@ body.modal-open {
 					if(data){
 						return "<button type='button' class='btn btn-default btn-mg solution'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>";
 					}else{
-						return "<span class='glyphicon glyphicon-remove-circle remove_icon ' aria-hidden='true'></span>";
+						return "<span class='glyphicon glyphicon-remove-circle remove_icon ' aria-hidden='true' style='color:#d9534f;'></span>";
 					}}
 			}, {
 				"mData" : "null",
