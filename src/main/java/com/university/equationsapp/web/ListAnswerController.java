@@ -120,7 +120,7 @@ public class ListAnswerController {
 		Answer node;
 		List<ListAnswerJsonDTO> tmpList = new ArrayList<ListAnswerJsonDTO>();
 
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("ES"));
+		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(CommonConstants.LOCALE_ES));
 		Iterator<Answer> itAnswer = answerList.iterator();
 
 		while (itAnswer.hasNext()) {

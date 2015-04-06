@@ -148,7 +148,7 @@ public class ListProblemController {
 		Problem node;
 		List<ListProblemJsonDTO> tmpList = new ArrayList<ListProblemJsonDTO>();
 
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", new Locale("ES"));
+		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(CommonConstants.LOCALE_ES));
 		Iterator<Problem> itProblem = problemList.iterator();
 
 		while (itProblem.hasNext()) {

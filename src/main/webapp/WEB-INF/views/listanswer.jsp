@@ -117,9 +117,9 @@ body.modal-open {
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
        		//MathJax.Hub.Queue(["Text", math, "modal-body"]);
-       		$('#mathSpteps').html(aData["steps"]);
+       		$('#mathSteps').html(aData["steps"]);
 	    	//reprocess the MathOutput Element
-	    	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mathSpteps"]);
+	    	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mathSteps"]);
 		 	$('#basicModal').modal('show');
 		 	event.stopImmediatePropagation();  //prevents the other on click from firing that fires up the inline editor
 		});
@@ -180,10 +180,10 @@ body.modal-open {
 					<h4 class="modal-title" id="myModalLabel"></h4>
 				</div>
 				<div class="modal-body">
-					<div id="mathSpteps"></div>
+					<div id="mathSteps"></div>
 				</div>
 				<div class="modal-footer" id="modal-body">
-					<button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="LP_modal_button_close" /></button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="LA_modal_button_close" /></button>
 				</div>
 			</div>
 		</div>
