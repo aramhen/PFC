@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><spring:message code="PC_title" /></title>
+<title><spring:message code="SSP_title" /></title>
 
 <style>
 body {
@@ -31,14 +31,13 @@ body {
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<span class="navbar-brand"><spring:message code="PC_title" /></span>
+				<span class="navbar-brand"><spring:message code="SSP_title" /></span>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="home.htm"><spring:message code="H_title" /></a></li>
-					<li><a href="listproblem.htm"><spring:message code="LP_title" /></a></li>
-					<li><a href="listanswer.htm"><spring:message code="LA_title" /></a></li>
-					<li><a href="createproblem.htm"><spring:message code="CP_title" /></a></li>
+					<li><a href="studenthome.htm"><spring:message code="SH_title" /></a></li>
+					<li><a href="studentlistproblem.htm"><spring:message code="SLP_title" /></a></li>
+					<li><a href="studentlistanswer.htm"><spring:message code="SLA_title" /></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -48,7 +47,7 @@ body {
 	<div class="container body_width_eq">
 
 		<div class="center-template">
-			<h1 class="page-header"><spring:message code="PC_subtitle" /></h1>
+			<h1 class="page-header"><spring:message code="SSP_subtitle" /></h1>
 			<p class="lead">
 				<spring:message code="PC_text" />
 			</p>

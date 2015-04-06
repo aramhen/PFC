@@ -161,11 +161,9 @@ public class StudentListProblemController {
 			inDate = false;
 			alreadeAnswered = false;
 			Date actualDate = new Date();
-			logger.error("" + actualDate);
 
 			//We check if the student can solve the problem or he is out of date or he already answered it and it's uniqueAnswer
 			if (actualDate.after(node.getInitDate()) && actualDate.before(node.getEndDate())) {
-				logger.error("Entra Fecha" + node.getInitDate() + node.getEndDate());
 				inDate = true;
 			}
 			if (node.isUniqueAnswer()
@@ -187,7 +185,6 @@ public class StudentListProblemController {
 				tmpList.add(tmp);
 			}
 		}
-		logger.error("" + tmpList.size());
 		return tmpList;
 	}
 }

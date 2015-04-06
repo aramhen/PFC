@@ -175,10 +175,9 @@ body.modal-open {
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="home.htm"><spring:message code="Home" /></a></li>
-					<li class="active"><a href="listproblem.htm"><spring:message code="SLP_title" /></a></li>
-					<li><a href="listanswer.htm"><spring:message code="LA_title" /></a></li>
-					<li><a href="createproblem.htm"><spring:message code="CP_title" /></a></li>
+					<li><a href="studenthome.htm"><spring:message code="SH_title" /></a></li>
+					<li class="active"><a href="studentlistproblem.htm"><spring:message code="SLP_title" /></a></li>
+					<li><a href="studentlistanswer.htm"><spring:message code="SLA_title" /></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
