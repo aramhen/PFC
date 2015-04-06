@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.university.equationsapp.domain.Answer;
 import com.university.equationsapp.domain.Problem;
+import com.university.equationsapp.domain.Student;
 
 public interface AnswerRepository extends CrudRepository<Answer, Integer>, AnswerRepositoryCustom {
 
@@ -14,5 +15,7 @@ public interface AnswerRepository extends CrudRepository<Answer, Integer>, Answe
 
 	@Transactional
 	public void deleteByProblemRef(Problem problemRef);
+
+	public List<Answer> findByProblemRefAndStudentRef(Problem problemRef, Student studentRef);
 
 }

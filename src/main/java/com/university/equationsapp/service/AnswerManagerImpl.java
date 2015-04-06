@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.university.equationsapp.domain.Answer;
 import com.university.equationsapp.repository.AnswerRepository;
 import com.university.equationsapp.repository.ProblemRepository;
+import com.university.equationsapp.repository.StudentRepository;
 
 @Service
 public class AnswerManagerImpl implements AnswerManager {
@@ -19,13 +20,20 @@ public class AnswerManagerImpl implements AnswerManager {
 
 	@Autowired
 	private ProblemRepository problemRepository;
+	
+	@Autowired
+	private StudentRepository studentRepository;
 
 	public List<Answer> getAnswerList() {
 		return answerRepository.getAnswerList();
 	}
-
-	public void deleteByProblemRef(int problemRef) {
-		answerRepository.deleteByProblemRef(problemRepository.findOne(problemRef));
+	
+	public void deleteByProblemRef(int idProblem) {
+		answerRepository.deleteByProblemRef(problemRepository.findOne(idProblem));
+	}
+	
+	public List<Answer> findByProblemRefAndStudentRef(int idProblem, int idStudent) {
+		return answerRepository.findByProblemRefAndStudentRef(problemRepository.findOne(idProblem), studentRepository.findOne(idStudent));
 	}
 
 	public void setProblemRepository(ProblemRepository problemRepository) {
@@ -35,4 +43,5 @@ public class AnswerManagerImpl implements AnswerManager {
 	public void setAnswerRepository(AnswerRepository answerRepository) {
 		this.answerRepository = answerRepository;
 	}
+
 }
