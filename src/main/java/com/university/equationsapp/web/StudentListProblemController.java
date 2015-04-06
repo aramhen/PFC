@@ -152,7 +152,7 @@ public class StudentListProblemController {
 		//TODO ARH IMPORTANTE HAY QUE VER DE DONDE CONSIGO EL IDSTUDENT ACTUAL, YA SEA REQUEST, COOKIE, SESIÓN O LO QUE SEA
 		int idStudent = 7;
 
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", new Locale("ES"));
+		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(CommonConstants.LOCALE_ES));
 		Iterator<Problem> itProblem = problemList.iterator();
 
 		while (itProblem.hasNext()) {
