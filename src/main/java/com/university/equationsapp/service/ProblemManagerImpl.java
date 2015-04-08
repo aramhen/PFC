@@ -73,8 +73,12 @@ public class ProblemManagerImpl implements ProblemManager {
 		problemRepository.save(problem);
 
 	}
-	
-	public void deleteProblem(int idProblem){
+
+	public Problem findByIdProblems(int idProblems) {
+		return problemRepository.findByIdProblems(idProblems);
+	}
+
+	public void deleteProblem(int idProblem) {
 		problemRepository.delete(idProblem);
 	}
 

@@ -119,9 +119,9 @@ body.modal-open {
 			}, {
 				"mData" : "uniqueAnswer", "orderable" : false, "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
 					if(data == "false"){
-						return "<form id='Problem' action='/equationsapp/studentlistproblem.htm' method='post' style='margin: 0px;'>" + "<button type='input' class='btn btn-primary btn-mg'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> "+ $('#button_solve').val() +"</button>" + "</form>";
+						return "<form id='Problem' action='/equationsapp/studentlistproblem.htm' method='post' style='margin: 0px;'><input type='hidden' value='" + row['idProblem'] + "' name='idProblems'>" + "<button type='input' class='btn btn-primary btn-mg'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>xxxxxxxxxxx"+ $('#button_solve').val() +"</button>" + "</form>";
 					}else{
-						return "<button type='button' class='btn btn-primary btn-mg solve'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> "+ $('#button_solve').val() +"</button>";
+						return "<button type='button' class='btn btn-primary btn-mg solveModal'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> "+ $('#button_solve').val() +"</button>";
 					}}
 			},]
 		});
@@ -145,7 +145,7 @@ body.modal-open {
 		 	$('#viewModal').modal('show');
 		 	event.stopImmediatePropagation();  //prevents the other on click from firing that fires up the inline editor
 		});
-		$('#problems tbody ').on('click', 'button.solve', function (event) {
+		$('#problems tbody ').on('click', 'button.solveModal', function (event) {
 			var table = $("#problems").DataTable();
 		    var row;
 			if($(this).closest('tr').hasClass('child')){
@@ -156,7 +156,7 @@ body.modal-open {
 		    var aData = table.row(row).data();
 		    $('#mySolveModalLabel').html($('#solve').val() + " " + aData["problemTitle"]);
 		    
-		    $('#idProblem').val(aData["idProblem"]);
+		    $('#idProblem_modal').val(aData["idProblem"]);
 		 	$('#solveModal').modal('show');
 		 	event.stopImmediatePropagation();  //prevents the other on click from firing that fires up the inline editor
 		});
@@ -236,10 +236,10 @@ body.modal-open {
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="mySolveModalLabel"></h4>
 				</div>
-				<form:form method="post" commandName="Problem">
+				<form:form method="post" commandName="Problem" action="/equationsapp/studentsolveproblem.htm">
 					<div class="modal-body">
 						<span><spring:message code="SLP_modal_message" /></span>	
-						<form:hidden path="idProblems" id="idProblem"/>
+						<form:hidden path="idProblems" id="idProblem_modal"/>
 					</div>
 					<div class="modal-footer">				
 						<input class="btn btn-primary" type="submit" value=<spring:message code="SLP_modal_button_solve" /> id="submit"> 

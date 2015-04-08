@@ -48,7 +48,7 @@ public class ListProblemController {
 	private AnswerManager answerManager;
 
 	@RequestMapping(value = "/listproblem.htm", method = RequestMethod.GET)
-	public String printWelcome(@ModelAttribute("problem") Problem problem, BindingResult result, ModelMap model,
+	public String printWelcome(@ModelAttribute("Problem") Problem problem, BindingResult result, ModelMap model,
 			HttpServletRequest request, HttpServletResponse response) {
 
 		return "listproblem";
@@ -69,12 +69,6 @@ public class ListProblemController {
 		answerManager.deleteByProblemRef(idProblem);
 		problemManager.deleteProblem(idProblem);
 		return "redirect:/listproblem.htm";
-	}
-
-	//Used to store the submit problem to delete
-	@ModelAttribute("Problem")
-	public Problem idProblem() {
-		return new Problem();
 	}
 
 	@RequestMapping(value = "/listproblempagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")

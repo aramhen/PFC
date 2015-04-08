@@ -50,6 +50,8 @@ body {
 			<h1 class="page-header"><spring:message code="SSP_subtitle" /></h1>
 			<p class="lead">
 				<spring:message code="PC_text" />
+				${Problem.idProblems}
+				${Problem.title}
 			</p>
 		</div>
 

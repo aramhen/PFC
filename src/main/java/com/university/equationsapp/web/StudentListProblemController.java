@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,7 +50,7 @@ public class StudentListProblemController {
 	private AnswerManager answerManager;
 
 	@RequestMapping(value = "/studentlistproblem.htm", method = RequestMethod.GET)
-	public String printWelcome(@ModelAttribute("problem") Problem problem, BindingResult result, ModelMap model,
+	public String printWelcome(@ModelAttribute("Problem") Problem problem, BindingResult result, ModelMap model,
 			HttpServletRequest request, HttpServletResponse response) {
 
 		return "studentlistproblem";
@@ -57,7 +58,8 @@ public class StudentListProblemController {
 	}
 
 	@RequestMapping(value = "/studentlistproblem.htm", method = RequestMethod.POST)
-	public String onSubmit(@ModelAttribute("Problem") Problem problem, BindingResult result, Model model) {
+	public String onSubmit(@ModelAttribute("Problem") Problem problem, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
 			logger.error("Error processing the result");
 			return "studentlistproblem";
@@ -67,13 +69,10 @@ public class StudentListProblemController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Solving problem " + idProblem);
 		}
+		//TODO ARH en la memoria hay que explicar lo del redirectattributes seguramente
+		//http://stackoverflow.com/questions/14470111/spring-redirectattributes-addattribute-vs-addflashattribute
+		redirectAttributes.addFlashAttribute("idProblem", idProblem);
 		return "redirect:/studentsolveproblem.htm";
-	}
-
-	//TODO ARH aquí puede que no haga falta Used to store the submit problem to solve
-	@ModelAttribute("Problem")
-	public Problem idProblem() {
-		return new Problem();
 	}
 
 	@RequestMapping(value = "/studentlistproblempagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
@@ -152,7 +151,8 @@ public class StudentListProblemController {
 		//TODO ARH IMPORTANTE HAY QUE VER DE DONDE CONSIGO EL IDSTUDENT ACTUAL, YA SEA REQUEST, COOKIE, SESIÓN O LO QUE SEA
 		int idStudent = 7;
 
-		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(CommonConstants.LOCALE_ES));
+		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(
+				CommonConstants.LOCALE_ES));
 		Iterator<Problem> itProblem = problemList.iterator();
 
 		while (itProblem.hasNext()) {
