@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.university.equationsapp.common.constants.CommonConstants;
 import com.university.equationsapp.domain.Answer;
+import com.university.equationsapp.repository.StudentRepository;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
@@ -41,6 +42,9 @@ public class StudentListAnswerController {
 
 	@Autowired
 	private AnswerManager answerManager;
+
+	@Autowired
+	private StudentRepository studentRepository;
 
 	@RequestMapping(value = "/studentlistanswer.htm", method = RequestMethod.GET)
 	public String printWelcome(@ModelAttribute("answer") Answer answer, BindingResult result, ModelMap model,
@@ -64,8 +68,11 @@ public class StudentListAnswerController {
 		//Fetch Page display length
 //		Integer pageDisplayLength = Integer.valueOf(request.getParameter("iDisplayLength"));
 
+		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//We recover the student answers
+		int idStudent = 7;
 		//Create page list data
-		List<StudentListAnswerJsonDTO> answersList = getstudentlistanswerDTO(answerManager.getAnswerList());
+		List<StudentListAnswerJsonDTO> answersList = getstudentlistanswerDTO(answerManager.findByStudentRef(idStudent));
 
 		//Here is server side pagination logic. Based on the page number you could make call 
 		//to the data base create new list and send back to the client. For demo I am shuffling 
@@ -121,7 +128,8 @@ public class StudentListAnswerController {
 		Answer node;
 		List<StudentListAnswerJsonDTO> tmpList = new ArrayList<StudentListAnswerJsonDTO>();
 
-		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(CommonConstants.LOCALE_ES));
+		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(
+				CommonConstants.LOCALE_ES));
 		Iterator<Answer> itAnswer = answerList.iterator();
 
 		while (itAnswer.hasNext()) {

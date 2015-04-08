@@ -20,20 +20,25 @@ public class AnswerManagerImpl implements AnswerManager {
 
 	@Autowired
 	private ProblemRepository problemRepository;
-	
+
 	@Autowired
 	private StudentRepository studentRepository;
 
 	public List<Answer> getAnswerList() {
 		return answerRepository.getAnswerList();
 	}
-	
+
 	public void deleteByProblemRef(int idProblem) {
 		answerRepository.deleteByProblemRef(problemRepository.findOne(idProblem));
 	}
-	
+
 	public List<Answer> findByProblemRefAndStudentRef(int idProblem, int idStudent) {
-		return answerRepository.findByProblemRefAndStudentRef(problemRepository.findOne(idProblem), studentRepository.findOne(idStudent));
+		return answerRepository.findByProblemRefAndStudentRef(problemRepository.findOne(idProblem),
+				studentRepository.findOne(idStudent));
+	}
+
+	public List<Answer> findByStudentRef(int idStudent) {
+		return answerRepository.findByStudentRef(studentRepository.findOne(idStudent));
 	}
 
 	public void setProblemRepository(ProblemRepository problemRepository) {

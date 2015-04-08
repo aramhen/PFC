@@ -12,5 +12,7 @@ public interface AnswerManager extends Serializable {
 	public void deleteByProblemRef(int idProblem);
 
 	public List<Answer> findByProblemRefAndStudentRef(int idProblem, int idStudent);
+	
+	public List<Answer> findByStudentRef(int idStudent);
 
 }

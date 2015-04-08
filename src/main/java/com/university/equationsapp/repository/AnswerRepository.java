@@ -18,4 +18,6 @@ public interface AnswerRepository extends CrudRepository<Answer, Integer>, Answe
 
 	public List<Answer> findByProblemRefAndStudentRef(Problem problemRef, Student studentRef);
 
+	public List<Answer> findByStudentRef(Student studentRef);
+
 }
