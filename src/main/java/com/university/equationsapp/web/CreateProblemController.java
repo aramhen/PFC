@@ -56,8 +56,9 @@ public class CreateProblemController {
 		 */
 		model.addAttribute("now", new Date().toString());
 
+		//TODO ARH Creo que ya no hace falta lo de las fechas ni inicializar
 		//Inicialize data in createProblemDTO
-		initCreateProblem(createProblemDTO);
+		//initCreateProblem(createProblemDTO);
 
 		return createProblemDTO;
 	}

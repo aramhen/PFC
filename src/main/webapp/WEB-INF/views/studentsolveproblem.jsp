@@ -57,6 +57,33 @@ body {
 
 	</div>
 	<!-- /.container -->
+	
+	<div class="container body_width_eq">
+		<div class="center-template">
+			<h1 class="page-header"><spring:message code="SSP_title" /></h1>
+			<div class="panel panel-default">
+				<div class="panel-heading"><spring:message code="SSP_subtitle" /></div>
+				<form:form method="post" commandName="studentSolveProblemDTO" style="text-align:left; margin-left:15px;">
+					<div class="form-group">
+						<div class="row col-xs-12">
+							<label><spring:message code="CP_problemTitle" /></label>
+						</div>
+						<div class="row">
+							<div class="col-xs-8">
+								<form:input path="title" class="form-control" />
+							</div>
+							<div>
+								<form:errors path="title" cssClass="alert_eq alert-danger" />
+							</div>
+						</div>
+					</div>
+
+				</form:form>
+				<div class="panel-body"></div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
 
 
 	<!-- Bootstrap core JavaScript

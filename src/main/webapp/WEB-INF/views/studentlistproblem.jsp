@@ -236,7 +236,7 @@ body.modal-open {
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="mySolveModalLabel"></h4>
 				</div>
-				<form:form method="post" commandName="Problem" action="/equationsapp/studentsolveproblem.htm">
+				<form:form method="post" commandName="Problem" action="/equationsapp/studentlistproblem.htm">
 					<div class="modal-body">
 						<span><spring:message code="SLP_modal_message" /></span>	
 						<form:hidden path="idProblems" id="idProblem_modal"/>

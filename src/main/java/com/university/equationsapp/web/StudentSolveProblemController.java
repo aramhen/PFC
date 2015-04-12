@@ -2,6 +2,7 @@ package com.university.equationsapp.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +19,10 @@ import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.service.MethodManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
+import com.university.equationsapp.web.dto.StudentSolveProblemDTO;
 
 @Controller
+@RequestMapping(value = "/studentsolveproblem.htm")
 public class StudentSolveProblemController {
 
 	@Autowired
@@ -33,35 +36,34 @@ public class StudentSolveProblemController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentSolveProblemController.class);
 
-	@RequestMapping(value = "/studentsolveproblem.htm", method = RequestMethod.GET)
-	public String printWelcome(@ModelAttribute("idProblem") int idProblem, BindingResult result, ModelMap model,
+	@RequestMapping(method = RequestMethod.GET)
+	public StudentSolveProblemDTO printWelcome(@ModelAttribute("idProblem") int idProblem, BindingResult result, ModelMap model,
 			HttpServletRequest request, HttpServletResponse response) {
-		
+
 		if (logger.isDebugEnabled()) {
 			logger.debug("Loading data of problem " + idProblem);
 		}
-		
+
 		Problem problem = problemManager.findByIdProblems(idProblem);
-		
+
 		if (logger.isDebugEnabled()) {
 			logger.debug("Recovered problem " + problem.getTitle());
 		}
 		model.addAttribute("Problem", problem);
-		return "studentsolveproblem";
-
+		StudentSolveProblemDTO studentSolveProblemDTO = new StudentSolveProblemDTO();
+		return studentSolveProblemDTO;
 	}
-	
-	@RequestMapping(value = "/studentsolveproblem.htm", method = RequestMethod.POST)
-	public String onSubmit(@ModelAttribute("Problem") Problem problem, BindingResult result, Model model) {
+
+
+	@RequestMapping(method = RequestMethod.POST)
+	public String onSubmit(@Valid StudentSolveProblemDTO studentSolveProblemDTO, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			logger.error("Error processing the result");
-			return "studentlistproblem";
+			return "studentsolveproblem";
 		}
 
-		int idProblem = problem.getIdProblems();
-		System.out.println(problem.getTitle());
 		if (logger.isDebugEnabled()) {
-			logger.debug("The student is solving the problem " + idProblem);
+			logger.debug("Creating solution " + studentSolveProblemDTO.getTitle());
 		}
 		return "studentsolveproblem";
 	}
