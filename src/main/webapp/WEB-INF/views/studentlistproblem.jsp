@@ -119,9 +119,9 @@ body.modal-open {
 			}, {
 				"mData" : "uniqueAnswer", "orderable" : false, "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
 					if(data == "false"){
-						return "<form id='Problem' action='/equationsapp/studentlistproblem.htm' method='post' style='margin: 0px;'><input type='hidden' value='" + row['idProblem'] + "' name='idProblems'>" + "<button type='input' class='btn btn-primary btn-mg'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>xxxxxxxxxxx"+ $('#button_solve').val() +"</button>" + "</form>";
-					}else{
 						return "<button type='button' class='btn btn-primary btn-mg solveModal'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> "+ $('#button_solve').val() +"</button>";
+					}else{
+						return "<form id='Problem' action='/equationsapp/studentlistproblem.htm' method='post' style='margin: 0px;'><input type='hidden' value='" + row['idProblem'] + "' name='idProblems'>" + "<button type='input' class='btn btn-primary btn-mg'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>"+ $('#button_solve').val() +"</button>" + "</form>";
 					}}
 			},]
 		});
