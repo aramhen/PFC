@@ -308,12 +308,23 @@ body {
 		});
 		$(document).ready(function() {
 			$("#numVariables").change(function() {
-				if ($(this).prop("value") == "2") {
+				if ($(this).prop("value") == "1") {
+					$('#equation1').removeAttr("disabled");
+					$('#equation2').prop('disabled', true);
+					$('#equation3').prop('disabled', true);
+					$('#solutionCheckdiv').removeClass("disabled");
+					$("#solutionCheck1").removeAttr("disabled");
+					$("#variableY").attr("disabled", true);
+					$("#variableZ").attr("disabled", true);
+				}else if ($(this).prop("value") == "2") {
 					$('#equation1').removeAttr("disabled");
 					$('#equation2').removeAttr("disabled");
 					$('#equation3').prop('disabled', true);
 					$('#solutionCheckdiv').removeClass("disabled");
 					$("#solutionCheck1").removeAttr("disabled");
+					if ($('#solutionCheck1').is(":checked")) {
+						$('#variableY').removeAttr("disabled");
+					}
 					$("#variableZ").attr("disabled", true);
 				} else if ($(this).prop("value") == "3") {
 					$('#equation1').removeAttr("disabled");
@@ -322,6 +333,7 @@ body {
 					$('#solutionCheckdiv').removeClass("disabled");
 					$("#solutionCheck1").removeAttr("disabled");
 					if ($('#solutionCheck1').is(":checked")) {
+						$('#variableY').removeAttr("disabled");
 						$('#variableZ').removeAttr("disabled");
 					}
 				} else {
@@ -337,17 +349,15 @@ body {
 				}
 			}).change();
 			$("#solutionCheck1").click(function() {
+				var selected = parseInt($('#numVariables').find(":selected").text());
 				$("#variableX").prop("disabled", !this.checked);
-				$("#variableY").prop("disabled", !this.checked);
-				if ($('#numVariables').find(":selected").text() == "3") {
+				if(selected > 1){
+					$("#variableY").prop("disabled", !this.checked);
+				}
+				if (selected > 2) {
 					$("#variableZ").prop("disabled", !this.checked);
 				}
 			});
-			if (!$('#solutionCheck1').is(":checked")) {
-				$("#variableX").prop("disabled", true);
-				$("#variableY").prop("disabled", true);
-				$("#variableZ").prop("disabled", true);
-			}
 		});
 	</script>
 </body>

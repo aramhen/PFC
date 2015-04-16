@@ -45,8 +45,10 @@ public class ProblemManagerImpl implements ProblemManager {
 
 		StringBuilder sb = new StringBuilder();
 		//TODO ARH validaciones de si viene vacio etc mal o ya viene comprobado?
-		sb.append(createProblemDTO.getEquation1().trim()).append(CommonConstants.SEPARATOR);
-		sb.append(createProblemDTO.getEquation2().trim());
+		sb.append(createProblemDTO.getEquation1().trim());
+		if (problem.getNumVariables() > 1) {
+			sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getEquation2().trim());
+		}
 		if (problem.getNumVariables() > 2) {
 			sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getEquation3().trim());
 		}
@@ -54,8 +56,11 @@ public class ProblemManagerImpl implements ProblemManager {
 
 		if (createProblemDTO.isSolutionCheck()) {
 			sb = new StringBuilder();
-			sb.append(createProblemDTO.getVariableX().trim()).append(CommonConstants.SEPARATOR);
-			sb.append(createProblemDTO.getVariableY().trim());
+			sb.append(createProblemDTO.getVariableX().trim());
+			if (problem.getNumVariables() > 1) {
+				sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getVariableY().trim());
+			}
+			
 			if (problem.getNumVariables() > 2) {
 				sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getVariableZ().trim());
 			}
