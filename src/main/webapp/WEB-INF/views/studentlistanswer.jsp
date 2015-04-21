@@ -45,11 +45,11 @@ body.modal-open {
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/bootstrap/dataTables.bootstrap.css">
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/1.0.4/css/dataTables.responsive.css">
+<link rel="stylesheet" type="text/css" href="resources/datatables/plugins/responsive-1.0.5/css/dataTables.responsive.css">
 
 <script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/datatables/js/jquery.dataTables-1.10.5.js" />"></script>
-<script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.4/js/dataTables.responsive.js"></script>
+<script type="text/javascript" src="resources/datatables/plugins/responsive-1.0.5/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -61,6 +61,7 @@ body.modal-open {
 
 </script>
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+<!-- <script type="text/javascript" src="resources/mathjax/MathJax.js?config=TeX-AMS_HTML-full"></script> -->
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -111,7 +112,12 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myModalLabel').html(aData["problemTitle"] + " "+ $('#equation').val());
+		    
+		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
+		    	$('#myModalLabel').html($('#equation').val() + aData["problemTitle"]);
+			}else{
+				$('#myModalLabel').html(aData["problemTitle"] + " "+ $('#equation').val());
+			}
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
@@ -133,9 +139,9 @@ body.modal-open {
 		    var aData = table.row(row).data();
 		    
 		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
-		    	 $('#myModalLabel').html( $('#answer').val() + aData["studentName"]);
+		    	$('#myModalLabel').html($('#answer').val());
 			}else{
-				 $('#myModalLabel').html(aData["studentName"] + " "+ $('#answer').val());
+				$('#myModalLabel').html($('#answer').val());
 			}		   
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
