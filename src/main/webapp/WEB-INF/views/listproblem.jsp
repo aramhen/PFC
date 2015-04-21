@@ -115,19 +115,19 @@ body.modal-open {
 					}}
 			}, {
 				"mData" : "null","sClass": "column_centered",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <spring:message code='LP_table_button_view' /></button>",
 				"orderable" : false
 			}, {
 				"mData" : "solution","sClass": "column_centered",
 				"orderable" : false, "mRender": function(data, type, row){
 					if(data){
-						return "<button type='button' class='btn btn-default btn-mg solution'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>";
+						return "<button type='button' class='btn btn-default btn-mg solution'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <spring:message code='LP_table_button_view' /></button>";
 					}else{
 						return "<span class='glyphicon glyphicon-remove-circle remove_icon ' aria-hidden='true' style='color:#d9534f;'></span>";
 					}}
 			}, {
 				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-danger btn-mg delete'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> "+ $('#button_delete').val() +"</button>",
+				"defaultContent" : "<button type='button' class='btn btn-danger btn-mg delete'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> <spring:message code='LP_table_button_delete' /></button>",
 				"orderable" : false
 			},]
 		});
@@ -140,7 +140,12 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myModalLabel').html(aData["problemTitle"] + " "+ $('#equation').val());
+		    
+		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
+		    	$('#myModalLabel').html("<spring:message code='LP_modal_equation' />" + aData["problemTitle"]);
+			}else{
+				$('#myModalLabel').html(aData["problemTitle"] + " <spring:message code='LP_modal_equation' />");
+			}
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
@@ -160,7 +165,12 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myModalLabel').html(aData["problemTitle"] + " "+ $('#solution').val());
+		    
+		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
+		    	$('#myModalLabel').html("<spring:message code='LP_modal_solution' />" + aData["problemTitle"]);
+			}else{
+				$('#myModalLabel').html(aData["problemTitle"] + " <spring:message code='LP_modal_solution' />");
+			}
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
@@ -180,7 +190,7 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myDeleteModalLabel').html($('#delete').val() + " " + aData["problemTitle"]);
+		    $('#myDeleteModalLabel').html("<spring:message code='LP_modal_delete'/>" + " " + aData["problemTitle"]);
 		    
 		    $('#idProblem').val(aData["idProblem"]);
 		 	$('#deleteModal').modal('show');
@@ -277,13 +287,6 @@ body.modal-open {
 			</div>
 		</div>
 	</div>
-	
-	<input id="equation" type="hidden" value=<spring:message code="LP_modal_equation" />>
-	<input id="solution" type="hidden" value=<spring:message code="LP_modal_solution" />>
-	<spring:message code="LP_modal_delete" var="LP_modal_delete"/>
-	<input id="delete" type="hidden" value="${LP_modal_delete}">
-	<input id="button_view" type="hidden" value=<spring:message code="LP_table_button_view" />>
-	<input id="button_delete" type="hidden" value=<spring:message code="LP_table_button_delete" />>
 	
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>

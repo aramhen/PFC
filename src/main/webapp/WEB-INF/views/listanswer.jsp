@@ -95,7 +95,7 @@ body.modal-open {
 				"mData" : "solution"
 			}, {
 				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <spring:message code='LA_table_button_view' /></button>",
 				"orderable" : false
 			},]
 		});
@@ -110,9 +110,9 @@ body.modal-open {
 		    var aData = table.row(row).data();
 		    
 		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
-		    	 $('#myModalLabel').html( $('#answer').val() + aData["studentName"]);
+		    	 $('#myModalLabel').html("<spring:message code='LA_modal_answer'/>" + aData["studentName"]);
 			}else{
-				 $('#myModalLabel').html(aData["studentName"] + " "+ $('#answer').val());
+				 $('#myModalLabel').html(aData["studentName"] + " <spring:message code='LA_modal_answer'/>");
 			}		   
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
@@ -189,11 +189,7 @@ body.modal-open {
 			</div>
 		</div>
 	</div>
-	
-	<spring:message code="LA_modal_answer" var="LA_modal_answer"/>
-	<input id="answer" type="hidden" value="${LA_modal_answer}">
-	<input id="button_view" type="hidden" value=<spring:message code="LA_table_button_view" />>
-	
+
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>

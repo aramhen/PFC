@@ -93,13 +93,13 @@ body.modal-open {
 				"mData" : "answerDate"
 			}, {
 				"mData" : "null","sClass": "column_centered",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <spring:message code='SLA_table_button_view' /></button>",
 				"orderable" : false
 			}, {
 				"mData" : "solution"
 			}, {
 				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg steps'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg steps'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <spring:message code='SLA_table_button_view' /></button>",
 				"orderable" : false
 			},]
 		});
@@ -114,9 +114,9 @@ body.modal-open {
 		    var aData = table.row(row).data();
 		    
 		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
-		    	$('#myModalLabel').html($('#equation').val() + aData["problemTitle"]);
+		    	$('#myModalLabel').html("<spring:message code='SLA_modal_equation' />" + aData["problemTitle"]);
 			}else{
-				$('#myModalLabel').html(aData["problemTitle"] + " "+ $('#equation').val());
+				$('#myModalLabel').html(aData["problemTitle"] + " <spring:message code='SLA_modal_equation' />");
 			}
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
@@ -137,12 +137,7 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    
-		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
-		    	$('#myModalLabel').html($('#answer').val());
-			}else{
-				$('#myModalLabel').html($('#answer').val());
-			}		   
+		    $('#myModalLabel').html("<spring:message code='SLA_modal_answer' />");
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
@@ -218,11 +213,6 @@ body.modal-open {
 			</div>
 		</div>
 	</div>
-	
-	<input id="equation" type="hidden" value=<spring:message code="SLA_modal_equation" />>
-	<spring:message code="SLA_modal_answer" var="SLA_modal_answer"/>
-	<input id="answer" type="hidden" value="${SLA_modal_answer}">
-	<input id="button_view" type="hidden" value=<spring:message code="SLA_table_button_view" />>
 	
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>

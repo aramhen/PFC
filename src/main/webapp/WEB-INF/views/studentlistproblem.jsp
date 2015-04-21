@@ -115,14 +115,14 @@ body.modal-open {
 					}}
 			}, {
 				"mData" : "null","sClass": "column_centered",
-				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> "+ $('#button_view').val() +"</button>",
+				"defaultContent" : "<button type='button' class='btn btn-default btn-mg equations'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <spring:message code='SLP_table_button_view' /></button>",
 				"orderable" : false
 			}, {
 				"mData" : "uniqueAnswer", "orderable" : false, "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
 					if(data == "false"){
-						return "<button type='button' class='btn btn-primary btn-mg solveModal'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> "+ $('#button_solve').val() +"</button>";
+						return "<button type='button' class='btn btn-primary btn-mg solveModal'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> <spring:message code='SLP_table_button_solve' /></button>";
 					}else{
-						return "<form id='Problem' action='/equationsapp/studentlistproblem.htm' method='post' style='margin: 0px;'><input type='hidden' value='" + row['idProblem'] + "' name='idProblems'>" + "<button type='input' class='btn btn-primary btn-mg'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>"+ $('#button_solve').val() +"</button>" + "</form>";
+						return "<form id='Problem' action='/equationsapp/studentlistproblem.htm' method='post' style='margin: 0px;'><input type='hidden' value='" + row['idProblem'] + "' name='idProblems'>" + "<button type='input' class='btn btn-primary btn-mg'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> <spring:message code='SLP_table_button_solve' /></button>" + "</form>";
 					}}
 			},]
 		});
@@ -135,7 +135,11 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#myModalLabel').html(aData["problemTitle"] + " "+ $('#equation').val());
+		    if((userLang.split('-')[0]).toLowerCase() == 'es') {
+		    	$('#myModalLabel').html("<spring:message code='SLP_modal_equation' />" + aData["problemTitle"]);
+			}else{
+				$('#myModalLabel').html(aData["problemTitle"] + " <spring:message code='SLP_modal_equation' />");
+			}
 		   	// $("div.modal-body").innerHTML=aData["steps"];
 		    //UpdateMath(aData["steps"]);
 		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
@@ -155,7 +159,7 @@ body.modal-open {
 				row = $(this).closest("tr").get(0);
 			}
 		    var aData = table.row(row).data();
-		    $('#mySolveModalLabel').html($('#solve').val() + " " + aData["problemTitle"]);
+		    $('#mySolveModalLabel').html("<spring:message code='SLP_modal_solve' /> " + aData["problemTitle"]);
 		    
 		    $('#idProblem_modal').val(aData["idProblem"]);
 		 	$('#solveModal').modal('show');
@@ -250,13 +254,7 @@ body.modal-open {
 			</div>
 		</div>
 	</div>
-	
-	<input id="equation" type="hidden" value=<spring:message code="SLP_modal_equation" />>
-	<spring:message code="SLP_modal_solve" var="SLP_modal_solve"/>
-	<input id="solve" type="hidden" value="${SLP_modal_solve}">
-	<input id="button_view" type="hidden" value=<spring:message code="SLP_table_button_view" />>
-	<input id="button_solve" type="hidden" value=<spring:message code="SLP_table_button_solve" />>
-	
+
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>
