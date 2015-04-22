@@ -109,9 +109,9 @@ body.modal-open {
 			}, {
 				"mData" : "uniqueAnswer", "orderable" : false, "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
 					if(data == "false"){
-						return "<span class='glyphicon glyphicon-remove-circle' aria-hidden='true' style='color:#d9534f;'></span>";
-					}else{
 						return "<span class='glyphicon glyphicon-ok-circle' aria-hidden='true' style='color:#5cb85c;'></span>";
+					}else{
+						return "<span class='glyphicon glyphicon-remove-circle' aria-hidden='true' style='color:#d9534f;'></span>";
 					}}
 			}, {
 				"mData" : "null","sClass": "column_centered",

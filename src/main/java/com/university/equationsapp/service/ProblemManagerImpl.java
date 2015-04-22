@@ -39,7 +39,7 @@ public class ProblemManagerImpl implements ProblemManager {
 		Problem problem = new Problem();
 		problem.setEndDate(createProblemDTO.getEndDate());
 		problem.setInitDate(createProblemDTO.getInitDate());
-		problem.setUniqueAnswer(createProblemDTO.isUniqueAnswer());
+		problem.setUniqueAnswer(!createProblemDTO.isUniqueAnswer());
 		problem.setNumVariables(createProblemDTO.getNumVariables());
 		problem.setTitle(createProblemDTO.getTitle());
 

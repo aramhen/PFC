@@ -109,9 +109,9 @@ body.modal-open {
 			}, {
 				"mData" : "uniqueAnswer", "orderable" : false, "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
 					if(data == "false"){
-						return "<span class='glyphicon glyphicon-remove-circle' aria-hidden='true' style='color:#d9534f;'></span>";
-					}else{
 						return "<span class='glyphicon glyphicon-ok-circle' aria-hidden='true' style='color:#5cb85c;'></span>";
+					}else{
+						return "<span class='glyphicon glyphicon-remove-circle' aria-hidden='true' style='color:#d9534f;'></span>";
 					}}
 			}, {
 				"mData" : "null","sClass": "column_centered",
@@ -120,9 +120,9 @@ body.modal-open {
 			}, {
 				"mData" : "uniqueAnswer", "orderable" : false, "sClass": "uniqueAnswer_column", "mRender": function(data, type, row){
 					if(data == "false"){
-						return "<button type='button' class='btn btn-primary btn-mg solveModal'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> <spring:message code='SLP_table_button_solve' /></button>";
-					}else{
 						return "<form id='Problem' action='/equationsapp/studentlistproblem.htm' method='post' style='margin: 0px;'><input type='hidden' value='" + row['idProblem'] + "' name='idProblems'>" + "<button type='input' class='btn btn-primary btn-mg'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> <spring:message code='SLP_table_button_solve' /></button>" + "</form>";
+					}else{
+						return "<button type='button' class='btn btn-primary btn-mg solveModal'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span> <spring:message code='SLP_table_button_solve' /></button>";
 					}}
 			},]
 		});
