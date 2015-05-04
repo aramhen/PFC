@@ -1,9 +1,7 @@
 package com.university.equationsapp.web;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -55,38 +53,15 @@ public class StudentListAnswerController {
 	}
 
 	@RequestMapping(value = "/studentlistanswerpagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
-	public @ResponseBody String springPaginationDataTables(HttpServletRequest request) throws IOException {
-
-		//Fetch the page number from client
-		Integer pageNumber = 0;
-		if (null != request.getParameter("iDisplayStart"))
-			pageNumber = (Integer.valueOf(request.getParameter("iDisplayStart")) / 10) + 1;
-
-		//Fetch search parameter
-		String searchParameter = request.getParameter("sSearch");
-
-		//Fetch Page display length
-//		Integer pageDisplayLength = Integer.valueOf(request.getParameter("iDisplayLength"));
+	public @ResponseBody String springPaginationDataTables(HttpServletRequest request, HttpServletResponse response) {
+		//Need to fix special ascii characters showed in datatable
+		response.setContentType("application/json; charset=iso-8859-1");
 
 		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
 		//We recover the student answers
 		int idStudent = 7;
 		//Create page list data
 		List<StudentListAnswerJsonDTO> answersList = getstudentlistanswerDTO(answerManager.findByStudentRef(idStudent));
-
-		//Here is server side pagination logic. Based on the page number you could make call 
-		//to the data base create new list and send back to the client. For demo I am shuffling 
-		//the same list to show data randomly
-		if (pageNumber == 1) {
-
-		} else if (pageNumber == 2) {
-			Collections.shuffle(answersList);
-		} else {
-			Collections.shuffle(answersList);
-		}
-
-		//Search functionality: Returns filtered list based on search parameter
-		answersList = getListBasedOnSearchParameter(searchParameter, answersList);
 
 		int answerSize = answersList.size();
 		DTOToJsonObject<StudentListAnswerJsonDTO> answerJsonObject = new DTOToJsonObject<StudentListAnswerJsonDTO>();
@@ -100,27 +75,6 @@ public class StudentListAnswerController {
 		String json2 = gson.toJson(answerJsonObject);
 
 		return json2;
-	}
-
-	private List<StudentListAnswerJsonDTO> getListBasedOnSearchParameter(String searchParameter,
-			List<StudentListAnswerJsonDTO> answersList) {
-
-		if (null != searchParameter && !searchParameter.equals("")) {
-			List<StudentListAnswerJsonDTO> answersListForSearch = new ArrayList<StudentListAnswerJsonDTO>();
-			searchParameter = searchParameter.toUpperCase();
-			for (StudentListAnswerJsonDTO answer : answersList) {
-				if (answer.getProblemTitle().toUpperCase().indexOf(searchParameter) != -1
-						|| answer.getTeacherName().toUpperCase().indexOf(searchParameter) != -1
-						|| answer.getAnswerDate().toUpperCase().indexOf(searchParameter) != -1
-						|| answer.getSolution().toUpperCase().indexOf(searchParameter) != -1
-						|| answer.getSteps().toUpperCase().indexOf(searchParameter) != -1) {
-					answersListForSearch.add(answer);
-				}
-			}
-			answersList = answersListForSearch;
-			answersListForSearch = null;
-		}
-		return answersList;
 	}
 
 	private List<StudentListAnswerJsonDTO> getstudentlistanswerDTO(List<Answer> answerList) {

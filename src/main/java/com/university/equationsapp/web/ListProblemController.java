@@ -1,9 +1,7 @@
 package com.university.equationsapp.web;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -35,7 +33,7 @@ import com.university.equationsapp.web.json.ListProblemJsonDTO;
 
 @Controller
 public class ListProblemController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ListProblemController.class);
 
 	@Autowired
@@ -61,9 +59,9 @@ public class ListProblemController {
 			logger.error("Error processing the result");
 			return "listproblem";
 		}
-		
+
 		int idProblem = problem.getIdProblems();
-		if(logger.isDebugEnabled()){
+		if (logger.isDebugEnabled()) {
 			logger.debug("Deleting problem " + idProblem);
 		}
 		answerManager.deleteByProblemRef(idProblem);
@@ -72,35 +70,12 @@ public class ListProblemController {
 	}
 
 	@RequestMapping(value = "/listproblempagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
-	public @ResponseBody String springPaginationDataTables(HttpServletRequest request) throws IOException {
-
-		//Fetch the page number from client
-		Integer pageNumber = 0;
-		if (null != request.getParameter("iDisplayStart"))
-			pageNumber = (Integer.valueOf(request.getParameter("iDisplayStart")) / 10) + 1;
-
-		//Fetch search parameter
-		String searchParameter = request.getParameter("sSearch");
-
-		//Fetch Page display length
-//		Integer pageDisplayLength = Integer.valueOf(request.getParameter("iDisplayLength"));
+	public @ResponseBody String springPaginationDataTables(HttpServletRequest request, HttpServletResponse response) {
+		//Need to fix special ascii characters showed in datatable
+		response.setContentType("application/json; charset=iso-8859-1");
 
 		//Create page list data
 		List<ListProblemJsonDTO> problemsList = getListProblemDTO(problemManager.getProblemList());
-
-		//Here is server side pagination logic. Based on the page number you could make call 
-		//to the data base create new list and send back to the client. For demo I am shuffling 
-		//the same list to show data randomly
-		if (pageNumber == 1) {
-
-		} else if (pageNumber == 2) {
-			Collections.shuffle(problemsList);
-		} else {
-			Collections.shuffle(problemsList);
-		}
-
-		//Search functionality: Returns filtered list based on search parameter
-		problemsList = getListBasedOnSearchParameter(searchParameter, problemsList);
 
 		int problemSize = problemsList.size();
 		DTOToJsonObject<ListProblemJsonDTO> problemJsonObject = new DTOToJsonObject<ListProblemJsonDTO>();
@@ -116,33 +91,13 @@ public class ListProblemController {
 		return json2;
 	}
 
-	private List<ListProblemJsonDTO> getListBasedOnSearchParameter(String searchParameter,
-			List<ListProblemJsonDTO> problemsList) {
-
-		if (null != searchParameter && !searchParameter.equals("")) {
-			List<ListProblemJsonDTO> problemsListForSearch = new ArrayList<ListProblemJsonDTO>();
-			searchParameter = searchParameter.toUpperCase();
-			for (ListProblemJsonDTO problem : problemsList) {
-				if (problem.getProblemTitle().toUpperCase().indexOf(searchParameter) != -1
-						|| problem.getTeacherName().toUpperCase().indexOf(searchParameter) != -1
-						|| problem.getMethodName().toUpperCase().indexOf(searchParameter) != -1
-						|| problem.getInitDate().toUpperCase().indexOf(searchParameter) != -1
-						|| problem.getEndDate().toUpperCase().indexOf(searchParameter) != -1) {
-					problemsListForSearch.add(problem);
-				}
-			}
-			problemsList = problemsListForSearch;
-			problemsListForSearch = null;
-		}
-		return problemsList;
-	}
-
 	private List<ListProblemJsonDTO> getListProblemDTO(List<Problem> problemList) {
 		ListProblemJsonDTO tmp = new ListProblemJsonDTO();
 		Problem node;
 		List<ListProblemJsonDTO> tmpList = new ArrayList<ListProblemJsonDTO>();
 
-		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(CommonConstants.LOCALE_ES));
+		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(
+				CommonConstants.LOCALE_ES));
 		Iterator<Problem> itProblem = problemList.iterator();
 
 		while (itProblem.hasNext()) {
