@@ -128,7 +128,7 @@ public class StudentListAnswerController {
 		Answer node;
 		List<StudentListAnswerJsonDTO> tmpList = new ArrayList<StudentListAnswerJsonDTO>();
 
-		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(
+		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_TIME_FORMAT, new Locale(
 				CommonConstants.LOCALE_ES));
 		Iterator<Answer> itAnswer = answerList.iterator();
 
