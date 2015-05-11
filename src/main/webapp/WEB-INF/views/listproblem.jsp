@@ -127,7 +127,7 @@ body.modal-open {
 					}}
 			}, {
 				"mData" : "null",
-				"defaultContent" : "<button type='button' class='btn btn-danger btn-mg delete'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> <spring:message code='LP_table_button_delete' /></button>",
+				"defaultContent" : "<button type='button' class='btn btn-danger btn-mg delete'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code='LP_table_button_delete' /></button>",
 				"orderable" : false
 			},]
 		});

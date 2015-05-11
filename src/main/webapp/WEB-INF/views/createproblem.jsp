@@ -112,7 +112,7 @@ body {
 						</div>
 						<div class="row">
 							<div class="col-xs-8">
-								<form:select path="idMethod" class="form-control">
+								<form:select path="idMethod" class="form-control" style="width: 99.9%">
 									<form:option value="0" label="${CP_idMethodSelect}"></form:option>
 									<form:options items="${methodList}" itemLabel="name" itemValue="idMethods" />
 								</form:select>
@@ -128,7 +128,7 @@ body {
 						</div>
 						<div class="row">
 							<div class="col-xs-8">
-								<form:select path="numVariables" class="form-control">
+								<form:select path="numVariables" class="form-control" style="width: 99.9%">
 									<form:option value="0" label="${CP_numVariablesSelect}"></form:option>
 									<form:options items="${numVariablesList}" />
 								</form:select>
