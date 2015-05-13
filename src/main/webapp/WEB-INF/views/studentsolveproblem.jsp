@@ -22,6 +22,47 @@ body {
 .dropdown-margin {
 	margin-bottom: 15px;
 }
+
+.formula-input {
+	width: 33% !important;
+	margin-left: 5%;
+	margin-bottom: 1%;
+}
+
+.formula-buttons {
+	text-align: right;
+	margin-bottom: 5px;
+}
+
+.form-control-math {
+  color: #555;
+  width: 50px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control-math:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.form-control-math::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+.form-control-math:-ms-input-placeholder {
+  color: #999;
+}
+.form-control-math::-webkit-input-placeholder {
+  color: #999;
+}
 </style>
 
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
@@ -31,15 +72,17 @@ body {
 <!-- Latest Sortable -->
 <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [["$","$"],["\\(","\\)"]]
-    }
-  });
-  MathJax.Hub.Config({showMathMenu: false});
-
+MathJax.Hub.Config({
+  extensions: ["http://cs.jsu.edu/mathjax-ext/github/forminput/forminput.js"],
+  styles: {
+    ".MathJax_Input": { "margin": "0 2px" },
+    ".red_background": { "background-color": "#F88" }
+  }
+});
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 </head>
 <body>
 	<!-- Topnav -->
@@ -185,11 +228,11 @@ body {
 									</button>
 									<ul class="dropdown-menu" style="text-align: center;">
 										<div class="btn-group btn-group-vertical" style="vertical-align: bottom">
-											<a class="btn btn-default" href="#">1x2</a><a class="btn btn-default" href="#">1x3</a><a class="btn btn-default" href="#">1x4</a>
+											<a class="btn btn-default" id="1x2-matrix">1x2</a><a class="btn btn-default" id="1x3-matrix">1x3</a><a class="btn btn-default" id="1x4-matrix">1x4</a>
 										</div>
 										<div class="btn-group btn-group-vertical">
-											<a class="btn btn-default" href="#">2x1</a> <a class="btn btn-default" href="#">2x2</a> <a class="btn btn-default" href="#">2x3</a><a
-												class="btn btn-default" href="#">2x4</a>
+											<a class="btn btn-default" id="2x1-matrix">2x1</a> <a class="btn btn-default" id="2x2-matrix">2x2</a> <a class="btn btn-default" id="2x3-matrix">2x3</a><a
+												class="btn btn-default" id="2x4-matrix">2x4</a>
 										</div>
 										<div class="btn-group btn-group-vertical">
 											<a class="btn btn-default" href="#">3x1</a> <a class="btn btn-default" href="#">3x2</a> <a class="btn btn-default" href="#">3x3</a> <a
@@ -218,7 +261,9 @@ body {
 										</div>
 										When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ $\begin{matrix} a &
 										b \\ c & d \end{matrix}$When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over
-										2a}.$$ $\begin{matrix} a & b \\ c & d \end{matrix}$
+										2a}.$$ $\begin{pmatrix} \color{#2e6da4}? & b \\ c & d \end{pmatrix}$ 
+										\[ \int_{\FormInput[][][2]{lowlim}}^{\FormInput{highlim}} x^3\,dx =	\left.\frac{x^{\FormInput[2]{n}}}{\FormInput{m}}\right]_2^7 \]
+										\begin{pmatrix} {\FormInput[][form-control-math]{a}} & {\FormInput[][form-control-math]{b}} \\ {\FormInput[][form-control-math]{c}} & {\FormInput[][form-control-math]{d}} \end{pmatrix}
 										<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">  <mrow>    <mover accent="true">      <mrow>        <mo>&#x2207;</mo>      </mrow>      <mrow>        <mo>&#x2192;</mo>      </mrow>    </mover>    <mo>&#xD7;</mo>    <mover
 												accent="true">      <mrow>        <mi>F</mi>      </mrow>      <mrow>        <mo>&#x2192;</mo>      </mrow>    </mover>    <mo>=</mo>    <mrow>      <mo>(</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>z</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>y</mi>        </mrow>      </mfrac>      <mo>&#x2212;</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>y</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>z</mi>        </mrow>      </mfrac>      <mo>)</mo>    </mrow>    <mstyle
 												mathvariant="bold" mathsize="normal">      <mrow>        <mi>i</mi>      </mrow>    </mstyle>    <mo>+</mo>    <mrow>      <mo>(</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>x</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>z</mi>        </mrow>      </mfrac>      <mo>&#x2212;</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>z</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>x</mi>        </mrow>      </mfrac>      <mo>)</mo>    </mrow>    <mstyle
@@ -255,17 +300,85 @@ body {
 			handle : '.glyphicon-sort',
 			animation : 150
 		});
-
 		//Delete row
 		$(document).ready(function() {
 			$("#stepsList").on('click', '.glyphicon-trash', function() {
 				$(this).closest(".list-group-item").remove();
 			});
+			var cnt = 1;
+			var divo = "<div class='list-group-item'><div class='row formula-buttons'> <span class='glyphicon glyphicon-sort' aria-hidden='true' style='color: #2e6da4; cursor: move; margin-right: 15px;'></span><span class='glyphicon glyphicon-trash' aria-hidden='true' style='color: #d9534f; cursor: pointer; margin-right: 15px;'></span></div>";
+			var divc = "</div>";
+			var finput = "<input type='text' value='' class='form-control formula-input'>";
+			//var m2x2 = "<math xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo>(</mo><mtable rowspacing='4pt' columnspacing='1em'><mtr><mtd><mn><input type='text' value='' class='form-control formula-input'></mn></mtd><mtd><mn><input type='text' value='' class='form-control formula-input'></mn></mtd></mtr><mtr><mtd><mn><input type='text' value='' class='form-control formula-input'></mn></mtd><mtd><mn><input type='text' value='' class='form-control formula-input'></mn></mtd></mtr></mtable><mo>)</mo></mrow></math>";
+			//var m2x2 ="\\begin{bmatrix} {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} \\\\ {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} \\\\ {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} \\\\ {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} \end{bmatrix}";
 			jQuery("#1-formula").click(function(e) {
-				$("<div class='list-group-item'><div class='row' style='text-align: right; margin-down: 5px;'> <span class='glyphicon glyphicon-sort' aria-hidden='true' style='color: #2e6da4; cursor: move; margin-right: 15px;'></span><span class='glyphicon glyphicon-trash' aria-hidden='true' style='color: #d9534f; cursor: pointer; margin-right: 15px;'></span></div>Best of both worlds!</div>")
-				.hide().appendTo("#stepsList").slideDown("slow");
+				$(divo + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				e.preventDefault();
 			});
+			jQuery("#2-formula").click(function(e) {
+				$(divo + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				e.preventDefault();
+			});
+			jQuery("#3-formula").click(function(e) {
+				$(divo + finput + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				e.preventDefault();
+			});
+			jQuery("#1x2-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\end{pmatrix}";
+				var divId = "1x2-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});
+			jQuery("#1x3-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\end{pmatrix}";
+				var divId = "1x3-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});
+			jQuery("#1x4-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\end{pmatrix}";
+				var divId = "1x4-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});
+			jQuery("#2x1-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} \\end{pmatrix}";
+				var divId = "2x1-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});
+			jQuery("#2x2-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} \\end{pmatrix}";
+				var divId = "2x2-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});
+			jQuery("#2x3-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} \\end{pmatrix}";
+				var divId = "2x3-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});	
+			jQuery("#2x4-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} & {\\FormInput[][form-control-math]{bd" + cnt + "}} \\end{pmatrix}";
+				var divId = "2x4-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});	
 		});
 	</script>
 
