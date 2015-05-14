@@ -199,18 +199,23 @@ MathJax.Hub.Config({
 										<div class="col-xs-2 form-group">
 											<form:input path="variableX" class="form-control" />
 										</div>
-										<div class="col-xs-1" style="text-align: right;">
-											<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
-										</div>
-										<div class="col-xs-2 form-group">
-											<form:input path="variableY" class="form-control" />
-										</div>
-										<div class="col-xs-1" style="text-align: right;">
-											<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
-										</div>
-										<div class="col-xs-2 form-group">
-											<form:input path="variableZ" class="form-control" />
-										</div>
+										<c:if test="${Problem.numVariables > 1}">
+											<div class="col-xs-1" style="text-align: right;">
+												<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
+											</div>
+											<div class="col-xs-2 form-group">
+												<form:input path="variableY" class="form-control" />
+											</div>
+										</c:if>
+										<c:if test="${Problem.numVariables > 2}">
+											<div class="col-xs-1" style="text-align: right;">
+												<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
+											</div>
+											<div class="col-xs-2 form-group">
+												<form:input path="variableZ" class="form-control" />
+											</div>
+										</c:if>
+										
 										<div style="text-align: right">
 											<button type="submit" class="btn btn-primary">
 												<spring:message code="CP_button_create" />
