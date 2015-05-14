@@ -134,7 +134,7 @@ public class StudentListProblemController {
 				tmp.setUniqueAnswer(String.valueOf(node.isUniqueAnswer()));
 				tmp.setInitDate(format.format(node.getInitDate()));
 				tmp.setEndDate(format.format(node.getEndDate()));
-				tmp.setEquations(node.getEquations().replace(CommonConstants.SEPARATOR, "</br>"));
+				tmp.setEquations(node.getEquations().replace(CommonConstants.SEPARATOR, CommonConstants.HTML_BR));
 
 				tmpList.add(tmp);
 			}

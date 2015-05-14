@@ -92,8 +92,8 @@ public class StudentListAnswerController {
 			tmp.setProblemTitle(node.getProblemRef().getTitle());
 			tmp.setTeacherName(node.getProblemRef().getTeacherRef().getName());
 			tmp.setAnswerDate(format.format(node.getAnswerDate()));
-			tmp.setEquations(node.getProblemRef().getEquations().replace(CommonConstants.SEPARATOR, "</br>"));
-			tmp.setSolution(node.getSolution().replace(CommonConstants.SEPARATOR, "  "));
+			tmp.setEquations(node.getProblemRef().getEquations().replace(CommonConstants.SEPARATOR, CommonConstants.HTML_BR));
+			tmp.setSolution(node.getSolution().replace(CommonConstants.SEPARATOR, CommonConstants.HTML_BR));
 			tmp.setSteps(node.getSteps());
 			tmpList.add(tmp);
 		}

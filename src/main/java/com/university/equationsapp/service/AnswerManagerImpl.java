@@ -61,13 +61,13 @@ public class AnswerManagerImpl implements AnswerManager {
 		answer.setAnswerDate(new Date());
 
 		StringBuilder sb = new StringBuilder();
-		sb.append(studentSolveProblemDTO.getVariableX().trim());
+		sb.append(CommonConstants.SOLUTION_VARIABLEX).append(studentSolveProblemDTO.getVariableX().trim());
 		if (problem.getNumVariables() > 1) {
-			sb.append(CommonConstants.SEPARATOR).append(studentSolveProblemDTO.getVariableY().trim());
+			sb.append(CommonConstants.SEPARATOR).append(CommonConstants.SOLUTION_VARIABLEY).append(studentSolveProblemDTO.getVariableY().trim());
 		}
 
 		if (problem.getNumVariables() > 2) {
-			sb.append(CommonConstants.SEPARATOR).append(studentSolveProblemDTO.getVariableZ().trim());
+			sb.append(CommonConstants.SEPARATOR).append(CommonConstants.SOLUTION_VARIABLEZ).append(studentSolveProblemDTO.getVariableZ().trim());
 		}
 		answer.setSolution(sb.toString());
 		//TODO ARH me faltan los pasos

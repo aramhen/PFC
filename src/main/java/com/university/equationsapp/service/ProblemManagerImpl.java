@@ -56,13 +56,13 @@ public class ProblemManagerImpl implements ProblemManager {
 
 		if (createProblemDTO.isSolutionCheck()) {
 			sb = new StringBuilder();
-			sb.append(createProblemDTO.getVariableX().trim());
+			sb.append(CommonConstants.SOLUTION_VARIABLEX).append(createProblemDTO.getVariableX().trim());
 			if (problem.getNumVariables() > 1) {
-				sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getVariableY().trim());
+				sb.append(CommonConstants.SEPARATOR).append(CommonConstants.SOLUTION_VARIABLEY).append(createProblemDTO.getVariableY().trim());
 			}
-			
+
 			if (problem.getNumVariables() > 2) {
-				sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getVariableZ().trim());
+				sb.append(CommonConstants.SEPARATOR).append(CommonConstants.SOLUTION_VARIABLEZ).append(createProblemDTO.getVariableZ().trim());
 			}
 			problem.setSolution(sb.toString());
 		}
