@@ -183,8 +183,11 @@ MathJax.Hub.Config({
 					<spring:message code="SSP_form_header" />
 				</div>
 				<form:form method="post" commandName="studentSolveProblemDTO" class="form-horizontal" style="margin-left:28px;">
+					<button type="button" onclick="probando()">Prueba</button>
 					<input type="text" value="${Problem.idProblems}" hidden="true" name="idProblem" id="idProblem">
 					<input type="text" value="${idStudent}" hidden="true" name="idStudent" id="idStudent">
+					<form:input path="stepsList[0]" />
+					<form:input path="stepsList[2]" />
 					<div class="panel-body" style="text-align: left;">
 						<div class="row">
 							<div class="form-group">
@@ -285,24 +288,32 @@ MathJax.Hub.Config({
 			});
 			var cnt = 1;
 			var divo = "<div class='list-group-item'><div class='row formula-buttons'> <span class='glyphicon glyphicon-sort' aria-hidden='true' style='color: #2e6da4; cursor: move; margin-right: 15px;'></span><span class='glyphicon glyphicon-trash' aria-hidden='true' style='color: #d9534f; cursor: pointer; margin-right: 15px;'></span></div>";
-			var divc = "</div>";
+			var divc = "</div></div>";
 			var finput = "<input type='text' value='' class='form-control formula-input'>";
 			jQuery("#1-formula").click(function(e) {
-				$(divo + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				var divf1 = "<div id=1form-'" + cnt + "'>";
+				$(divo + divf1 + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#2-formula").click(function(e) {
-				$(divo + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				var divf2 = "<div id=2form-'" + cnt + "'>";
+				$(divo + divf2 + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#3-formula").click(function(e) {
-				$(divo + finput + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				var divf3 = "<div id=3form-'" + cnt + "'>";
+				$(divo + divf3 + finput + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#resta-formula").click(function(e) {
-				var resta = "<div><label>-</label>";
+				var resta = "<label>-</label>";
 				var resultado = "<div style='border-bottom: 1px solid rgb(204, 204, 204); margin-bottom: 1%; width: 39%;'></div>";
-				$(divo + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				var divrest = "<div id=rest-'" + cnt + "'>";
+				$(divo + divrest + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#1x2-matrix").click(function(e) {
@@ -440,11 +451,22 @@ MathJax.Hub.Config({
       			},
               });
   });
+  function probando(){
+	  
+		var tmp = $('form#studentSolveProblemDTO').serializeObject();
+		alert (tmp);
+		var tmp2 =   $("#studentSolveProblemDTO").serialize();
+		alert (tmp2);
+	  
+  }
   </script>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
+	<script type="text/javascript">
+	!function(e,r){if("function"==typeof define&&define.amd)define(["exports","jquery"],function(e,i){return r(e,i)});else if("undefined"!=typeof exports){var i=require("jquery");r(exports,i)}else r(e,e.jQuery||e.Zepto||e.ender||e.$)}(this,function(e,r){function i(e,i){function n(e,r,i){return e[r]=i,e}function a(e,r){for(var i,a=e.match(t.key);void 0!==(i=a.pop());)if(t.push.test(i)){var o=s(e.replace(/\[\]$/,""));r=n([],o,r)}else t.fixed.test(i)?r=n([],i,r):t.named.test(i)&&(r=n({},i,r));return r}function s(e){return void 0===h[e]&&(h[e]=0),h[e]++}function o(e){switch(r('[name="'+e.name+'"]',i).attr("type")){case"checkbox":return"on"===e.value?!0:e.value;default:return e.value}}function u(r){if(!t.validate.test(r.name))return this;var i=a(r.name,o(r));return c=e.extend(!0,c,i),this}function f(r){if(!e.isArray(r))throw new Error("formSerializer.addPairs expects an Array");for(var i=0,t=r.length;t>i;i++)this.addPair(r[i]);return this}function d(){return c}function l(){return JSON.stringify(d())}var c={},h={};this.addPair=u,this.addPairs=f,this.serialize=d,this.serializeJSON=l}var t={validate:/^[a-z_][a-z0-9_]*(?:\[(?:\d*|[a-z0-9_]+)\])*$/i,key:/[a-z0-9_]+|(?=\[\])/gi,push:/^$/,fixed:/^\d+$/,named:/^[a-z0-9_]+$/i};return i.patterns=t,i.serializeObject=function(){return this.length>1?new Error("jquery-serialize-object can only serialize one form at a time"):new i(r,this).addPairs(this.serializeArray()).serialize()},i.serializeJSON=function(){return this.length>1?new Error("jquery-serialize-object can only serialize one form at a time"):new i(r,this).addPairs(this.serializeArray()).serializeJSON()},"undefined"!=typeof r.fn&&(r.fn.serializeObject=i.serializeObject,r.fn.serializeJSON=i.serializeJSON),e.FormSerializer=i,i});
+	</script>
 </body>
 </html>
