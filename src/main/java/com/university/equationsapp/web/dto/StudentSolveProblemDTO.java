@@ -1,6 +1,8 @@
 package com.university.equationsapp.web.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.Size;
 
@@ -19,6 +21,8 @@ public class StudentSolveProblemDTO implements Serializable {
 
 	private String idProblem;
 	private String idStudent;
+
+	private List<String> stepsList = new ArrayList<String>();
 
 	public String getVariableX() {
 		return variableX;
@@ -58,6 +62,14 @@ public class StudentSolveProblemDTO implements Serializable {
 
 	public void setIdStudent(String idStudent) {
 		this.idStudent = idStudent;
+	}
+
+	public List<String> getStepsList() {
+		return stepsList;
+	}
+
+	public void setStepsList(List<String> stepsList) {
+		this.stepsList = stepsList;
 	}
 
 }

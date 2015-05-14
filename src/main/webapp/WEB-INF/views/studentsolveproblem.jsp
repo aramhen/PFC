@@ -182,12 +182,10 @@ MathJax.Hub.Config({
 				<div class="panel-heading">
 					<spring:message code="SSP_form_header" />
 				</div>
-				<form:form method="post" commandName="studentSolveProblemDTO" class="form-horizontal" style="margin-left:28px;">
-					<button type="button" onclick="probando()">Prueba</button>
+				<form:form method="post" commandName="studentSolveProblemDTO" class="form-horizontal" style="margin-left:28px;">				
 					<input type="text" value="${Problem.idProblems}" hidden="true" name="idProblem" id="idProblem">
 					<input type="text" value="${idStudent}" hidden="true" name="idStudent" id="idStudent">
-					<form:input path="stepsList[0]" />
-					<form:input path="stepsList[2]" />
+					<div id="steps-inputs"></div>
 					<div class="panel-body" style="text-align: left;">
 						<div class="row">
 							<div class="form-group">
@@ -291,19 +289,19 @@ MathJax.Hub.Config({
 			var divc = "</div></div>";
 			var finput = "<input type='text' value='' class='form-control formula-input'>";
 			jQuery("#1-formula").click(function(e) {
-				var divf1 = "<div id=1form-'" + cnt + "'>";
+				var divf1 = "<div id=1form row" + cnt + ">";
 				$(divo + divf1 + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#2-formula").click(function(e) {
-				var divf2 = "<div id=2form-'" + cnt + "'>";
+				var divf2 = "<div id=2form row" + cnt + ">";
 				$(divo + divf2 + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#3-formula").click(function(e) {
-				var divf3 = "<div id=3form-'" + cnt + "'>";
+				var divf3 = "<div id=3form row" + cnt + ">";
 				$(divo + divf3 + finput + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
@@ -311,14 +309,14 @@ MathJax.Hub.Config({
 			jQuery("#resta-formula").click(function(e) {
 				var resta = "<label>-</label>";
 				var resultado = "<div style='border-bottom: 1px solid rgb(204, 204, 204); margin-bottom: 1%; width: 39%;'></div>";
-				var divrest = "<div id=rest-'" + cnt + "'>";
-				$(divo + divrest + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				var divrestform = "<div id=restform row" + cnt + ">";
+				$(divo + divrestform + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#1x2-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\end{pmatrix}";
-				var divId = "1x2-" + cnt; 
+				var divId = "1x2m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -326,7 +324,7 @@ MathJax.Hub.Config({
 			});
 			jQuery("#1x3-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\end{pmatrix}";
-				var divId = "1x3-" + cnt; 
+				var divId = "1x3m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -334,7 +332,7 @@ MathJax.Hub.Config({
 			});
 			jQuery("#1x4-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\end{pmatrix}";
-				var divId = "1x4-" + cnt; 
+				var divId = "1x4m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -342,7 +340,7 @@ MathJax.Hub.Config({
 			});
 			jQuery("#2x1-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} \\end{pmatrix}";
-				var divId = "2x1-" + cnt; 
+				var divId = "2x1m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -350,7 +348,7 @@ MathJax.Hub.Config({
 			});
 			jQuery("#2x2-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} \\end{pmatrix}";
-				var divId = "2x2-" + cnt; 
+				var divId = "2x2m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -358,7 +356,7 @@ MathJax.Hub.Config({
 			});
 			jQuery("#2x3-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} \\end{pmatrix}";
-				var divId = "2x3-" + cnt; 
+				var divId = "2x3m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -366,7 +364,7 @@ MathJax.Hub.Config({
 			});	
 			jQuery("#2x4-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} & {\\FormInput[][form-control-math]{bd" + cnt + "}} \\end{pmatrix}";
-				var divId = "2x4-" + cnt; 
+				var divId = "2x4m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -374,7 +372,7 @@ MathJax.Hub.Config({
 			});
 			jQuery("#3x1-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} \\end{pmatrix}";
-				var divId = "3x1-" + cnt; 
+				var divId = "3x1m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -382,7 +380,7 @@ MathJax.Hub.Config({
 			});	
 			jQuery("#3x2-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} \\end{pmatrix}";
-				var divId = "3x2-" + cnt; 
+				var divId = "3x2m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -390,7 +388,7 @@ MathJax.Hub.Config({
 			});	
 			jQuery("#3x3-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} & {\\FormInput[][form-control-math]{cc" + cnt + "}} \\end{pmatrix}";
-				var divId = "3x3-" + cnt; 
+				var divId = "3x3m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -398,7 +396,7 @@ MathJax.Hub.Config({
 			});	
 			jQuery("#3x4-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} & {\\FormInput[][form-control-math]{bd" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} & {\\FormInput[][form-control-math]{cc" + cnt + "}} & {\\FormInput[][form-control-math]{cd" + cnt + "}} \\end{pmatrix}";
-				var divId = "3x4-" + cnt; 
+				var divId = "3x4m row" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
@@ -449,15 +447,26 @@ MathJax.Hub.Config({
       			unhighlight: function(element) {
       				$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
       			},
+      			submitHandler: function(form) {
+
+      		    	serializeSteps();
+
+      			    form.submit();
+      			  }
               });
   });
-  function probando(){
-	  
-		var tmp = $('form#studentSolveProblemDTO').serializeObject();
-		alert (tmp);
-		var tmp2 =   $("#studentSolveProblemDTO").serialize();
-		alert (tmp2);
-	  
+  function serializeSteps(){
+	  	var stepsGroup = $("#stepsList").find('.list-group-item');
+	  	
+	  	$("#stepsList").find('.list-group-item').each(function(i, obj) {
+	  		 var serialized = $(":input(:button, :submit)", this).map(function(i, el) {
+		                return el.value;}).get().join("|");
+		     var iddiv = $(this).find("div:eq(1)").attr("id");	 
+		     var valuestep = iddiv + "|" + serialized;
+		     var inputlist = "<input type='text' hidden='true' value='" + valuestep + "' name='stepsList[" + i + "]' id='stepsList" + i + "'>";
+		     $("#steps-inputs").empty();
+		     $(inputlist).appendTo("#steps-inputs");
+	  	}); 
   }
   </script>
 
@@ -465,8 +474,5 @@ MathJax.Hub.Config({
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
-	<script type="text/javascript">
-	!function(e,r){if("function"==typeof define&&define.amd)define(["exports","jquery"],function(e,i){return r(e,i)});else if("undefined"!=typeof exports){var i=require("jquery");r(exports,i)}else r(e,e.jQuery||e.Zepto||e.ender||e.$)}(this,function(e,r){function i(e,i){function n(e,r,i){return e[r]=i,e}function a(e,r){for(var i,a=e.match(t.key);void 0!==(i=a.pop());)if(t.push.test(i)){var o=s(e.replace(/\[\]$/,""));r=n([],o,r)}else t.fixed.test(i)?r=n([],i,r):t.named.test(i)&&(r=n({},i,r));return r}function s(e){return void 0===h[e]&&(h[e]=0),h[e]++}function o(e){switch(r('[name="'+e.name+'"]',i).attr("type")){case"checkbox":return"on"===e.value?!0:e.value;default:return e.value}}function u(r){if(!t.validate.test(r.name))return this;var i=a(r.name,o(r));return c=e.extend(!0,c,i),this}function f(r){if(!e.isArray(r))throw new Error("formSerializer.addPairs expects an Array");for(var i=0,t=r.length;t>i;i++)this.addPair(r[i]);return this}function d(){return c}function l(){return JSON.stringify(d())}var c={},h={};this.addPair=u,this.addPairs=f,this.serialize=d,this.serializeJSON=l}var t={validate:/^[a-z_][a-z0-9_]*(?:\[(?:\d*|[a-z0-9_]+)\])*$/i,key:/[a-z0-9_]+|(?=\[\])/gi,push:/^$/,fixed:/^\d+$/,named:/^[a-z0-9_]+$/i};return i.patterns=t,i.serializeObject=function(){return this.length>1?new Error("jquery-serialize-object can only serialize one form at a time"):new i(r,this).addPairs(this.serializeArray()).serialize()},i.serializeJSON=function(){return this.length>1?new Error("jquery-serialize-object can only serialize one form at a time"):new i(r,this).addPairs(this.serializeArray()).serializeJSON()},"undefined"!=typeof r.fn&&(r.fn.serializeObject=i.serializeObject,r.fn.serializeJSON=i.serializeJSON),e.FormSerializer=i,i});
-	</script>
 </body>
 </html>
