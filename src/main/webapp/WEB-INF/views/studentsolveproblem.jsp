@@ -194,19 +194,19 @@ MathJax.Hub.Config({
 										<div class="col-xs-1" style="text-align: right;">
 											<label class="col-md-offset-2 subfield"><spring:message code="CP_variableX" /></label>
 										</div>
-										<div class="col-xs-2">
+										<div class="col-xs-2 form-group">
 											<form:input path="variableX" class="form-control" />
 										</div>
 										<div class="col-xs-1" style="text-align: right;">
 											<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
 										</div>
-										<div class="col-xs-2">
+										<div class="col-xs-2 form-group">
 											<form:input path="variableY" class="form-control" />
 										</div>
 										<div class="col-xs-1" style="text-align: right;">
 											<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
 										</div>
-										<div class="col-xs-2">
+										<div class="col-xs-2 form-group">
 											<form:input path="variableZ" class="form-control" />
 										</div>
 										<div style="text-align: right">
@@ -248,42 +248,13 @@ MathJax.Hub.Config({
 										<li role="presentation"><a role="menuitem" tabindex="-1" id="1-formula">1 Fórmula</a></li>
 										<li role="presentation"><a role="menuitem" tabindex="-1" id="2-formula">2 Fórmulas</a></li>
 										<li role="presentation"><a role="menuitem" tabindex="-1" id="3-formula">3 Fórmulas</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" id="resta-formula">Resta de 2 fórmulas</a></li>
 									</ul>
 								</div>
 							</div>
 							<div class="row col-xs-9" style="margin-left: 15px;">
 								<!-- List with handle -->
 								<div id="stepsList" class="list-group">
-									<div class="list-group-item">
-										<div class="row" style="text-align: right; margin-down: 5px;">
-											<span class="glyphicon glyphicon-sort" aria-hidden="true" style="color: #2e6da4; cursor: move; margin-right: 15px;"></span><span
-												class="glyphicon glyphicon-trash" aria-hidden="true" style="color: #d9534f; cursor: pointer; margin-right: 15px;"></span>
-										</div>
-										When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ $\begin{matrix} a &
-										b \\ c & d \end{matrix}$When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over
-										2a}.$$ $\begin{pmatrix} \color{#2e6da4}? & b \\ c & d \end{pmatrix}$ 
-										\[ \int_{\FormInput[][][2]{lowlim}}^{\FormInput{highlim}} x^3\,dx =	\left.\frac{x^{\FormInput[2]{n}}}{\FormInput{m}}\right]_2^7 \]
-										\begin{pmatrix} {\FormInput[][form-control-math]{a}} & {\FormInput[][form-control-math]{b}} \\ {\FormInput[][form-control-math]{c}} & {\FormInput[][form-control-math]{d}} \end{pmatrix}
-										<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">  <mrow>    <mover accent="true">      <mrow>        <mo>&#x2207;</mo>      </mrow>      <mrow>        <mo>&#x2192;</mo>      </mrow>    </mover>    <mo>&#xD7;</mo>    <mover
-												accent="true">      <mrow>        <mi>F</mi>      </mrow>      <mrow>        <mo>&#x2192;</mo>      </mrow>    </mover>    <mo>=</mo>    <mrow>      <mo>(</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>z</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>y</mi>        </mrow>      </mfrac>      <mo>&#x2212;</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>y</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>z</mi>        </mrow>      </mfrac>      <mo>)</mo>    </mrow>    <mstyle
-												mathvariant="bold" mathsize="normal">      <mrow>        <mi>i</mi>      </mrow>    </mstyle>    <mo>+</mo>    <mrow>      <mo>(</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>x</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>z</mi>        </mrow>      </mfrac>      <mo>&#x2212;</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>z</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>x</mi>        </mrow>      </mfrac>      <mo>)</mo>    </mrow>    <mstyle
-												mathvariant="bold" mathsize="normal">      <mrow>        <mi>j</mi>      </mrow>    </mstyle>    <mo>+</mo>    <mrow>      <mo>(</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>y</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>x</mi>        </mrow>      </mfrac>      <mo>&#x2212;</mo>      <mfrac>        <mrow>          <mo>&#x2202;</mo>          <msub>            <mrow>              <mi>F</mi>            </mrow>            <mrow>              <mi>x</mi>            </mrow>          </msub>        </mrow>        <mrow>          <mo>&#x2202;</mo>          <mi>y</mi>        </mrow>      </mfrac>      <mo>)</mo>    </mrow>    <mstyle
-												mathvariant="bold" mathsize="normal">      <mrow>        <mi>k</mi>      </mrow>    </mstyle>  </mrow></math>
-									</div>
-									<div class="list-group-item">
-										<div class="row" style="text-align: right; margin-down: 5px;">
-											<span class="glyphicon glyphicon-sort" aria-hidden="true" style="color: #2e6da4; cursor: move; margin-right: 15px;"></span><span
-												class="glyphicon glyphicon-trash" aria-hidden="true" style="color: #d9534f; cursor: pointer; margin-right: 15px;"></span>
-										</div>
-										You can select text
-									</div>
-									<div class="list-group-item">
-										<div class="row" style="text-align: right; margin-down: 5px;">
-											<span class="glyphicon glyphicon-sort" aria-hidden="true" style="color: #2e6da4; cursor: move; margin-right: 15px;"></span><span
-												class="glyphicon glyphicon-trash" aria-hidden="true" style="color: #d9534f; cursor: pointer; margin-right: 15px;"></span>
-										</div>
-										Best of both worlds!
-									</div>
 								</div>
 							</div>
 						</div>
@@ -309,8 +280,6 @@ MathJax.Hub.Config({
 			var divo = "<div class='list-group-item'><div class='row formula-buttons'> <span class='glyphicon glyphicon-sort' aria-hidden='true' style='color: #2e6da4; cursor: move; margin-right: 15px;'></span><span class='glyphicon glyphicon-trash' aria-hidden='true' style='color: #d9534f; cursor: pointer; margin-right: 15px;'></span></div>";
 			var divc = "</div>";
 			var finput = "<input type='text' value='' class='form-control formula-input'>";
-			//var m2x2 = "<math xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo>(</mo><mtable rowspacing='4pt' columnspacing='1em'><mtr><mtd><mn><input type='text' value='' class='form-control formula-input'></mn></mtd><mtd><mn><input type='text' value='' class='form-control formula-input'></mn></mtd></mtr><mtr><mtd><mn><input type='text' value='' class='form-control formula-input'></mn></mtd><mtd><mn><input type='text' value='' class='form-control formula-input'></mn></mtd></mtr></mtable><mo>)</mo></mrow></math>";
-			//var m2x2 ="\\begin{bmatrix} {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} \\\\ {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} \\\\ {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} \\\\ {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} &amp; {\\color{#FFFFFF}\\colorbox{#D4DDEE}{?}} \end{bmatrix}";
 			jQuery("#1-formula").click(function(e) {
 				$(divo + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				e.preventDefault();
@@ -321,6 +290,12 @@ MathJax.Hub.Config({
 			});
 			jQuery("#3-formula").click(function(e) {
 				$(divo + finput + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				e.preventDefault();
+			});
+			jQuery("#resta-formula").click(function(e) {
+				var resta = "<div><label>-</label>";
+				var resultado = "<div style='border-bottom: 1px solid rgb(204, 204, 204); margin-bottom: 1%; width: 39%;'></div>";
+				$(divo + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				e.preventDefault();
 			});
 			jQuery("#1x2-matrix").click(function(e) {
@@ -413,6 +388,49 @@ MathJax.Hub.Config({
 			});	
 		});
 	</script>
+	
+	<script src="//ajax.aspnetcdn.com/ajax/jQuery.validate/1.11.1/jquery.validate.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  $(document).ready(function () {
+	  jQuery.validator.addMethod("answer", function(value, element) {
+			return this.optional(element) || /^[a-z0-9.,/]+$/i.test(value);
+		}, "Letters or punctuation only please");  
+      $("#studentSolveProblemDTO").validate(
+              {
+                  rules: {
+                	  variableX: {
+                          required: true,
+                          answer: true
+                      },
+                      variableY: {
+                    	  required: true,
+                          answer: true
+                      },
+                      variableZ: {
+                    	  required: true,
+                          answer: true
+                      }
+                  },
+                  messages: {
+                	  variableX: {
+                          required: "F** working",
+                      },
+                      variableY: {
+                          required: "F** working"
+                      },
+                      variableZ: {
+                          required: "F** working"
+                      }
+                  },
+                  highlight: function(element) {
+      				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+      			},
+      			unhighlight: function(element) {
+      				$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+      			},
+              });
+  });
+  </script>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
