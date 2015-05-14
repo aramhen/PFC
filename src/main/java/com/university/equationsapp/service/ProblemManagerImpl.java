@@ -58,11 +58,13 @@ public class ProblemManagerImpl implements ProblemManager {
 			sb = new StringBuilder();
 			sb.append(CommonConstants.SOLUTION_VARIABLEX).append(createProblemDTO.getVariableX().trim());
 			if (problem.getNumVariables() > 1) {
-				sb.append(CommonConstants.SEPARATOR).append(CommonConstants.SOLUTION_VARIABLEY).append(createProblemDTO.getVariableY().trim());
+				sb.append(CommonConstants.SEPARATOR).append(CommonConstants.SOLUTION_VARIABLEY)
+						.append(createProblemDTO.getVariableY().trim());
 			}
 
 			if (problem.getNumVariables() > 2) {
-				sb.append(CommonConstants.SEPARATOR).append(CommonConstants.SOLUTION_VARIABLEZ).append(createProblemDTO.getVariableZ().trim());
+				sb.append(CommonConstants.SEPARATOR).append(CommonConstants.SOLUTION_VARIABLEZ)
+						.append(createProblemDTO.getVariableZ().trim());
 			}
 			problem.setSolution(sb.toString());
 		}
@@ -70,10 +72,7 @@ public class ProblemManagerImpl implements ProblemManager {
 		//TODO ARH habrá que ver si hay que hacer aquí control de errores o ya viene controlado de fuera que no me metan nada que no sea mio
 		problem.setMethodRef(methodRepository.findByIdMethods(createProblemDTO.getIdMethod()));
 
-		int idTeacher = createProblemDTO.getIdTeacher();
-		//TODO ARH !!!!!!!!! Ahora mismo seteo a pincho a un profesor mientras veo como lo recupero
-		idTeacher = 1; //TODO ARH <<<<---- Esto hay que quitarlo!!!!!
-		problem.setTeacherRef(teacherRepository.findOne(idTeacher));
+		problem.setTeacherRef(teacherRepository.findOne(createProblemDTO.getIdTeacher()));
 
 		problemRepository.save(problem);
 

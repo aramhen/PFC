@@ -94,6 +94,6 @@ public class StudentSolveProblemController {
 			logger.debug("Creating solution for problem " + studentSolveProblemDTO.getIdProblem());
 		}
 		answerManager.createAnswer(studentSolveProblemDTO);
-		return "studentproblemsolved";
+		return "redirect:/studentproblemsolved.htm";
 	}
 }

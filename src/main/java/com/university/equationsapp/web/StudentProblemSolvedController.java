@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/studentproblemsolved.htm")
 public class StudentProblemSolvedController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentProblemSolvedController.class);
 
+	@RequestMapping(value = "/studentproblemsolved.htm")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

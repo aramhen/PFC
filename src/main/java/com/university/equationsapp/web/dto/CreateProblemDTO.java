@@ -60,7 +60,6 @@ public class CreateProblemDTO implements Serializable {
 	private boolean uniqueAnswer;
 
 	@NotNull
-	//TODO ARH Hay que ver como consigo esto, de sesion, cookies o lo que sea
 	private int idTeacher;
 
 	@NotBlank(message = "{createproblem.validation.title}")

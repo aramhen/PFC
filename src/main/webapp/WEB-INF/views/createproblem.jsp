@@ -93,6 +93,7 @@ body {
 			<div class="panel panel-default">
 				<div class="panel-heading"><spring:message code="CP_subtitle" /></div>
 				<form:form method="post" commandName="createProblemDTO" style="text-align:left; margin-left:15px;">
+					<input type="text" value="${idTeacher}" hidden="true" name="idTeacher" id="idTeacher">
 					<div class="form-group">
 						<div class="row col-xs-12">
 							<label><spring:message code="CP_problemTitle" /></label>

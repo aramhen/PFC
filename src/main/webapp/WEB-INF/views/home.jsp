@@ -48,7 +48,7 @@ body {
 	<div class="container body_width_eq">
 
 		<div class="center-template">
-			<h1 class="page-header"><spring:message code="H_subtitle" /></h1>
+			<h1 class="page-header"><spring:message code="H_subtitle" /> ${model.teacherName}</h1>
 			<p class="lead">
 				<spring:message code="H_text" />
 			</p>

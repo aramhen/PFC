@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.university.equationsapp.domain.Method;
+import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.service.MethodManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
@@ -51,14 +52,14 @@ public class CreateProblemController {
 	@RequestMapping(method = RequestMethod.GET)
 	protected CreateProblemDTO formBackingObject(HttpServletRequest request, Model model) throws ServletException {
 		CreateProblemDTO createProblemDTO = new CreateProblemDTO();
-		/*
-		 * createInventory.setProductRef(new Product()); createInventory.setQuantity(0);
-		 */
-		model.addAttribute("now", new Date().toString());
 
-		//TODO ARH Creo que ya no hace falta lo de las fechas ni inicializar
-		//Inicialize data in createProblemDTO
-		//initCreateProblem(createProblemDTO);
+		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDTEACHER A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//We recover the teacher
+		int idTeacher = 1;
+		if (logger.isDebugEnabled()) {
+			logger.debug("A problem is going to be created by the teacher " + idTeacher);
+		}
+		model.addAttribute("idTeacher", idTeacher);
 
 		return createProblemDTO;
 	}
