@@ -456,15 +456,13 @@ MathJax.Hub.Config({
               });
   });
   function serializeSteps(){
-	  	var stepsGroup = $("#stepsList").find('.list-group-item');
-	  	
+	    $("#steps-inputs").empty();
 	  	$("#stepsList").find('.list-group-item').each(function(i, obj) {
 	  		 var serialized = $(":input(:button, :submit)", this).map(function(i, el) {
 		                return el.value;}).get().join("|");
 		     var iddiv = $(this).find("div:eq(1)").attr("id");	 
 		     var valuestep = iddiv + "|" + serialized;
 		     var inputlist = "<input type='text' hidden='true' value='" + valuestep + "' name='stepsList[" + i + "]' id='stepsList" + i + "'>";
-		     $("#steps-inputs").empty();
 		     $(inputlist).appendTo("#steps-inputs");
 	  	}); 
   }
