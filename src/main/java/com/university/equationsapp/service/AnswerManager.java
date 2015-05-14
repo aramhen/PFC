@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.university.equationsapp.domain.Answer;
+import com.university.equationsapp.web.dto.StudentSolveProblemDTO;
 
 public interface AnswerManager extends Serializable {
 
@@ -14,5 +15,7 @@ public interface AnswerManager extends Serializable {
 	public List<Answer> findByProblemRefAndStudentRef(int idProblem, int idStudent);
 	
 	public List<Answer> findByStudentRef(int idStudent);
+
+	public void createAnswer(StudentSolveProblemDTO studentSolveProblemDTO);
 
 }

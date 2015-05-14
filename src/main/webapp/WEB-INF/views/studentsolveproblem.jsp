@@ -183,6 +183,8 @@ MathJax.Hub.Config({
 					<spring:message code="SSP_form_header" />
 				</div>
 				<form:form method="post" commandName="studentSolveProblemDTO" class="form-horizontal" style="margin-left:28px;">
+					<input type="text" value="${Problem.idProblems}" hidden="true" name="idProblem" id="idProblem">
+					<input type="text" value="${idStudent}" hidden="true" name="idStudent" id="idStudent">
 					<div class="panel-body" style="text-align: left;">
 						<div class="row">
 							<div class="form-group">
@@ -400,15 +402,18 @@ MathJax.Hub.Config({
                   rules: {
                 	  variableX: {
                           required: true,
-                          answer: true
+                          answer: true,
+                          maxlength: 30
                       },
                       variableY: {
                     	  required: true,
-                          answer: true
+                          answer: true,
+                          maxlength: 30
                       },
                       variableZ: {
                     	  required: true,
-                          answer: true
+                          answer: true,
+                          maxlength: 30
                       }
                   },
                   messages: {
