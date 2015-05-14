@@ -257,6 +257,7 @@ MathJax.Hub.Config({
 										<li role="presentation"><a role="menuitem" tabindex="-1" id="2-formula">2 Fórmulas</a></li>
 										<li role="presentation"><a role="menuitem" tabindex="-1" id="3-formula">3 Fórmulas</a></li>
 										<li role="presentation"><a role="menuitem" tabindex="-1" id="resta-formula">Resta de 2 fórmulas</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" id="suma-formula">Suma de 2 fórmulas</a></li>
 									</ul>
 								</div>
 							</div>
@@ -310,6 +311,14 @@ MathJax.Hub.Config({
 				var resta = "<label>-</label>";
 				var resultado = "<div style='border-bottom: 1px solid rgb(204, 204, 204); margin-bottom: 1%; width: 39%;'></div>";
 				var divrestform = "<div id=restform row" + cnt + ">";
+				$(divo + divrestform + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
+				cnt = cnt + 1;
+				e.preventDefault();
+			});
+			jQuery("#suma-formula").click(function(e) {
+				var resta = "<label>+</label>";
+				var resultado = "<div style='border-bottom: 1px solid rgb(204, 204, 204); margin-bottom: 1%; width: 39%;'></div>";
+				var divrestform = "<div id=sumform row" + cnt + ">";
 				$(divo + divrestform + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();

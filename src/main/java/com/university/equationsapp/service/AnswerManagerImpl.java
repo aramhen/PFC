@@ -103,10 +103,32 @@ public class AnswerManagerImpl implements AnswerManager {
 				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
 						.append(node.get(3)).append("\\\\").append(node.get(2)).append(CommonConstants.HTML_AMP)
 						.append(node.get(4)).append("\\end{pmatrix}$");
+			} else if ((node.get(0).contains(CommonConstants.FORM1)) && (node.size() == 2)) {
+				sb2.append("$ ").append(node.get(1)).append(" $");
+			} else if ((node.get(0).contains(CommonConstants.RESTFORM)) && (node.size() == 4)) {
+				sb2.append("<div>$ ")
+						.append(node.get(1))
+						.append(" $</div><div>")
+						.append("<label style='margin-left: -7%; margin-right: 6%;'>-</label>")
+						.append("$ ")
+						.append(node.get(2))
+						.append(" $</div>")
+						.append("<div style='border-bottom: 1px solid rgb(204, 204, 204);  margin: 0px auto 1%; width: 33%;'></div>")
+						.append("$ ").append(node.get(3)).append(" $");
+			} else if ((node.get(0).contains(CommonConstants.SUMFORM)) && (node.size() == 4)) {
+				sb2.append("<div>$ ")
+						.append(node.get(1))
+						.append(" $</div><div>")
+						.append("<label style='margin-left: -7%; margin-right: 6%;'>+</label>")
+						.append("$ ")
+						.append(node.get(2))
+						.append(" $</div>")
+						.append("<div style='border-bottom: 1px solid rgb(204, 204, 204);  margin: 0px auto 1%; width: 33%;'></div>")
+						.append("$ ").append(node.get(3)).append(" $");
 			} else {
 				logger.error(CommonConstants.ERROR_MSG_PARSING + node);
 			}
-			sb1.append(sb2).append("<div style='margin: 2% auto; width: 10%; border: 1px solid;'/>");
+			sb1.append(sb2).append("<div style='margin: 3% auto; width: 15%; border: 1px solid #2e6da4;'/>");
 		}
 
 		return sb1.toString();

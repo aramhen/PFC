@@ -37,6 +37,7 @@ public final class CommonConstants {
 	public static final String FORM2 = "2form";
 	public static final String FORM3 = "3form";
 	public static final String RESTFORM = "restform";
+	public static final String SUMFORM = "sumform";
 	public static final String ERROR_MSG_PARSING = "There has been an error parsing the step";
 	
 
