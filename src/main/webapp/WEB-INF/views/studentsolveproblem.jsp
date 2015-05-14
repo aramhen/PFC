@@ -235,8 +235,8 @@ MathJax.Hub.Config({
 												class="btn btn-default" id="2x4-matrix">2x4</a>
 										</div>
 										<div class="btn-group btn-group-vertical">
-											<a class="btn btn-default" href="#">3x1</a> <a class="btn btn-default" href="#">3x2</a> <a class="btn btn-default" href="#">3x3</a> <a
-												class="btn btn-default" href="#">3x4</a>
+											<a class="btn btn-default" id="3x1-matrix">3x1</a> <a class="btn btn-default" id="3x2-matrix">3x2</a> <a class="btn btn-default" id="3x3-matrix">3x3</a> <a
+												class="btn btn-default" id="3x4-matrix">3x4</a>
 										</div>
 									</ul>
 								</div>
@@ -374,6 +374,38 @@ MathJax.Hub.Config({
 			jQuery("#2x4-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} & {\\FormInput[][form-control-math]{bd" + cnt + "}} \\end{pmatrix}";
 				var divId = "2x4-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});
+			jQuery("#3x1-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} \\end{pmatrix}";
+				var divId = "3x1-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});	
+			jQuery("#3x2-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} \\end{pmatrix}";
+				var divId = "3x2-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});	
+			jQuery("#3x3-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} & {\\FormInput[][form-control-math]{cc" + cnt + "}} \\end{pmatrix}";
+				var divId = "3x3-" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				cnt = cnt + 1;
+				e.preventDefault();
+			});	
+			jQuery("#3x4-matrix").click(function(e) {
+				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} & {\\FormInput[][form-control-math]{bd" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} & {\\FormInput[][form-control-math]{cc" + cnt + "}} & {\\FormInput[][form-control-math]{cd" + cnt + "}} \\end{pmatrix}";
+				var divId = "3x4-" + cnt; 
 				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
 				cnt = cnt + 1;
