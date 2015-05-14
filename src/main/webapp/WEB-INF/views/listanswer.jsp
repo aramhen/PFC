@@ -41,6 +41,10 @@ body.modal-open {
 	overflow: inherit;
 	padding-right: inherit !important;
 }
+
+.modal-body{
+	text-align: center;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />

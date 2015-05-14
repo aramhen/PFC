@@ -41,6 +41,10 @@ body.modal-open {
 	overflow: inherit;
 	padding-right: inherit !important;
 }
+
+.modal-body{
+	text-align: center;
+}
 </style>
 
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
@@ -83,7 +87,7 @@ body.modal-open {
 			//Show a Processing message while data is processing
 			"bProcessing" : true,
 			"sort" : "position",
-			"order" : [ [ 0, "asc" ], [ 1, "asc" ] ],
+			"order" : [ 2, "desc" ],
 			"sAjaxSource" : "studentlistanswerpagination.htm",
 			"aoColumns" : [ {
 				"mData" : "problemTitle"
