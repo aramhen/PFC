@@ -157,7 +157,7 @@
 						<div class="row">
 							<div class="row col-xs-3" style="border-right: 1px solid #ccc;">
 								<label><spring:message code="SSP_elements" /></label>
-								<div class="dropdown dropdown-margin">
+								<div class="dropdown dropdownmargin">
 									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 										Matrices <span class="caret"></span>
 									</button>
@@ -175,7 +175,7 @@
 										</div>
 									</ul>
 								</div>
-								<div class="dropdown dropdown-margin">
+								<div class="dropdown dropdownmargin">
 									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 										Fórmulas <span class="caret"></span>
 									</button>
@@ -227,9 +227,9 @@
 				$(this).closest(".list-group-item").remove();
 			});
 			var cnt = 1;
-			var divo = "<div class='list-group-item'><div class='row formula-buttons'> <span class='glyphicon glyphicon-sort' aria-hidden='true' style='color: #2e6da4; cursor: move; margin-right: 15px;'></span><span class='glyphicon glyphicon-trash' aria-hidden='true' style='color: #d9534f; cursor: pointer; margin-right: 15px;'></span></div>";
+			var divo = "<div class='list-group-item'><div class='row formulabuttons'> <span class='glyphicon glyphicon-sort' aria-hidden='true' style='color: #2e6da4; cursor: move; margin-right: 15px;'></span><span class='glyphicon glyphicon-trash' aria-hidden='true' style='color: #d9534f; cursor: pointer; margin-right: 15px;'></span></div>";
 			var divc = "</div></div>";
-			var finput = "<input type='text' value='' class='form-control formula-input'>";
+			var finput = "<input type='text' value='' class='form-control formulainput'>";
 			jQuery("#1-formula").click(function(e) {
 				var divf1 = "<div id=1form row" + cnt + ">";
 				$(divo + divf1 + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
