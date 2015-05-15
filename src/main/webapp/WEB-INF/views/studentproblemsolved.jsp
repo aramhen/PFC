@@ -36,7 +36,6 @@
 	</nav>
 
 	<div class="container body_width_eq">
-
 		<div class="center-template">
 			<h1 class="page-header">
 				<spring:message code="SPS_subtitle" />
@@ -45,14 +44,9 @@
 				<spring:message code="SPS_text" />
 			</p>
 		</div>
-
 	</div>
 	<!-- /.container -->
 
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>

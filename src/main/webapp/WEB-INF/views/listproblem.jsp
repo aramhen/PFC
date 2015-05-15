@@ -9,38 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><spring:message code="LP_title" /></title>
 
-<style>
-div.dataTables_info {
-	white-space: normal !important;
-}
-
-.form-control {
-	width: auto !important;
-}
-
-table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
-	table.dataTable.hover tbody tr.even:hover, table.dataTable.display tbody tr:hover,
-	table.dataTable.display tbody tr.odd:hover, table.dataTable.display tbody tr.even:hover
-	{
-	background-color: whitesmoke;
-}
-td.uniqueAnswer_column{
-	text-align: center;
-	font-size: 24px;
-}
-td.column_centered{
-	text-align: center;
-}
-/*Fix that on open modal windows page moves*/
-body.modal-open {
-	overflow: inherit;
-	padding-right: inherit !important;
-}
-.remove_icon{
-	font-size: 24px;
-}
-</style>
-
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/bootstrap/dataTables.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/responsive-1.0.5/css/dataTables.responsive.css">

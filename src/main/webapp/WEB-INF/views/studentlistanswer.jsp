@@ -9,32 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><spring:message code="SLA_title" /></title>
 
-<style>
-div.dataTables_info {
-	white-space: normal !important;
-}
-
-.form-control {
-	width: auto !important;
-}
-
-table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
-	table.dataTable.hover tbody tr.even:hover, table.dataTable.display tbody tr:hover,
-	table.dataTable.display tbody tr.odd:hover, table.dataTable.display tbody tr.even:hover
-	{
-	background-color: whitesmoke;
-}
-/*Fix that on open modal windows page moves*/
-body.modal-open {
-	overflow: inherit;
-	padding-right: inherit !important;
-}
-
-.modal-body{
-	text-align: center;
-}
-</style>
-
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/bootstrap/dataTables.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/responsive-1.0.5/css/dataTables.responsive.css">
@@ -91,7 +65,7 @@ body.modal-open {
 			}, {
 				"mData" : "solution"
 			}, {
-				"mData" : "null",
+				"mData" : "null","sClass": "column_centered",
 				"defaultContent" : "<button type='button' class='btn btn-default btn-mg steps'><span class='glyphicon glyphicon-zoom-in' aria-hidden='true'></span> <spring:message code='SLA_table_button_view' /></button>",
 				"orderable" : false
 			},]
@@ -197,7 +171,7 @@ body.modal-open {
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel"></h4>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body center">
 					<div id="mathSteps"></div>
 				</div>
 				<div class="modal-footer" id="modal-body">

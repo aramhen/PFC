@@ -19,7 +19,8 @@
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<span class="navbar-brand"><spring:message code="PC_title" /></span>
 			</div>
@@ -36,21 +37,17 @@
 	</nav>
 
 	<div class="container body_width_eq">
-
 		<div class="center-template">
-			<h1 class="page-header"><spring:message code="PC_subtitle" /></h1>
+			<h1 class="page-header">
+				<spring:message code="PC_subtitle" />
+			</h1>
 			<p class="lead">
 				<spring:message code="PC_text" />
 			</p>
 		</div>
-
 	</div>
 	<!-- /.container -->
 
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>

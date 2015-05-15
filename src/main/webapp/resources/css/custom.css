@@ -15,3 +15,39 @@ body {
 .center {
 	text-align: center;
 }
+
+/* Datatables */
+
+/*div.dataTables_info {
+	white-space: normal !important;
+}
+
+.form-control {
+	width: auto !important;
+}*/
+table.dataTable.hover tbody tr:hover, table.dataTable.hover tbody tr.odd:hover,
+	table.dataTable.hover tbody tr.even:hover, table.dataTable.display tbody tr:hover,
+	table.dataTable.display tbody tr.odd:hover, table.dataTable.display tbody tr.even:hover
+	{
+	background-color: whitesmoke;
+}
+
+td.uniqueAnswer_column {
+	text-align: center;
+	font-size: 24px;
+}
+
+td.column_centered {
+	text-align: center;
+}
+/*Fix when opening modal windows the page moves*/
+body.modal-open {
+	overflow: inherit;
+	padding-right: inherit !important;
+}
+
+
+/*List Problem*/
+.remove_icon{
+	font-size: 24px;
+}
