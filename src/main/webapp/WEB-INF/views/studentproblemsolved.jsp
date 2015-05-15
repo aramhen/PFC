@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><spring:message code="PC_title" /></title>
+<title><spring:message code="SPS_title" /></title>
 
 <style>
 body {
@@ -29,7 +29,8 @@ body {
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<span class="navbar-brand"><spring:message code="SSP_title" /></span>
 			</div>
@@ -47,9 +48,11 @@ body {
 	<div class="container body_width_eq">
 
 		<div class="center-template">
-			<h1 class="page-header"><spring:message code="PC_subtitle" /></h1>
+			<h1 class="page-header">
+				<spring:message code="SPS_subtitle" />
+			</h1>
 			<p class="lead">
-				<spring:message code="PC_text" />
+				<spring:message code="SPS_text" />
 			</p>
 		</div>
 

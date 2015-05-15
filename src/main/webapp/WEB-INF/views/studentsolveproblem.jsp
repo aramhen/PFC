@@ -174,19 +174,19 @@ body {
 						<div class="row">
 							<div class="form-group">
 								<div class="row col-xs-12" style="margin-left: 0px">
-									<label>Introduzca la solución:</label>
+									<label><spring:message code="SSP_insert_solution" /></label>
 								</div>
 								<div class="form-group">
 									<div class="row" style="margin-right: 60px">
 										<div class="col-xs-1" style="text-align: right;">
-											<label class="col-md-offset-2 subfield"><spring:message code="CP_variableX" /></label>
+											<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableX" /></label>
 										</div>
 										<div class="col-xs-2 form-group">
 											<form:input path="variableX" class="form-control" />
 										</div>
 										<c:if test="${Problem.numVariables > 1}">
 											<div class="col-xs-1" style="text-align: right;">
-												<label class="col-md-offset-2 subfield"><spring:message code="CP_variableY" /></label>
+												<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableY" /></label>
 											</div>
 											<div class="col-xs-2 form-group">
 												<form:input path="variableY" class="form-control" />
@@ -194,7 +194,7 @@ body {
 										</c:if>
 										<c:if test="${Problem.numVariables > 2}">
 											<div class="col-xs-1" style="text-align: right;">
-												<label class="col-md-offset-2 subfield"><spring:message code="CP_variableZ" /></label>
+												<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableZ" /></label>
 											</div>
 											<div class="col-xs-2 form-group">
 												<form:input path="variableZ" class="form-control" />
@@ -203,7 +203,7 @@ body {
 										
 										<div style="text-align: right">
 											<button type="submit" class="btn btn-primary">
-												<spring:message code="CP_button_create" />
+												<spring:message code="SSP_button_create" />
 											</button>
 										</div>
 
@@ -213,7 +213,7 @@ body {
 						</div>
 						<div class="row">
 							<div class="row col-xs-3" style="border-right: 1px solid #ccc;">
-								<label>Inserta los elementos necesarios de la lista de abajo:</label>
+								<label><spring:message code="SSP_elements" /></label>
 								<div class="dropdown dropdown-margin">
 									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 										Matrices <span class="caret"></span>
