@@ -28,6 +28,7 @@ import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
 import com.university.equationsapp.web.json.DTOToJsonObject;
 import com.university.equationsapp.web.json.StudentListAnswerJsonDTO;
+import com.university.equationsapp.web.utils.WebUtils;
 
 @Controller
 public class StudentListAnswerController {
@@ -92,7 +93,7 @@ public class StudentListAnswerController {
 			tmp.setProblemTitle(node.getProblemRef().getTitle());
 			tmp.setTeacherName(node.getProblemRef().getTeacherRef().getName());
 			tmp.setAnswerDate(format.format(node.getAnswerDate()));
-			tmp.setEquations(node.getProblemRef().getEquations().replace(CommonConstants.SEPARATOR, CommonConstants.HTML_BR));
+			tmp.setEquations(WebUtils.equationsAndSolutionToMathJax(node.getProblemRef().getEquations()));
 			tmp.setSolution(node.getSolution().replace(CommonConstants.SEPARATOR, CommonConstants.HTML_BR));
 			tmp.setSteps(node.getSteps());
 			tmpList.add(tmp);

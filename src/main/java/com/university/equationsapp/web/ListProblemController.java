@@ -30,6 +30,7 @@ import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
 import com.university.equationsapp.web.json.DTOToJsonObject;
 import com.university.equationsapp.web.json.ListProblemJsonDTO;
+import com.university.equationsapp.web.utils.WebUtils;
 
 @Controller
 public class ListProblemController {
@@ -112,9 +113,9 @@ public class ListProblemController {
 			tmp.setUniqueAnswer(String.valueOf(node.isUniqueAnswer()));
 			tmp.setInitDate(format.format(node.getInitDate()));
 			tmp.setEndDate(format.format(node.getEndDate()));
-			tmp.setEquations(node.getEquations().replace(CommonConstants.SEPARATOR, CommonConstants.HTML_BR));
+			tmp.setEquations(WebUtils.equationsAndSolutionToMathJax(node.getEquations()));
 			if (node.getSolution() != null) {
-				tmp.setSolution(node.getSolution().replace(CommonConstants.SEPARATOR, CommonConstants.HTML_BR));
+				tmp.setSolution(WebUtils.equationsAndSolutionToMathJax(node.getSolution()));
 			}
 			tmpList.add(tmp);
 		}

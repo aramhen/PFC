@@ -1,8 +1,6 @@
 package com.university.equationsapp.web;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.university.equationsapp.domain.Method;
-import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.service.MethodManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
@@ -53,13 +50,9 @@ public class CreateProblemController {
 	protected CreateProblemDTO formBackingObject(HttpServletRequest request, Model model) throws ServletException {
 		CreateProblemDTO createProblemDTO = new CreateProblemDTO();
 
-		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDTEACHER A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
-		//We recover the teacher
-		int idTeacher = 1;
 		if (logger.isDebugEnabled()) {
-			logger.debug("A problem is going to be created by the teacher " + idTeacher);
+			logger.debug("A problem is going to be created");
 		}
-		model.addAttribute("idTeacher", idTeacher);
 
 		return createProblemDTO;
 	}
@@ -67,6 +60,8 @@ public class CreateProblemController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(@Valid CreateProblemDTO createProblemDTO, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			logger.error("There has been an error creating the problem");
+			logger.error(result.getAllErrors().toString());
 			return "createproblem";
 		}
 
@@ -76,13 +71,21 @@ public class CreateProblemController {
 		return "redirect:/problemcreated.htm";
 	}
 
-	/*
+	/**
 	 * Con esta funcion consigo insertar antes de cada llamada a la página (inicial o al recargar tras error) un objeto
 	 * en el modelo para poder invocarlo en la jsp
 	 */
 	@ModelAttribute("methodList")
 	public List<Method> populateMethods() {
 		return this.methodManager.getMethodList();
+	}
+
+	@ModelAttribute("idTeacher")
+	public int populateIdTeacher() {
+		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDTEACHER A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//We recover the teacher
+		int idTeacher = 1;
+		return idTeacher;
 	}
 
 	@ModelAttribute("numVariablesList")
@@ -101,24 +104,13 @@ public class CreateProblemController {
 		this.teacherManager = teacherManager;
 	}
 
-	//Initialize the variables array use for the select in the jsp
+	/**
+	 * Initialize the variables array use for the select in the jsp
+	 */
 	private void initVariables() {
 		final int variablesSize = WebConstants.NUM_VARIABLES.length;
 		for (int i = 0; i < variablesSize; i++) {
 			numVariablesList.add(WebConstants.NUM_VARIABLES[i]);
 		}
-	}
-
-	//Initialize object createProblem which backs the form in the jsp
-	private void initCreateProblem(CreateProblemDTO createProblemDTO) {
-
-		Calendar cal = Calendar.getInstance();
-		//We put actual date in initDate
-//	    createProblemDTO.setInitDate(cal.getTime());
-
-		cal.add(Calendar.MONTH, 1);
-		//We put actual date plus a month in endDate
-//	    createProblemDTO.setEndDate(cal.getTime());
-
 	}
 }

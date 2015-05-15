@@ -85,7 +85,7 @@ public class ListAnswerController {
 			tmp.setProblemTitle(node.getProblemRef().getTitle());
 			tmp.setStudentName(node.getStudentRef().getName());
 			tmp.setAnswerDate(format.format(node.getAnswerDate()));
-			tmp.setSolution(node.getSolution().replace(CommonConstants.SEPARATOR, "  "));
+			tmp.setSolution(node.getSolution().replace(CommonConstants.SEPARATOR, CommonConstants.HTML_BR));
 			tmp.setSteps(node.getSteps());
 			tmpList.add(tmp);
 		}
