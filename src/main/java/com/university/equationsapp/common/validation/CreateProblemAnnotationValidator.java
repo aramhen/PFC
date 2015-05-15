@@ -14,6 +14,21 @@ public class CreateProblemAnnotationValidator implements ConstraintValidator<Cre
 	public boolean isValid(CreateProblemDTO createProblemDTO, ConstraintValidatorContext context) {
 		boolean isValid = true;
 
+		if (createProblemDTO.getNumVariables() == 1) {
+			if ((createProblemDTO.getEquation1() == null) || (createProblemDTO.getEquation1().trim().length() == 0)) {
+				isValid = false;
+				context.buildConstraintViolationWithTemplate("{createproblem.validation.equations.1required}")
+						.addPropertyNode("numVariables").addConstraintViolation();
+			}
+			if (createProblemDTO.isSolutionCheck()) {
+				if ((createProblemDTO.getVariableX() == null) || (createProblemDTO.getVariableX().trim().length() == 0)) {
+					isValid = false;
+					context.buildConstraintViolationWithTemplate("{createproblem.validation.solution.1required}")
+							.addPropertyNode("solutionCheck").addConstraintViolation();
+				}
+			}
+		}
+
 		if (createProblemDTO.getNumVariables() == 2) {
 			if ((createProblemDTO.getEquation1() == null) || (createProblemDTO.getEquation1().trim().length() == 0)
 					|| (createProblemDTO.getEquation2() == null)
@@ -22,7 +37,7 @@ public class CreateProblemAnnotationValidator implements ConstraintValidator<Cre
 				context.buildConstraintViolationWithTemplate("{createproblem.validation.equations.2required}")
 						.addPropertyNode("numVariables").addConstraintViolation();
 			}
-			if(createProblemDTO.isSolutionCheck()){
+			if (createProblemDTO.isSolutionCheck()) {
 				if ((createProblemDTO.getVariableX() == null) || (createProblemDTO.getVariableX().trim().length() == 0)
 						|| (createProblemDTO.getVariableY() == null)
 						|| (createProblemDTO.getVariableY().trim().length() == 0)) {
@@ -43,7 +58,7 @@ public class CreateProblemAnnotationValidator implements ConstraintValidator<Cre
 				context.buildConstraintViolationWithTemplate("{createproblem.validation.equations.3required}")
 						.addPropertyNode("numVariables").addConstraintViolation();
 			}
-			if(createProblemDTO.isSolutionCheck()){
+			if (createProblemDTO.isSolutionCheck()) {
 				if ((createProblemDTO.getVariableX() == null) || (createProblemDTO.getVariableX().trim().length() == 0)
 						|| (createProblemDTO.getVariableY() == null)
 						|| (createProblemDTO.getVariableY().trim().length() == 0)
@@ -55,12 +70,12 @@ public class CreateProblemAnnotationValidator implements ConstraintValidator<Cre
 				}
 			}
 		}
-		
-		if((createProblemDTO.getInitDate() != null) && (createProblemDTO.getEndDate() != null)){
-			if(createProblemDTO.getInitDate().after(createProblemDTO.getEndDate())){
+
+		if ((createProblemDTO.getInitDate() != null) && (createProblemDTO.getEndDate() != null)) {
+			if (createProblemDTO.getInitDate().after(createProblemDTO.getEndDate())) {
 				isValid = false;
 				context.buildConstraintViolationWithTemplate("{createproblem.validation.dates}")
-				.addPropertyNode("initDate").addConstraintViolation();
+						.addPropertyNode("initDate").addConstraintViolation();
 			}
 		}
 

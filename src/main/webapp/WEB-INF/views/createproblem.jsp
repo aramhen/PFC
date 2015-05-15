@@ -8,46 +8,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><spring:message code="CP_title" /></title>
-<style>
-.error {
-	color: red;
-}
-
-.alert_eq {
-	padding: 6px 18px;
-	margin-bottom: 3px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	float: left;
-	max-width: 32%;
-}
-
-.body_width_eq {
-	max-width: 900px;
-}
-
-.row {
-	margin-right: 0px !important;
-}
-
-.subrow {
-	margin-left: 3%;
-	margin-right: -3%;
-	margin-bottom: 12px;
-}
-
-.panel-heading {
-	margin-bottom: 5px;
-}
-
-.font_checkbox_eq {
-	font-weight: 700;
-}
-
-.margin_chexkbox_eq {
-	margin: 0px !important;
-}
-</style>
 
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
 <link rel="stylesheet" href="resources/bootstrap/datepicker-plugin/datepicker3.css" type="text/css" />
@@ -307,6 +267,9 @@
 					$('#equation3').prop('disabled', true);
 					$('#solutionCheckdiv').removeClass("disabled");
 					$("#solutionCheck1").removeAttr("disabled");
+					if (!($('#solutionCheck1').is(":checked"))) {
+						$('#variableX').prop("disabled", true);
+					}
 					$("#variableY").attr("disabled", true);
 					$("#variableZ").attr("disabled", true);
 				}else if ($(this).prop("value") == "2") {
@@ -317,6 +280,9 @@
 					$("#solutionCheck1").removeAttr("disabled");
 					if ($('#solutionCheck1').is(":checked")) {
 						$('#variableY').removeAttr("disabled");
+					}else{
+						$("#variableX").prop("disabled", true);
+						$("#variableY").prop("disabled", true);
 					}
 					$("#variableZ").attr("disabled", true);
 				} else if ($(this).prop("value") == "3") {
@@ -328,6 +294,10 @@
 					if ($('#solutionCheck1').is(":checked")) {
 						$('#variableY').removeAttr("disabled");
 						$('#variableZ').removeAttr("disabled");
+					}else{
+						$("#variableX").prop("disabled", true);
+						$("#variableY").prop("disabled", true);
+						$('#variableZ').prop("disabled", true);
 					}
 				} else {
 					$('#equation1').prop('disabled', true);
@@ -338,7 +308,7 @@
 					$("#variableY").prop("disabled", true);
 					$("#variableZ").prop("disabled", true);
 					$("#solutionCheckdiv").addClass("disabled");
-					$("#solutionCheck1").prop("disabled", true);					
+					$("#solutionCheck1").prop("disabled", true);
 				}
 			}).change();
 			$("#solutionCheck1").click(function() {
