@@ -96,15 +96,79 @@ public class AnswerManagerImpl implements AnswerManager {
 			if ((node.get(0).contains(CommonConstants.M1x2)) && (node.size() == 3)) {
 				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
 						.append(node.get(2)).append("\\end{pmatrix}$");
+
+			} else if ((node.get(0).contains(CommonConstants.M1x3)) && (node.size() == 4)) {
+				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
+						.append(node.get(2)).append(CommonConstants.HTML_AMP).append(node.get(3))
+						.append("\\end{pmatrix}$");
+
+			} else if ((node.get(0).contains(CommonConstants.M1x4)) && (node.size() == 5)) {
+				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
+						.append(node.get(2)).append(CommonConstants.HTML_AMP).append(node.get(3))
+						.append(CommonConstants.HTML_AMP).append(node.get(4)).append("\\end{pmatrix}$");
+
 			} else if ((node.get(0).contains(CommonConstants.M2x1)) && (node.size() == 3)) {
 				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append("\\\\").append(node.get(2))
 						.append("\\end{pmatrix}$");
+
 			} else if ((node.get(0).contains(CommonConstants.M2x2)) && (node.size() == 5)) {
 				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
 						.append(node.get(3)).append("\\\\").append(node.get(2)).append(CommonConstants.HTML_AMP)
 						.append(node.get(4)).append("\\end{pmatrix}$");
+
+			} else if ((node.get(0).contains(CommonConstants.M2x3)) && (node.size() == 7)) {
+				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
+						.append(node.get(3)).append(CommonConstants.HTML_AMP).append(node.get(5)).append("\\\\")
+						.append(node.get(2)).append(CommonConstants.HTML_AMP).append(node.get(4))
+						.append(CommonConstants.HTML_AMP).append(node.get(6)).append("\\end{pmatrix}$");
+
+			} else if ((node.get(0).contains(CommonConstants.M2x4)) && (node.size() == 9)) {
+				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
+						.append(node.get(3)).append(CommonConstants.HTML_AMP).append(node.get(5))
+						.append(CommonConstants.HTML_AMP).append(node.get(7)).append("\\\\").append(node.get(2))
+						.append(CommonConstants.HTML_AMP).append(node.get(4)).append(CommonConstants.HTML_AMP)
+						.append(node.get(6)).append(CommonConstants.HTML_AMP).append(node.get(8))
+						.append("\\end{pmatrix}$");
+
+			} else if ((node.get(0).contains(CommonConstants.M3x1)) && (node.size() == 4)) {
+				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append("\\\\").append(node.get(2)).append("\\\\")
+						.append(node.get(3)).append("\\end{pmatrix}$");
+
+			} else if ((node.get(0).contains(CommonConstants.M3x2)) && (node.size() == 7)) {
+				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
+						.append(node.get(4)).append("\\\\").append(node.get(2)).append(CommonConstants.HTML_AMP)
+						.append(node.get(5)).append("\\\\").append(node.get(3)).append(CommonConstants.HTML_AMP)
+						.append(node.get(6)).append("\\end{pmatrix}$");
+
+			} else if ((node.get(0).contains(CommonConstants.M3x3)) && (node.size() == 10)) {
+				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
+						.append(node.get(4)).append(CommonConstants.HTML_AMP).append(node.get(7)).append("\\\\")
+						.append(node.get(2)).append(CommonConstants.HTML_AMP).append(node.get(5))
+						.append(CommonConstants.HTML_AMP).append(node.get(8)).append("\\\\").append(node.get(3))
+						.append(CommonConstants.HTML_AMP).append(node.get(6)).append(CommonConstants.HTML_AMP)
+						.append(node.get(9)).append("\\end{pmatrix}$");
+
+			} else if ((node.get(0).contains(CommonConstants.M3x4)) && (node.size() == 13)) {
+				sb2.append("$\\begin{pmatrix} ").append(node.get(1)).append(CommonConstants.HTML_AMP)
+						.append(node.get(4)).append(CommonConstants.HTML_AMP).append(node.get(7))
+						.append(CommonConstants.HTML_AMP).append(node.get(10)).append("\\\\").append(node.get(2))
+						.append(CommonConstants.HTML_AMP).append(node.get(5)).append(CommonConstants.HTML_AMP)
+						.append(node.get(8)).append(CommonConstants.HTML_AMP).append(node.get(11)).append("\\\\")
+						.append(node.get(3)).append(CommonConstants.HTML_AMP).append(node.get(6))
+						.append(CommonConstants.HTML_AMP).append(node.get(9)).append(CommonConstants.HTML_AMP)
+						.append(node.get(12)).append("\\end{pmatrix}$");
+
 			} else if ((node.get(0).contains(CommonConstants.FORM1)) && (node.size() == 2)) {
-				sb2.append("$ ").append(node.get(1)).append(" $");
+				sb2.append("<div>$ ").append(node.get(1)).append(" $</div>");
+
+			} else if ((node.get(0).contains(CommonConstants.FORM2)) && (node.size() == 3)) {
+				sb2.append("<div>$ ").append(node.get(1)).append(" $</div>").append("<div>$ ").append(node.get(2))
+						.append(" $</div>");
+
+			} else if ((node.get(0).contains(CommonConstants.FORM3)) && (node.size() == 4)) {
+				sb2.append("<div>$ ").append(node.get(1)).append(" $</div>").append("<div>$ ").append(node.get(2))
+						.append(" $</div>").append("<div>$ ").append(node.get(3)).append(" $</div>");
+
 			} else if ((node.get(0).contains(CommonConstants.RESTFORM)) && (node.size() == 4)) {
 				sb2.append("<div>$ ")
 						.append(node.get(1))
@@ -115,6 +179,7 @@ public class AnswerManagerImpl implements AnswerManager {
 						.append(" $</div>")
 						.append("<div style='border-bottom: 1px solid rgb(204, 204, 204);  margin: 0px auto 1%; width: 33%;'></div>")
 						.append("$ ").append(node.get(3)).append(" $");
+
 			} else if ((node.get(0).contains(CommonConstants.SUMFORM)) && (node.size() == 4)) {
 				sb2.append("<div>$ ")
 						.append(node.get(1))
