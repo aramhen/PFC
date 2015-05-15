@@ -162,11 +162,11 @@ public class AnswerManagerImpl implements AnswerManager {
 				sb2.append("<div>$ ").append(node.get(1)).append(" $</div>");
 
 			} else if ((node.get(0).contains(CommonConstants.FORM2)) && (node.size() == 3)) {
-				sb2.append("<div>$ ").append(node.get(1)).append(" $</div>").append("<div>$ ").append(node.get(2))
+				sb2.append("<div style='margin-bottom: 2px;'>$ ").append(node.get(1)).append(" $</div>").append("<div>$ ").append(node.get(2))
 						.append(" $</div>");
 
 			} else if ((node.get(0).contains(CommonConstants.FORM3)) && (node.size() == 4)) {
-				sb2.append("<div>$ ").append(node.get(1)).append(" $</div>").append("<div>$ ").append(node.get(2))
+				sb2.append("<div style='margin-bottom: 2px;'>$ ").append(node.get(1)).append(" $</div>").append("<div style='margin-bottom: 2px;'>$ ").append(node.get(2))
 						.append(" $</div>").append("<div>$ ").append(node.get(3)).append(" $</div>");
 
 			} else if ((node.get(0).contains(CommonConstants.RESTFORM)) && (node.size() == 4)) {

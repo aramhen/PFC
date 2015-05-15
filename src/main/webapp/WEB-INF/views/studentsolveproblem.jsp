@@ -66,22 +66,6 @@ body {
 </style>
 
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
-<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
-
-
-<!-- Latest Sortable -->
-<script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  extensions: ["http://cs.jsu.edu/mathjax-ext/github/forminput/forminput.js"],
-  styles: {
-    ".MathJax_Input": { "margin": "0 2px" },
-    ".red_background": { "background-color": "#F88" }
-  }
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 </head>
 <body>
@@ -273,6 +257,23 @@ MathJax.Hub.Config({
 		</div>
 	</div>
 	<!-- /.container -->
+	
+	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/jquery/sortable/sortable.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/jquery/validation/jquery.validate.min.js" />"></script>
+	
+	<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+  extensions: ["[Contrib]/forminput/forminput.js"],
+  styles: {
+    ".MathJax_Input": { "margin": "0 2px" },
+    ".red_background": { "background-color": "#F88" }
+  }
+});
+	</script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 
 	<script>
 		// List with handle
@@ -414,7 +415,7 @@ MathJax.Hub.Config({
 		});
 	</script>
 	
-	<script src="//ajax.aspnetcdn.com/ajax/jQuery.validate/1.11.1/jquery.validate.js" type="text/javascript"></script>
+	
   <script type="text/javascript">
   $(document).ready(function () {
 	  jQuery.validator.addMethod("answer", function(value, element) {
@@ -441,13 +442,19 @@ MathJax.Hub.Config({
                   },
                   messages: {
                 	  variableX: {
-                          required: "F** working",
+                          required: "<spring:message code='SSP_validation_required' />",
+                          maxlength: "<spring:message code='SSP_validation_lenght' />",
+                          answer: "<spring:message code='SSP_validation_character' />"
                       },
                       variableY: {
-                          required: "F** working"
+                    	  required: "<spring:message code='SSP_validation_required' />",
+                          maxlength: "<spring:message code='SSP_validation_lenght' />",
+                          answer: "<spring:message code='SSP_validation_character' />"
                       },
                       variableZ: {
-                          required: "F** working"
+                    	  required: "<spring:message code='SSP_validation_required' />",
+                          maxlength: "<spring:message code='SSP_validation_lenght' />",
+                          answer: "<spring:message code='SSP_validation_character' />"
                       }
                   },
                   highlight: function(element) {
@@ -457,9 +464,7 @@ MathJax.Hub.Config({
       				$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
       			},
       			submitHandler: function(form) {
-
       		    	serializeSteps();
-
       			    form.submit();
       			  }
               });
@@ -476,10 +481,5 @@ MathJax.Hub.Config({
 	  	}); 
   }
   </script>
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>
 </html>
