@@ -16,6 +16,8 @@
 <script type="text/javascript" src="resources/datatables/js/jquery.dataTables-1.10.5.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/responsive-1.0.5/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="resources/datatables/plugins/date-sorting/moment-2.8.4.min.js"></script>
+<script type="text/javascript" src="resources/datatables/plugins/date-sorting/datetime-moment.js"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -30,6 +32,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		$.fn.dataTable.moment('DD/MM/YYYY');
 		var userLang = navigator.language || navigator.userLanguage;
 		var tableLang;
 		if((userLang.split('-')[0]).toLowerCase() == 'es') {
