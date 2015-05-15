@@ -1,0 +1,17 @@
+/* General styles */
+body {
+	padding-top: 50px;
+}
+
+.center-template {
+	padding: 15px 15px;
+	text-align: center;
+}
+
+.init-template {
+	padding: 15px 15px;
+}
+
+.center {
+	text-align: center;
+}

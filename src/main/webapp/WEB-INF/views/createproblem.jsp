@@ -13,15 +13,6 @@
 	color: red;
 }
 
-body {
-	padding-top: 50px;
-}
-
-.center-template {
-	padding: 15px 15px;
-	text-align: center;
-}
-
 .alert_eq {
 	padding: 6px 18px;
 	margin-bottom: 3px;
@@ -60,6 +51,7 @@ body {
 
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
 <link rel="stylesheet" href="resources/bootstrap/datepicker-plugin/datepicker3.css" type="text/css" />
+<link rel="stylesheet" href="resources/css/custom.css" type="text/css" />
 
 </head>
 <body>
