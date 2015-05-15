@@ -1,6 +1,4 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -12,10 +10,10 @@
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/bootstrap/dataTables.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/responsive-1.0.5/css/dataTables.responsive.css">
-<link rel="stylesheet" href="resources/css/custom.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="resources/css/custom.css" />
 
-<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/datatables/js/jquery.dataTables-1.10.5.js" />"></script>
+<script type="text/javascript" src="resources/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="resources/datatables/js/jquery.dataTables-1.10.5.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/responsive-1.0.5/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 <script type="text/x-mathjax-config">
@@ -50,7 +48,7 @@
 			//Show a Processing message while data is processing
 			"bProcessing" : true,
 			"sort" : "position",
-			"order" : [ [ 0, "asc" ], [ 1, "asc" ] ],
+			"order" : [ 2, "desc" ],
 			"sAjaxSource" : "listanswerpagination.htm",
 			"aoColumns" : [ {
 				"mData" : "problemTitle"
@@ -116,7 +114,7 @@
 		</div>
 	</nav>
 
-	<div class="container body_width_eq">
+	<div class="container">
 		<div class="init-template">
 			<h1 class="page-header center"><spring:message code="LA_title" /></h1>
 			<form:form action="" method="GET">

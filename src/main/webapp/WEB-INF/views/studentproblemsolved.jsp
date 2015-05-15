@@ -1,6 +1,4 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -35,7 +33,7 @@
 		</div>
 	</nav>
 
-	<div class="container body_width_eq">
+	<div class="container">
 		<div class="center-template">
 			<h1 class="page-header">
 				<spring:message code="SPS_subtitle" />

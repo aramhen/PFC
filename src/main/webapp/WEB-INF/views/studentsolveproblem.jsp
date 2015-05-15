@@ -1,6 +1,4 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -8,53 +6,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><spring:message code="SSP_title" /></title>
-
-<style>
-.dropdown-margin {
-	margin-bottom: 15px;
-}
-
-.formula-input {
-	width: 33% !important;
-	margin-left: 5%;
-	margin-bottom: 1%;
-}
-
-.formula-buttons {
-	text-align: right;
-	margin-bottom: 5px;
-}
-
-.form-control-math {
-  color: #555;
-  width: 50px;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-.form-control-math:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
-          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
-}
-.form-control-math::-moz-placeholder {
-  color: #999;
-  opacity: 1;
-}
-.form-control-math:-ms-input-placeholder {
-  color: #999;
-}
-.form-control-math::-webkit-input-placeholder {
-  color: #999;
-}
-</style>
 
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
 <link rel="stylesheet" href="resources/css/custom.css" type="text/css" />
@@ -82,7 +33,7 @@
 		</div>
 	</nav>
 
-	<div class="container body_width_eq">
+	<div class="container">
 
 		<div class="center-template">
 			<h1 class="page-header">
@@ -152,7 +103,7 @@
 	</div>
 	<!-- /.container -->
 
-	<div class="container body_width_eq">
+	<div class="container">
 		<div class="center-template">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -255,17 +206,14 @@
 	<script type="text/javascript" src="<c:url value="/resources/jquery/validation/jquery.validate.min.js" />"></script>
 	
 	<script type="text/x-mathjax-config">
-MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
-MathJax.Hub.Config({
-  extensions: ["[Contrib]/forminput/forminput.js"],
-  styles: {
-    ".MathJax_Input": { "margin": "0 2px" },
-    ".red_background": { "background-color": "#F88" }
-  }
-});
+		MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+		MathJax.Hub.Config({
+			extensions : [ "[Contrib]/forminput/forminput.js" ],
+			styles : {".MathJax_Input" : {"margin" : "0 2px"},".red_background" : {"background-color" : "#F88"}}
+		});
 	</script>
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-		<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 
 	<script>
 		// List with handle
@@ -408,70 +356,70 @@ MathJax.Hub.Config({
 	</script>
 	
 	
-  <script type="text/javascript">
-  $(document).ready(function () {
-	  jQuery.validator.addMethod("answer", function(value, element) {
+<script type="text/javascript">
+	$(document).ready(function () {
+		jQuery.validator.addMethod("answer", function(value, element) {
 			return this.optional(element) || /^[a-z0-9.,/]+$/i.test(value);
-		}, "Letters or punctuation only please");  
-      $("#studentSolveProblemDTO").validate(
-              {
-                  rules: {
-                	  variableX: {
-                          required: true,
-                          answer: true,
-                          maxlength: 30
-                      },
-                      variableY: {
-                    	  required: true,
-                          answer: true,
-                          maxlength: 30
-                      },
-                      variableZ: {
-                    	  required: true,
-                          answer: true,
-                          maxlength: 30
-                      }
-                  },
-                  messages: {
-                	  variableX: {
-                          required: "<spring:message code='SSP_validation_required' />",
-                          maxlength: "<spring:message code='SSP_validation_lenght' />",
-                          answer: "<spring:message code='SSP_validation_character' />"
-                      },
-                      variableY: {
-                    	  required: "<spring:message code='SSP_validation_required' />",
-                          maxlength: "<spring:message code='SSP_validation_lenght' />",
-                          answer: "<spring:message code='SSP_validation_character' />"
-                      },
-                      variableZ: {
-                    	  required: "<spring:message code='SSP_validation_required' />",
-                          maxlength: "<spring:message code='SSP_validation_lenght' />",
-                          answer: "<spring:message code='SSP_validation_character' />"
-                      }
-                  },
-                  highlight: function(element) {
-      				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-      			},
-      			unhighlight: function(element) {
-      				$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-      			},
-      			submitHandler: function(form) {
-      		    	serializeSteps();
-      			    form.submit();
-      			  }
-              });
-  });
-  function serializeSteps(){
-	    $("#steps-inputs").empty();
-	  	$("#stepsList").find('.list-group-item').each(function(i, obj) {
-	  		 var serialized = $(":input(:button, :submit)", this).map(function(i, el) {
-		                return el.value;}).get().join("|");
-		     var iddiv = $(this).find("div:eq(1)").attr("id");	 
-		     var valuestep = iddiv + "|" + serialized;
-		     var inputlist = "<input type='text' hidden='true' value='" + valuestep + "' name='stepsList[" + i + "]' id='stepsList" + i + "'>";
-		     $(inputlist).appendTo("#steps-inputs");
-	  	}); 
-  }
-  </script>
+		}, "");
+
+		$("#studentSolveProblemDTO").validate({
+			rules: {
+				variableX: {
+					required: true,
+					answer: true,
+					maxlength: 30
+				},
+				variableY: {
+					required: true,
+					answer: true,
+					maxlength: 30
+				},
+				variableZ: {
+					required: true,
+					answer: true,
+					maxlength: 30
+				}
+			},
+			messages: {
+				variableX: {
+					required: "<spring:message code='SSP_validation_required' />",
+					maxlength: "<spring:message code='SSP_validation_lenght' />",
+					answer: "<spring:message code='SSP_validation_character' />"
+				},
+				variableY: {
+					required: "<spring:message code='SSP_validation_required' />",
+					maxlength: "<spring:message code='SSP_validation_lenght' />",
+					answer: "<spring:message code='SSP_validation_character' />"
+				},
+				variableZ: {
+					required: "<spring:message code='SSP_validation_required' />",
+					maxlength: "<spring:message code='SSP_validation_lenght' />",
+					answer: "<spring:message code='SSP_validation_character' />"
+				}
+			},
+			highlight: function(element) {
+				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+			},
+			unhighlight: function(element) {
+				$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+			},
+			submitHandler: function(form) {
+				serializeSteps();
+				form.submit();
+			}
+		});
+
+	});
+	function serializeSteps(){
+		$("#steps-inputs").empty();
+		$("#stepsList").find('.list-group-item').each(function(i, obj) {
+			 var serialized = $(":input(:button, :submit)", this).map(function(i, el) {return el.value;}).get().join("|");
+			 var iddiv = $(this).find("div:eq(1)").attr("id");
+			 var valuestep = iddiv + "|" + serialized;
+			 var inputlist = "<input type='text' hidden='true' value='" + valuestep + "' name='stepsList[" + i + "]' id='stepsList" + i + "'>";
+			 $(inputlist).appendTo("#steps-inputs");
+		});
+	}
+</script>
 </body>
 </html>

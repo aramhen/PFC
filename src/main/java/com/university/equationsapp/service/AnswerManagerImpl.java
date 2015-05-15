@@ -78,8 +78,6 @@ public class AnswerManagerImpl implements AnswerManager {
 					.append(studentSolveProblemDTO.getVariableZ().trim());
 		}
 		answer.setSolution(sb.toString());
-		//TODO ARH me faltan los pasos
-		//answer.setSteps("$\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$");
 		answer.setSteps(parseSteps(studentSolveProblemDTO.getStepsList()));
 		answer.setStudentRef(studentRepository.findOne(Integer.parseInt(studentSolveProblemDTO.getIdStudent())));
 
@@ -162,12 +160,13 @@ public class AnswerManagerImpl implements AnswerManager {
 				sb2.append("<div>$ ").append(node.get(1)).append(" $</div>");
 
 			} else if ((node.get(0).contains(CommonConstants.FORM2)) && (node.size() == 3)) {
-				sb2.append("<div style='margin-bottom: 2px;'>$ ").append(node.get(1)).append(" $</div>").append("<div>$ ").append(node.get(2))
-						.append(" $</div>");
+				sb2.append("<div style='margin-bottom: 2px;'>$ ").append(node.get(1)).append(" $</div>")
+						.append("<div>$ ").append(node.get(2)).append(" $</div>");
 
 			} else if ((node.get(0).contains(CommonConstants.FORM3)) && (node.size() == 4)) {
-				sb2.append("<div style='margin-bottom: 2px;'>$ ").append(node.get(1)).append(" $</div>").append("<div style='margin-bottom: 2px;'>$ ").append(node.get(2))
-						.append(" $</div>").append("<div>$ ").append(node.get(3)).append(" $</div>");
+				sb2.append("<div style='margin-bottom: 2px;'>$ ").append(node.get(1)).append(" $</div>")
+						.append("<div style='margin-bottom: 2px;'>$ ").append(node.get(2)).append(" $</div>")
+						.append("<div>$ ").append(node.get(3)).append(" $</div>");
 
 			} else if ((node.get(0).contains(CommonConstants.RESTFORM)) && (node.size() == 4)) {
 				sb2.append("<div>$ ")
@@ -195,8 +194,6 @@ public class AnswerManagerImpl implements AnswerManager {
 			}
 			sb1.append(sb2).append("<div style='margin: 3% auto; width: 15%; border: 1px solid #2e6da4;'/>");
 		}
-
 		return sb1.toString();
-
 	}
 }

@@ -1,6 +1,4 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -12,10 +10,10 @@
 <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" />
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/bootstrap/dataTables.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="resources/datatables/plugins/responsive-1.0.5/css/dataTables.responsive.css">
-<link rel="stylesheet" href="resources/css/custom.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="resources/css/custom.css" />
 
-<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.11.2.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/datatables/js/jquery.dataTables-1.10.5.js" />"></script>
+<script type="text/javascript" src="resources/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="resources/datatables/js/jquery.dataTables-1.10.5.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/responsive-1.0.5/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="resources/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 <script type="text/x-mathjax-config">
@@ -162,7 +160,8 @@
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<span class="navbar-brand"><spring:message code="LP_title" /></span>
 			</div>
@@ -178,12 +177,15 @@
 		</div>
 	</nav>
 
-	<div class="container body_width_eq">
+	<div class="container">
 		<div class="init-template">
-			<h1 class="page-header center"><spring:message code="LP_title" /></h1>
+			<h1 class="page-header center">
+				<spring:message code="LP_title" />
+			</h1>
 			<form:form action="" method="GET">
 				<h2 class="center">
-					<spring:message code="LP_subtitle" /><br> <br>
+					<spring:message code="LP_subtitle" />
+					<br> <br>
 				</h2>
 				<table id="problems" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
 					<thead>
@@ -233,19 +235,20 @@
 				</div>
 				<form:form method="post" commandName="Problem">
 					<div class="modal-body">
-						<span><spring:message code="LP_modal_message" /></span>	
-						<form:hidden path="idProblems" id="idProblem"/>
+						<span><spring:message code="LP_modal_message" /></span>
+						<form:hidden path="idProblems" id="idProblem" />
 					</div>
-					<div class="modal-footer">				
-						<input class="btn btn-danger" type="submit" value=<spring:message code="LP_modal_button_delete" /> id="submit"> 
-						<button type="button" name="delete" class="btn btn-default" data-dismiss="modal"><spring:message code="LP_modal_button_close" /></button>
+					<div class="modal-footer">
+						<input class="btn btn-danger" type="submit" value=<spring:message code="LP_modal_button_delete" /> id="submit">
+						<button type="button" name="delete" class="btn btn-default" data-dismiss="modal">
+							<spring:message code="LP_modal_button_close" />
+						</button>
 					</div>
 				</form:form>
 			</div>
 		</div>
 	</div>
-	
-	<!-- Placed at the end of the document so the pages load faster -->
+
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap-3.3.2.min.js" />"></script>
 </body>
 </html>

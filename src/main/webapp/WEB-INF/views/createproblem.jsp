@@ -1,6 +1,4 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -12,7 +10,11 @@
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
 <link rel="stylesheet" href="resources/bootstrap/datepicker-plugin/datepicker3.css" type="text/css" />
 <link rel="stylesheet" href="resources/css/custom.css" type="text/css" />
-
+<style type="text/css">
+	.row {
+		margin-right: 0px !important;
+	}
+</style>
 </head>
 <body>
 	<!-- Topnav -->
