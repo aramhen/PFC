@@ -44,7 +44,6 @@ public class ProblemManagerImpl implements ProblemManager {
 		problem.setTitle(createProblemDTO.getTitle());
 
 		StringBuilder sb = new StringBuilder();
-		//TODO ARH validaciones de si viene vacio etc mal o ya viene comprobado?
 		sb.append(createProblemDTO.getEquation1().trim());
 		if (problem.getNumVariables() > 1) {
 			sb.append(CommonConstants.SEPARATOR).append(createProblemDTO.getEquation2().trim());
@@ -69,11 +68,8 @@ public class ProblemManagerImpl implements ProblemManager {
 			problem.setSolution(sb.toString());
 		}
 
-		//TODO ARH habrá que ver si hay que hacer aquí control de errores o ya viene controlado de fuera que no me metan nada que no sea mio
 		problem.setMethodRef(methodRepository.findByIdMethods(createProblemDTO.getIdMethod()));
-
 		problem.setTeacherRef(teacherRepository.findOne(createProblemDTO.getIdTeacher()));
-
 		problemRepository.save(problem);
 
 	}

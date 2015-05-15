@@ -103,7 +103,8 @@ public class StudentListProblemController {
 		boolean inDate;
 		boolean alreadeAnswered;
 
-		//TODO ARH IMPORTANTE HAY QUE VER DE DONDE CONSIGO EL IDSTUDENT ACTUAL, YA SEA REQUEST, COOKIE, SESIÓN O LO QUE SEA
+		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//We recover the student
 		int idStudent = 7;
 
 		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(

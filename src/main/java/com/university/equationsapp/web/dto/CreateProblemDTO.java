@@ -23,7 +23,7 @@ public class CreateProblemDTO implements Serializable {
 	@Min(value = 1, message = "{createproblem.validation.idmethod}")
 	private int idMethod;
 
-	//TODO ARH Las variables las limito de 2 a 3, asi no se puede introducir un valor no permitido editanto el html del formulario
+	//We validate that the number of variables is between the range we set, originally the range is between 1 and 3
 	@NotNull
 	@Range(min = WebConstants.NUM_VARIABLES_MIN, max = WebConstants.NUM_VARIABLES_MAX, message = "{createproblem.validation.numvariables}")
 	private int numVariables;
@@ -46,11 +46,6 @@ public class CreateProblemDTO implements Serializable {
 
 	@NotNull(message = "{createproblem.validation.initDate}")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	//Eso lo he usado para poder ponerle formato a la fecha al mostrarse en el input por defecto, si diera error de libreria joda hay que incluir
-	/*
-	 * <dependency> <groupid>joda-time</groupid> <artifactid>joda-time</artifactid> <version>1.6.2</version>
-	 * <scope>runtime</scope> </dependency>
-	 */
 	private Date initDate;
 
 	@NotNull(message = "{createproblem.validation.endDate}")

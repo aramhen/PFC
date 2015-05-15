@@ -4,12 +4,6 @@ import java.io.Serializable;
 
 public class ListAnswerJsonDTO implements Serializable {
 
-	/**
-	 * ARH TODO hay que poner solution en formato bonito, ya que de la bbdd vendrá separado por pipes en steps hay que
-	 * intentar poner un enlace que abra un modal de bootstrap que muestre el codigo matematico hay que ver como
-	 * transformar el formato de answerDate
-	 */
-
 	private static final long serialVersionUID = 1L;
 
 	private String problemTitle;

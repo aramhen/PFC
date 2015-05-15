@@ -4,11 +4,6 @@ import java.io.Serializable;
 
 public class ListProblemJsonDTO implements Serializable {
 
-	/**
-	 * ARH TODO habrá que ver las posibles transformaciones de equations, como meterle </br> entre cada ecuación. Si no
-	 * hay solution no mostrar el botón de ver más.
-	 */
-
 	private static final long serialVersionUID = 1L;
 
 	private String idProblem;

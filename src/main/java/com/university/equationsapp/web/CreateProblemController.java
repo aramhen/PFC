@@ -28,11 +28,6 @@ import com.university.equationsapp.web.dto.CreateProblemDTO;
 @RequestMapping(value = "/createproblem.htm")
 public class CreateProblemController {
 
-	/*
-	 * TODO ARH Hay que recoger el profesor actual de alguna forma porque será el que seteemos luego al guardar el
-	 * problema. Por cookies o como sea
-	 */
-
 	private static final Logger logger = LoggerFactory.getLogger(CreateProblemController.class);
 
 	@Autowired
