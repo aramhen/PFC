@@ -89,7 +89,7 @@ public class AnswerManagerImpl implements AnswerManager {
 		Iterator<String> it = stepsList.iterator();
 		StringBuilder sb1 = new StringBuilder();
 		while (it.hasNext()) {
-			List<String> node = Arrays.asList(it.next().split(CommonConstants.SEPARATOR_FOR_SPLIT));
+			List<String> node = Arrays.asList(it.next().split(CommonConstants.SEPARATOR_FOR_SPLIT, -1));
 			StringBuilder sb2 = new StringBuilder();
 			int size = node.size();
 			if ((node.get(0).contains(CommonConstants.M1x2)) && (size == 3)) {
@@ -193,7 +193,10 @@ public class AnswerManagerImpl implements AnswerManager {
 			} else {
 				logger.error(CommonConstants.ERROR_MSG_PARSING + node);
 			}
-			sb1.append(sb2).append("<div style='margin: 3% auto; width: 15%; border: 1px solid #2e6da4;'/>");
+			sb1.append(sb2);
+			if(it.hasNext()){
+				sb1.append("<div style='margin: 3% auto; width: 15%; border: 1px solid #2e6da4;'/>");
+			}
 		}
 		return sb1.toString();
 	}
