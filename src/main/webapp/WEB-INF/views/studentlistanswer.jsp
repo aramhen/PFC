@@ -86,10 +86,8 @@
 			}else{
 				$('#myModalLabel').html(aData["problemTitle"] + " <spring:message code='SLA_modal_equation' />");
 			}
-		   	// $("div.modal-body").innerHTML=aData["steps"];
-		    //UpdateMath(aData["steps"]);
-		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
-       		//MathJax.Hub.Queue(["Text", math, "modal-body"]);
+		   	
+		    $('#modal-body').removeClass("center");
        		$('#mathSteps').html(aData["equations"]);
 	    	//reprocess the MathOutput Element
 	    	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mathSteps"]);
@@ -106,10 +104,8 @@
 			}
 		    var aData = table.row(row).data();
 		    $('#myModalLabel').html("<spring:message code='SLA_modal_answer' />");
-		   	// $("div.modal-body").innerHTML=aData["steps"];
-		    //UpdateMath(aData["steps"]);
-		    //var math = MathJax.Hub.getAllJax("modal-body")[0];
-       		//MathJax.Hub.Queue(["Text", math, "modal-body"]);
+		   	
+		    $('#modal-body').addClass("center");
        		$('#mathSteps').html(aData["steps"]);
 	    	//reprocess the MathOutput Element
 	    	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mathSteps"]);
@@ -172,10 +168,10 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel"></h4>
 				</div>
-				<div class="modal-body center">
+				<div id="modal-body" class="modal-body center">
 					<div id="mathSteps"></div>
 				</div>
-				<div class="modal-footer" id="modal-body">
+				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="SLA_modal_button_close" /></button>
 				</div>
 			</div>
