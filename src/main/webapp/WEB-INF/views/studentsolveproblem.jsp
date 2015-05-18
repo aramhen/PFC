@@ -32,6 +32,10 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
+	
+	<spring:message code="SSP_placeholder_X" var="SSP_placeholder_X" />
+	<spring:message code="SSP_placeholder_Y" var="SSP_placeholder_Y" />
+	<spring:message code="SSP_placeholder_Z" var="SSP_placeholder_Z" />
 
 	<div class="container">
 
@@ -125,14 +129,14 @@
 											<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableX" /></label>
 										</div>
 										<div class="col-xs-2 form-group">
-											<form:input path="variableX" class="form-control" />
+											<form:input path="variableX" class="form-control" placeholder="${SSP_placeholder_X}" />
 										</div>
 										<c:if test="${Problem.numVariables > 1}">
 											<div class="col-xs-1" style="text-align: right;">
 												<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableY" /></label>
 											</div>
 											<div class="col-xs-2 form-group">
-												<form:input path="variableY" class="form-control" />
+												<form:input path="variableY" class="form-control" placeholder="${SSP_placeholder_Y}" />
 											</div>
 										</c:if>
 										<c:if test="${Problem.numVariables > 2}">
@@ -140,7 +144,7 @@
 												<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableZ" /></label>
 											</div>
 											<div class="col-xs-2 form-group">
-												<form:input path="variableZ" class="form-control" />
+												<form:input path="variableZ" class="form-control" placeholder="${SSP_placeholder_Z}" />
 											</div>
 										</c:if>
 										
@@ -229,21 +233,21 @@
 			var cnt = 1;
 			var divo = "<div class='list-group-item'><div class='row formulabuttons'> <span class='glyphicon glyphicon-sort' aria-hidden='true' style='color: #2e6da4; cursor: move; margin-right: 15px;'></span><span class='glyphicon glyphicon-trash' aria-hidden='true' style='color: #d9534f; cursor: pointer; margin-right: 15px;'></span></div>";
 			var divc = "</div></div>";
-			var finput = "<input type='text' value='' class='form-control formulainput'>";
+			var finput = "<input type='text' value='' class='form-control formulainput' maxlength='35' placeholder='<spring:message code='SSP_placeholder_formula' />'>";
 			jQuery("#1-formula").click(function(e) {
-				var divf1 = "<div id=1form row" + cnt + ">";
+				var divf1 = "<div id=1form_row" + cnt + ">";
 				$(divo + divf1 + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#2-formula").click(function(e) {
-				var divf2 = "<div id=2form row" + cnt + ">";
+				var divf2 = "<div id=2form_row" + cnt + ">";
 				$(divo + divf2 + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#3-formula").click(function(e) {
-				var divf3 = "<div id=3form row" + cnt + ">";
+				var divf3 = "<div id=3form_row" + cnt + ">";
 				$(divo + divf3 + finput + finput + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
@@ -251,7 +255,7 @@
 			jQuery("#resta-formula").click(function(e) {
 				var resta = "<label>-</label>";
 				var resultado = "<div style='border-bottom: 1px solid rgb(204, 204, 204); margin-bottom: 1%; width: 39%;'></div>";
-				var divrestform = "<div id=restform row" + cnt + ">";
+				var divrestform = "<div id=restform_row" + cnt + ">";
 				$(divo + divrestform + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
@@ -259,96 +263,140 @@
 			jQuery("#suma-formula").click(function(e) {
 				var resta = "<label>+</label>";
 				var resultado = "<div style='border-bottom: 1px solid rgb(204, 204, 204); margin-bottom: 1%; width: 39%;'></div>";
-				var divrestform = "<div id=sumform row" + cnt + ">";
+				var divrestform = "<div id=sumform_row" + cnt + ">";
 				$(divo + divrestform + finput + resta + finput + resultado + finput + divc).hide().appendTo("#stepsList").slideDown("slow");
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#1x2-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\end{pmatrix}";
-				var divId = "1x2m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "1x2m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#1x3-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\end{pmatrix}";
-				var divId = "1x3m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "1x3m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#1x4-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\end{pmatrix}";
-				var divId = "1x4m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "1x4m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#2x1-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} \\end{pmatrix}";
-				var divId = "2x1m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "2x1m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#2x2-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} \\end{pmatrix}";
-				var divId = "2x2m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "2x2m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+				$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+					tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#2x3-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} \\end{pmatrix}";
-				var divId = "2x3m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "2x3m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});	
 			jQuery("#2x4-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} & {\\FormInput[][form-control-math]{bd" + cnt + "}} \\end{pmatrix}";
-				var divId = "2x4m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "2x4m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});
 			jQuery("#3x1-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} \\end{pmatrix}";
-				var divId = "3x1m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "3x1m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});	
 			jQuery("#3x2-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} \\end{pmatrix}";
-				var divId = "3x2m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "3x2m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});	
 			jQuery("#3x3-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} & {\\FormInput[][form-control-math]{cc" + cnt + "}} \\end{pmatrix}";
-				var divId = "3x3m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "3x3m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});	
 			jQuery("#3x4-matrix").click(function(e) {
 				var matrix = "\\begin{pmatrix} {\\FormInput[][form-control-math]{aa" + cnt + "}} & {\\FormInput[][form-control-math]{ab" + cnt + "}} & {\\FormInput[][form-control-math]{ac" + cnt + "}} & {\\FormInput[][form-control-math]{ad" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ba" + cnt + "}} & {\\FormInput[][form-control-math]{bb" + cnt + "}} & {\\FormInput[][form-control-math]{bc" + cnt + "}} & {\\FormInput[][form-control-math]{bd" + cnt + "}} \\\\ {\\FormInput[][form-control-math]{ca" + cnt + "}} & {\\FormInput[][form-control-math]{cb" + cnt + "}} & {\\FormInput[][form-control-math]{cc" + cnt + "}} & {\\FormInput[][form-control-math]{cd" + cnt + "}} \\end{pmatrix}";
-				var divId = "3x4m row" + cnt; 
-				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList");
+				var divId = "3x4m_row" + cnt; 
+				var tmp = $(divo + "<div id='"+ divId +"'>" + matrix +"</div>" + divc).appendTo("#stepsList").hide();
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub,divId]);
+				MathJax.Hub.Queue(function () {
+					$("#"+divId).find(".MathJax_Input").attr('maxlength','9');
+						tmp.slideDown("slow");
+				});
 				cnt = cnt + 1;
 				e.preventDefault();
 			});	
