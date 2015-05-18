@@ -106,7 +106,7 @@ public class StudentSolveProblemController {
 	@ExceptionHandler(SolveProblemException.class)
 	public ModelAndView handleSolveProblemException(SolveProblemException ex) {
 		System.out.println("Handling exception");
-		ModelAndView model = new ModelAndView("error");
+		ModelAndView model = new ModelAndView("studenterror");
 		model.addObject("exception", ex);
 		return model;
 
