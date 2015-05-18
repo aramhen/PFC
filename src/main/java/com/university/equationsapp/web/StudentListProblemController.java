@@ -30,7 +30,6 @@ import com.university.equationsapp.common.utils.WebUtils;
 import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
-import com.university.equationsapp.service.TeacherManager;
 import com.university.equationsapp.web.json.DTOToJsonObject;
 import com.university.equationsapp.web.json.StudentListProblemJsonDTO;
 
@@ -41,9 +40,6 @@ public class StudentListProblemController {
 
 	@Autowired
 	private ProblemManager problemManager;
-
-	@Autowired
-	private TeacherManager teacherManager;
 
 	@Autowired
 	private AnswerManager answerManager;
@@ -80,7 +76,12 @@ public class StudentListProblemController {
 		response.setContentType("application/json; charset=iso-8859-1");
 
 		//Create page list data
-		List<StudentListProblemJsonDTO> problemsList = getListProblemDTO(problemManager.getProblemList());
+		List<StudentListProblemJsonDTO> problemsList = new ArrayList<StudentListProblemJsonDTO>();
+		try {
+			problemsList = getListProblemDTO(problemManager.getProblemList());
+		} catch (Exception ex) {
+			logger.error("There has been an error recovering the problems", ex);
+		}
 
 		int problemSize = problemsList.size();
 		DTOToJsonObject<StudentListProblemJsonDTO> problemJsonObject = new DTOToJsonObject<StudentListProblemJsonDTO>();

@@ -1,7 +1,6 @@
 package com.university.equationsapp.web;
 
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,8 +48,6 @@ public class StudentSolveProblemController {
 	public StudentSolveProblemDTO printWelcome(@ModelAttribute("idProblem") Object idProblem, BindingResult result,
 			ModelMap model, HttpServletRequest request, HttpServletResponse response) throws SolveProblemException {
 
-		ResourceBundle rb = ResourceBundle.getBundle(CommonConstants.RESOURCE_BUNDLE);
-
 		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
 		//We recover the student answers
 		int idStudent = 7;
@@ -65,20 +62,20 @@ public class StudentSolveProblemController {
 			problem = problemManager.findByIdProblems((Integer) idProblem);
 		} catch (ClassCastException ccex) {
 			logger.error("There has been a casting error recovering the idProblem", ccex);
-			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
+			throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_CAST);
 		} catch (Exception ex) {
 			logger.error("There has been an error recovering the idProblem", ex);
-			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
+			throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_CAST);
 		}
 		if (problem == null) {
 			logger.error("The problem " + idProblem + " has not been found on the DB");
-			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
+			throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_CAST);
 		}
 		if (problem.isUniqueAnswer()) {
 			List<Answer> res = answerManager.findByProblemRefAndStudentRef((Integer) idProblem, idStudent);
 			if (res.size() > 0) {
 				logger.error("The problem " + idProblem + " has already been answered by the student " + idStudent);
-				throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_ALREADY_SOLVED));
+				throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_ALREADY_SOLVED);
 			}
 		}
 
@@ -113,11 +110,11 @@ public class StudentSolveProblemController {
 	}
 
 	@ExceptionHandler(SolveProblemException.class)
-	public ModelAndView handleSolveProblemException(SolveProblemException ex) {
-		System.out.println("Handling exception");
+	public ModelAndView handleSolveProblemExceptions(SolveProblemException ex) {
+		logger.debug("Handling Exception " + ex.getMessage());
+
 		ModelAndView model = new ModelAndView("studenterror");
 		model.addObject("exception", ex);
 		return model;
-
 	}
 }

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><spring:message code="ES_title" /></title>
+<title><spring:message code="FE_title" /></title>
 
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
 <link rel="stylesheet" href="resources/css/custom.css" type="text/css" />
@@ -20,14 +20,6 @@
 					<span class="sr-only"><spring:message code="Toggle_Navigation" /></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<span class="navbar-brand"><spring:message code="ES_title" /></span>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="studenthome.htm"><spring:message code="SH_title" /></a></li>
-					<li><a href="studentlistproblem.htm"><spring:message code="SLP_title" /></a></li>
-					<li><a href="studentlistanswer.htm"><spring:message code="SLA_title" /></a></li>
-				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
@@ -36,9 +28,9 @@
 	<div class="container">
 		<div class="center-template">
 			<h1 class="page-header">
-				<spring:message code="ES_subtitle" />
+				<spring:message code="FE_subtitle" />
 			</h1>
-			<p class="lead"><spring:message code="${exception.message}" /></p>
+			<p class="lead"><spring:message code="FE_text" /></p>
 		</div>
 	</div>
 	<!-- /.container -->

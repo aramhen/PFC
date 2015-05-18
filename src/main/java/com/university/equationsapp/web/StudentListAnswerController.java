@@ -9,6 +9,8 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,19 +27,13 @@ import com.university.equationsapp.common.utils.WebUtils;
 import com.university.equationsapp.domain.Answer;
 import com.university.equationsapp.repository.StudentRepository;
 import com.university.equationsapp.service.AnswerManager;
-import com.university.equationsapp.service.ProblemManager;
-import com.university.equationsapp.service.TeacherManager;
 import com.university.equationsapp.web.json.DTOToJsonObject;
 import com.university.equationsapp.web.json.StudentListAnswerJsonDTO;
 
 @Controller
 public class StudentListAnswerController {
 
-	@Autowired
-	private ProblemManager problemManager;
-
-	@Autowired
-	private TeacherManager teacherManager;
+	private static final Logger logger = LoggerFactory.getLogger(StudentListAnswerController.class);
 
 	@Autowired
 	private AnswerManager answerManager;
@@ -62,7 +58,12 @@ public class StudentListAnswerController {
 		//We recover the student answers
 		int idStudent = 7;
 		//Create page list data
-		List<StudentListAnswerJsonDTO> answersList = getstudentlistanswerDTO(answerManager.findByStudentRef(idStudent));
+		List<StudentListAnswerJsonDTO> answersList = new ArrayList<StudentListAnswerJsonDTO>();
+		try {
+			answersList = getstudentlistanswerDTO(answerManager.findByStudentRef(idStudent));
+		} catch (Exception ex) {
+			logger.error("There has been an error recovering the problems", ex);
+		}
 
 		int answerSize = answersList.size();
 		DTOToJsonObject<StudentListAnswerJsonDTO> answerJsonObject = new DTOToJsonObject<StudentListAnswerJsonDTO>();
