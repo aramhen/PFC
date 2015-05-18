@@ -26,13 +26,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.university.equationsapp.common.constants.CommonConstants;
+import com.university.equationsapp.common.utils.WebUtils;
 import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
 import com.university.equationsapp.service.TeacherManager;
 import com.university.equationsapp.web.json.DTOToJsonObject;
 import com.university.equationsapp.web.json.StudentListProblemJsonDTO;
-import com.university.equationsapp.web.utils.WebUtils;
 
 @Controller
 public class StudentListProblemController {

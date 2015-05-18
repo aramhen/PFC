@@ -1,4 +1,4 @@
-package com.university.equationsapp.web.utils;
+package com.university.equationsapp.common.utils;
 
 import java.util.Arrays;
 import java.util.List;
