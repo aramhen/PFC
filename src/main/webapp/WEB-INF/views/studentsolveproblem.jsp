@@ -159,32 +159,32 @@
 								<label><spring:message code="SSP_elements" /></label>
 								<div class="dropdown dropdownmargin">
 									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-										Matrices <span class="caret"></span>
+										<spring:message code="SSP_matrices" /> <span class="caret"></span>
 									</button>
-									<ul class="dropdown-menu" style="text-align: center;">
-										<div class="btn-group btn-group-vertical" style="vertical-align: bottom">
-											<a class="btn btn-default" id="1x2-matrix">1x2</a><a class="btn btn-default" id="1x3-matrix">1x3</a><a class="btn btn-default" id="1x4-matrix">1x4</a>
+									<ul class="dropdown-menu" style="text-align: right; max-width: 84%;">
+										<div class="btn-group btn-group" style="margin-right: 2%;">
+											<a class="btn btn-default" id="1x2-matrix"><spring:message code="SSP_1x2" /></a><a class="btn btn-default" id="1x3-matrix"><spring:message code="SSP_1x3" /></a><a class="btn btn-default" id="1x4-matrix"><spring:message code="SSP_1x4" /></a>
 										</div>
-										<div class="btn-group btn-group-vertical">
-											<a class="btn btn-default" id="2x1-matrix">2x1</a> <a class="btn btn-default" id="2x2-matrix">2x2</a> <a class="btn btn-default" id="2x3-matrix">2x3</a><a
-												class="btn btn-default" id="2x4-matrix">2x4</a>
+										<div class="btn-group btn-group" style="margin-right: 2%;">
+											<a class="btn btn-default" id="2x1-matrix"><spring:message code="SSP_2x1" /></a> <a class="btn btn-default" id="2x2-matrix"><spring:message code="SSP_2x2" /></a> <a class="btn btn-default" id="2x3-matrix"><spring:message code="SSP_2x3" /></a><a
+												class="btn btn-default" id="2x4-matrix"><spring:message code="SSP_2x4" /></a>
 										</div>
-										<div class="btn-group btn-group-vertical">
-											<a class="btn btn-default" id="3x1-matrix">3x1</a> <a class="btn btn-default" id="3x2-matrix">3x2</a> <a class="btn btn-default" id="3x3-matrix">3x3</a> <a
-												class="btn btn-default" id="3x4-matrix">3x4</a>
+										<div class="btn-group btn-group" style="margin-right: 2%;">
+											<a class="btn btn-default" id="3x1-matrix"><spring:message code="SSP_3x1" /></a> <a class="btn btn-default" id="3x2-matrix"><spring:message code="SSP_3x2" /></a> <a class="btn btn-default" id="3x3-matrix"><spring:message code="SSP_3x3" /></a> <a
+												class="btn btn-default" id="3x4-matrix"><spring:message code="SSP_3x4" /></a>
 										</div>
 									</ul>
 								</div>
 								<div class="dropdown dropdownmargin">
 									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-										Fórmulas <span class="caret"></span>
+										<spring:message code="SSP_formulas" /> <span class="caret"></span>
 									</button>
 									<ul id="formula-dropdown" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-										<li role="presentation"><a role="menuitem" tabindex="-1" id="1-formula">1 Fórmula</a></li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" id="2-formula">2 Fórmulas</a></li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" id="3-formula">3 Fórmulas</a></li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" id="resta-formula">Resta de 2 fórmulas</a></li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" id="suma-formula">Suma de 2 fórmulas</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" id="1-formula"><spring:message code="SSP_1_formula" /></a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" id="2-formula"><spring:message code="SSP_2_formula" /></a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" id="3-formula"><spring:message code="SSP_3_formula" /></a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" id="resta-formula"><spring:message code="SSP_resta_formula" /></a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" id="suma-formula"><spring:message code="SSP_suma_formula" /></a></li>
 									</ul>
 								</div>
 							</div>
