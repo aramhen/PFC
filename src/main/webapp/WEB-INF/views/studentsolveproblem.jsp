@@ -213,7 +213,8 @@
 		MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
 		MathJax.Hub.Config({
 			extensions : [ "[Contrib]/forminput/forminput.js" ],
-			styles : {".MathJax_Input" : {"margin" : "0 2px"},".red_background" : {"background-color" : "#F88"}}
+			styles : {".MathJax_Input" : {"margin" : "0 2px"},".red_background" : {"background-color" : "#F88"}},
+			showMathMenu: false
 		});
 	</script>
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
