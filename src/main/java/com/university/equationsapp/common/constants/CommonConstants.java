@@ -43,6 +43,7 @@ public final class CommonConstants {
 	//Constants to read from messages
 	public static final String RESOURCE_BUNDLE = "messages";
 	public static final String RB_ERROR_IDPROBLEM_CAST = "EX_idproblem_cast";
+	public static final String RB_ERROR_IDPROBLEM_ALREADY_SOLVED = "EX_idproblem_already_solved";
 	
 
 }

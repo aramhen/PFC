@@ -1,5 +1,6 @@
 package com.university.equationsapp.web;
 
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.university.equationsapp.common.constants.CommonConstants;
 import com.university.equationsapp.common.exceptions.SolveProblemException;
+import com.university.equationsapp.domain.Answer;
 import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
@@ -47,11 +49,14 @@ public class StudentSolveProblemController {
 	public StudentSolveProblemDTO printWelcome(@ModelAttribute("idProblem") Object idProblem, BindingResult result,
 			ModelMap model, HttpServletRequest request, HttpServletResponse response) throws SolveProblemException {
 
+		ResourceBundle rb = ResourceBundle.getBundle(CommonConstants.RESOURCE_BUNDLE);
+
 		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
 		//We recover the student answers
 		int idStudent = 7;
 
 		//We recover the problem the student is going to solve and check for errors
+		//We also check if the problem is uniqueAnswer and the student has already solved it
 		Problem problem = new Problem();
 		try {
 			if (logger.isDebugEnabled()) {
@@ -59,18 +64,22 @@ public class StudentSolveProblemController {
 			}
 			problem = problemManager.findByIdProblems((Integer) idProblem);
 		} catch (ClassCastException ccex) {
-			ResourceBundle rb =  ResourceBundle.getBundle(CommonConstants.RESOURCE_BUNDLE);
 			logger.error("There has been a casting error recovering the idProblem", ccex);
 			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
 		} catch (Exception ex) {
-			ResourceBundle rb =  ResourceBundle.getBundle(CommonConstants.RESOURCE_BUNDLE);
 			logger.error("There has been an error recovering the idProblem", ex);
 			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
-		} 
-		if(problem == null){
-			ResourceBundle rb =  ResourceBundle.getBundle(CommonConstants.RESOURCE_BUNDLE);
+		}
+		if (problem == null) {
 			logger.error("The problem " + idProblem + " has not been found on the DB");
 			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
+		}
+		if (problem.isUniqueAnswer()) {
+			List<Answer> res = answerManager.findByProblemRefAndStudentRef((Integer) idProblem, idStudent);
+			if (res.size() > 0) {
+				logger.error("The problem " + idProblem + " has already been answered by the student " + idStudent);
+				throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_ALREADY_SOLVED));
+			}
 		}
 
 		if (logger.isDebugEnabled()) {
