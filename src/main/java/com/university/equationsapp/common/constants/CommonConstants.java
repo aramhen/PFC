@@ -40,5 +40,9 @@ public final class CommonConstants {
 	public static final String SUMFORM = "sumform";
 	public static final String ERROR_MSG_PARSING = "There has been an error parsing the step";
 	
+	//Constants to read from messages
+	public static final String RESOURCE_BUNDLE = "messages";
+	public static final String RB_ERROR_IDPROBLEM_CAST = "EX_idproblem_cast";
+	
 
 }

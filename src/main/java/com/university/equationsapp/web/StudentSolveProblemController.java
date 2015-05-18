@@ -1,5 +1,6 @@
 package com.university.equationsapp.web;
 
+import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.university.equationsapp.common.constants.CommonConstants;
+import com.university.equationsapp.common.exceptions.SolveProblemException;
 import com.university.equationsapp.domain.Problem;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.service.ProblemManager;
@@ -38,34 +43,35 @@ public class StudentSolveProblemController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentSolveProblemController.class);
 
-	/*
-	 * TODO ARH Mientras lo hago no recupero de la request para no tener que estar yendo atrás y adelante al recargar
-	 * 
-	 * @RequestMapping(method = RequestMethod.GET) public StudentSolveProblemDTO
-	 * printWelcome(@ModelAttribute("idProblem") int idProblem, BindingResult result, ModelMap model, HttpServletRequest
-	 * request, HttpServletResponse response) {
-	 * 
-	 * if (logger.isDebugEnabled()) { logger.debug("Loading data of problem " + idProblem); }
-	 * 
-	 * Problem problem = problemManager.findByIdProblems(idProblem);
-	 * 
-	 * if (logger.isDebugEnabled()) { logger.debug("Recovered problem " + problem.getTitle()); }
-	 * model.addAttribute("Problem", problem); StudentSolveProblemDTO studentSolveProblemDTO = new
-	 * StudentSolveProblemDTO(); return studentSolveProblemDTO; }
-	 */
-
 	@RequestMapping(method = RequestMethod.GET)
-	public StudentSolveProblemDTO printWelcome(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+	public StudentSolveProblemDTO printWelcome(@ModelAttribute("idProblem") Object idProblem, BindingResult result,
+			ModelMap model, HttpServletRequest request, HttpServletResponse response) throws SolveProblemException {
 
-		int idProblem = 11;
 		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
 		//We recover the student answers
 		int idStudent = 7;
-		if (logger.isDebugEnabled()) {
-			logger.debug("Loading data of problem " + idProblem);
-		}
 
-		Problem problem = problemManager.findByIdProblems(idProblem);
+		//We recover the problem the student is going to solve and check for errors
+		Problem problem = new Problem();
+		try {
+			if (logger.isDebugEnabled()) {
+				logger.debug("Loading data of problem " + idProblem);
+			}
+			problem = problemManager.findByIdProblems((Integer) idProblem);
+		} catch (ClassCastException ccex) {
+			ResourceBundle rb =  ResourceBundle.getBundle(CommonConstants.RESOURCE_BUNDLE);
+			logger.error("There has been a casting error recovering the idProblem", ccex);
+			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
+		} catch (Exception ex) {
+			ResourceBundle rb =  ResourceBundle.getBundle(CommonConstants.RESOURCE_BUNDLE);
+			logger.error("There has been an error recovering the idProblem", ex);
+			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
+		} 
+		if(problem == null){
+			ResourceBundle rb =  ResourceBundle.getBundle(CommonConstants.RESOURCE_BUNDLE);
+			logger.error("The problem " + idProblem + " has not been found on the DB");
+			throw new SolveProblemException(rb.getString(CommonConstants.RB_ERROR_IDPROBLEM_CAST));
+		}
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("Recovered problem " + problem.getTitle());
@@ -95,5 +101,14 @@ public class StudentSolveProblemController {
 		}
 		answerManager.createAnswer(studentSolveProblemDTO);
 		return "redirect:/studentproblemsolved.htm";
+	}
+
+	@ExceptionHandler(SolveProblemException.class)
+	public ModelAndView handleSolveProblemException(SolveProblemException ex) {
+		System.out.println("Handling exception");
+		ModelAndView model = new ModelAndView("error");
+		model.addObject("exception", ex);
+		return model;
+
 	}
 }
