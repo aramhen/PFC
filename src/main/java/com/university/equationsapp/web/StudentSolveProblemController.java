@@ -53,16 +53,30 @@ public class StudentSolveProblemController {
 		int idStudent = 7;
 
 		//We recover the problem the student is going to solve and check for errors
+		//When the users reload the page the ModelAttribute idProblem is missing, so we have to check if we have stored it in session
 		//We also check if the problem is uniqueAnswer and the student has already solved it
 		Problem problem = new Problem();
+		try {
+			int problemId = (Integer) idProblem;
+		} catch (ClassCastException ccex) {
+			if (request.getSession().getAttribute("idProblem") != null) {
+				idProblem = request.getSession().getAttribute("idProblem");
+				if (logger.isDebugEnabled()) {
+					logger.debug("We recover the idProblem, the user have reloaded the page");
+				}
+			} else {
+				logger.error("There has been a casting error recovering the idProblem", ccex);
+				throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_CAST);
+			}
+		}
+
 		try {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Loading data of problem " + idProblem);
 			}
 			problem = problemManager.findByIdProblems((Integer) idProblem);
-		} catch (ClassCastException ccex) {
-			logger.error("There has been a casting error recovering the idProblem", ccex);
-			throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_CAST);
+			//We store the idProblem key in the session in case the user reload the page
+			request.getSession().setAttribute("idProblem", idProblem);
 		} catch (Exception ex) {
 			logger.error("There has been an error recovering the idProblem", ex);
 			throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_CAST);
@@ -96,11 +110,15 @@ public class StudentSolveProblemController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(@Valid StudentSolveProblemDTO studentSolveProblemDTO, BindingResult result, Model model) {
+	public String onSubmit(@Valid StudentSolveProblemDTO studentSolveProblemDTO, BindingResult result, Model model,
+			HttpServletRequest request) {
 		if (result.hasErrors()) {
 			logger.error("Error processing the result" + result.toString());
 			return "studentsolveproblem";
 		}
+
+		//If the user has answered the problem, we can clear the idProblem session object
+		request.getSession().removeAttribute("idProblem");
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("Creating solution for problem " + studentSolveProblemDTO.getIdProblem());
