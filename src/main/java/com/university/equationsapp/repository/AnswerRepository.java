@@ -11,8 +11,6 @@ import com.university.equationsapp.domain.Student;
 
 public interface AnswerRepository extends CrudRepository<Answer, Integer>, AnswerRepositoryCustom {
 
-	public List<Answer> getAnswerList();
-
 	@Transactional
 	public void deleteByProblemRef(Problem problemRef);
 

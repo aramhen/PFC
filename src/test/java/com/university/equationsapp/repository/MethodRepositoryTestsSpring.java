@@ -1,5 +1,7 @@
 package com.university.equationsapp.repository;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,9 +31,11 @@ public class MethodRepositoryTestsSpring {
 	private MethodRepository methodRepository;
 
 	/**
-	 * Method name to test
+	 * Data to test
 	 */
-	private final static String METHOD_NAME = "Gauss";
+	private final static int GAUSS_METHOD_ID = 4;
+	private final static String GAUSS_METHOD_NAME = "Gauss";
+	private final static int NUMBER_OF_METHODS = 5;
 
 	//ARH TODO limpiar system.outs
 	/**
@@ -40,8 +44,9 @@ public class MethodRepositoryTestsSpring {
 	@Test
 	public void testFindByIdMethods() {
 		System.out.println("testFindByIdMethods");
-		Method method = methodRepository.findByIdMethods(1);
+		Method method = methodRepository.findByIdMethods(GAUSS_METHOD_ID);
 		Assert.assertNotNull(method);
+		Assert.assertEquals(GAUSS_METHOD_NAME, method.getName());
 		System.out.println("First Method: " + method.getName());
 	}
 
@@ -51,10 +56,22 @@ public class MethodRepositoryTestsSpring {
 	@Test
 	public void testfindByName() {
 		System.out.println("testfindByName");
-		Method method = methodRepository.findByName(METHOD_NAME);
+		Method method = methodRepository.findByName(GAUSS_METHOD_NAME);
 		Assert.assertNotNull(method);
 		System.out.println("Gauss Method Id: " + method.getIdMethods());
-		Assert.assertEquals(METHOD_NAME, method.getName());
+		Assert.assertEquals(GAUSS_METHOD_ID, method.getIdMethods());
+	}
+
+	/**
+	 * 
+	 */
+	@Test
+	public void testgetMethodList() {
+		System.out.println("testgetMethodList");
+		List<Method> methodList = methodRepository.getMethodList();
+		Assert.assertNotNull(methodList);
+		System.out.println("Gauss Method Id: " + methodList);
+		Assert.assertEquals(NUMBER_OF_METHODS, methodList.size());
 	}
 
 }

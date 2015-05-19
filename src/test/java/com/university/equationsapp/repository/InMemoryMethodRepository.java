@@ -17,67 +17,67 @@ public class InMemoryMethodRepository implements MethodRepository {
 	}
 
 	public <S extends Method> S save(S entity) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return null;
 	}
 
 	public <S extends Method> Iterable<S> save(Iterable<S> entities) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return null;
 	}
 
 	public Method findOne(Integer id) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return null;
 	}
 
 	public boolean exists(Integer id) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return false;
 	}
 
 	public Iterable<Method> findAll() {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return null;
 	}
 
 	public Iterable<Method> findAll(Iterable<Integer> ids) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return null;
 	}
 
 	public long count() {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return 0;
 	}
 
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 
 	}
 
 	public void delete(Method entity) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 
 	}
 
 	public void delete(Iterable<? extends Method> entities) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 
 	}
 
 	public void deleteAll() {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 
 	}
 
 	public Method findByIdMethods(int idMethods) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return null;
 	}
 
 	public Method findByName(String name) {
-		// TODO Auto-generated method stub
+		//This method is of spring framework and we don't need to test it
 		return null;
 	}
 
