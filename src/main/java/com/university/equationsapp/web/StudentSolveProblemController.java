@@ -1,5 +1,6 @@
 package com.university.equationsapp.web;
 
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -92,6 +93,11 @@ public class StudentSolveProblemController {
 				logger.error("The problem " + idProblem + " has already been answered by the student " + idStudent);
 				throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_ALREADY_SOLVED);
 			}
+		}
+		Date now = new Date();
+		if ((now.before(problem.getInitDate())) || (now.after(problem.getEndDate()))){
+			logger.error("The problem " + idProblem + " is trying to be answered out of date by idStudent " + idStudent);
+			throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_OUT_DATE);
 		}
 
 		if (logger.isDebugEnabled()) {
