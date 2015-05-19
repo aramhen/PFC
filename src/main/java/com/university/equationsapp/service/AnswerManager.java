@@ -16,6 +16,6 @@ public interface AnswerManager extends Serializable {
 	
 	public List<Answer> findByStudentRef(int idStudent);
 
-	public void createAnswer(StudentSolveProblemDTO studentSolveProblemDTO);
+	public void createAnswer(StudentSolveProblemDTO studentSolveProblemDTO, int idProblem, int idStudent);
 
 }

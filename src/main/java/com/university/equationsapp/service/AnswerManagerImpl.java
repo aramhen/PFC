@@ -60,9 +60,9 @@ public class AnswerManagerImpl implements AnswerManager {
 	}
 
 	//Here we parse the web object StudentSolveProblemDTO to a repository object Answer
-	public void createAnswer(StudentSolveProblemDTO studentSolveProblemDTO) {
+	public void createAnswer(StudentSolveProblemDTO studentSolveProblemDTO, int idProblem, int idStudent) {
 		Answer answer = new Answer();
-		Problem problem = problemRepository.findOne(Integer.parseInt(studentSolveProblemDTO.getIdProblem()));
+		Problem problem = problemRepository.findOne(idProblem);
 		answer.setProblemRef(problem);
 		answer.setAnswerDate(new Date());
 
@@ -79,7 +79,7 @@ public class AnswerManagerImpl implements AnswerManager {
 		}
 		answer.setSolution(sb.toString());
 		answer.setSteps(parseSteps(studentSolveProblemDTO.getStepsList()));
-		answer.setStudentRef(studentRepository.findOne(Integer.parseInt(studentSolveProblemDTO.getIdStudent())));
+		answer.setStudentRef(studentRepository.findOne(idStudent));
 
 		System.out.println(studentSolveProblemDTO.getStepsList());
 		answerRepository.save(answer);

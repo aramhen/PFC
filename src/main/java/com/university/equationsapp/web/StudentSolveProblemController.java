@@ -49,8 +49,9 @@ public class StudentSolveProblemController {
 			ModelMap model, HttpServletRequest request, HttpServletResponse response) throws SolveProblemException {
 
 		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
-		//We recover the student answers
+		//We recover the student answers and store it in session to recover it later
 		int idStudent = 7;
+		request.getSession().setAttribute("idStudent", idStudent);
 
 		//We recover the problem the student is going to solve and check for errors
 		//When the users reload the page the ModelAttribute idProblem is missing, so we have to check if we have stored it in session
@@ -97,7 +98,6 @@ public class StudentSolveProblemController {
 			logger.debug("Recovered problem " + problem.getTitle());
 		}
 		model.addAttribute("Problem", problem);
-		model.addAttribute("idStudent", idStudent);
 		//Here we split the equations to show them separated
 		StringTokenizer st = new StringTokenizer(problem.getEquations(), CommonConstants.SEPARATOR);
 		int i = 1;
@@ -117,13 +117,17 @@ public class StudentSolveProblemController {
 			return "studentsolveproblem";
 		}
 
-		//If the user has answered the problem, we can clear the idProblem session object
+		int idProblem = (Integer) request.getSession().getAttribute("idProblem");
+		int idStudent = (Integer) request.getSession().getAttribute("idStudent");
+
+		//If the user has answered the problem, we can clear the idProblem and idStudent session objects
 		request.getSession().removeAttribute("idProblem");
+		request.getSession().removeAttribute("idStudent");
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("Creating solution for problem " + studentSolveProblemDTO.getIdProblem());
+			logger.debug("Creating solution for problem " + idProblem + " by student " + idStudent);
 		}
-		answerManager.createAnswer(studentSolveProblemDTO);
+		answerManager.createAnswer(studentSolveProblemDTO, idProblem, idStudent);
 		return "redirect:/studentproblemsolved.htm";
 	}
 

@@ -19,9 +19,6 @@ public class StudentSolveProblemDTO implements Serializable {
 	@Size(min = WebConstants.SOLUTION_LENGTH_MIN, max = WebConstants.SOLUTION_LENGTH_MAX, message = "{createproblem.validation.solution.size}")
 	private String variableZ;
 
-	private String idProblem;
-	private String idStudent;
-
 	private List<String> stepsList = new ArrayList<String>();
 
 	public String getVariableX() {
@@ -46,22 +43,6 @@ public class StudentSolveProblemDTO implements Serializable {
 
 	public void setVariableZ(String variableZ) {
 		this.variableZ = variableZ;
-	}
-
-	public String getIdProblem() {
-		return idProblem;
-	}
-
-	public void setIdProblem(String idProblem) {
-		this.idProblem = idProblem;
-	}
-
-	public String getIdStudent() {
-		return idStudent;
-	}
-
-	public void setIdStudent(String idStudent) {
-		this.idStudent = idStudent;
 	}
 
 	public List<String> getStepsList() {
