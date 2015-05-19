@@ -131,7 +131,7 @@ public class StudentSolveProblemController {
 	public ModelAndView handleSolveProblemExceptions(SolveProblemException ex) {
 		logger.debug("Handling Exception " + ex.getMessage());
 
-		ModelAndView model = new ModelAndView("studenterror");
+		ModelAndView model = new ModelAndView("error/errorstudent");
 		model.addObject("exception", ex);
 		return model;
 	}

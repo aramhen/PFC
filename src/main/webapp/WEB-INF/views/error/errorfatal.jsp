@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><spring:message code="FE_title" /></title>
+<title><spring:message code="EF_title" /></title>
 
 <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-3.3.2.min.css" type="text/css" />
 <link rel="stylesheet" href="resources/css/custom.css" type="text/css" />
@@ -28,9 +28,9 @@
 	<div class="container">
 		<div class="center-template">
 			<h1 class="page-header">
-				<spring:message code="FE_subtitle" />
+				<spring:message code="EF_subtitle" />
 			</h1>
-			<p class="lead"><spring:message code="FE_text" /></p>
+			<p class="lead"><spring:message code="EF_text" /></p>
 		</div>
 	</div>
 	<!-- /.container -->
