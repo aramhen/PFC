@@ -18,7 +18,7 @@ public class MethodManagerImpl implements MethodManager {
 	@Autowired
 	private MethodRepository methodRepository;
 
-	public Method getMethod(String name) {
+	public Method findByName(String name) {
 		return methodRepository.findByName(name);
 	}
 

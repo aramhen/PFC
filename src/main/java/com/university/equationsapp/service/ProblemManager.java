@@ -10,7 +10,7 @@ public interface ProblemManager extends Serializable {
 
 	public List<Problem> getProblemList();
 
-	public Problem getProblemByNumVariables(int numVariables);
+	public Problem findByNumVariables(int numVariables);
 
 	public void createProblem(CreateProblemDTO createProblemDTO);
 

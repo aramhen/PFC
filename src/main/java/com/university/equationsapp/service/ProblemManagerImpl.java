@@ -26,7 +26,7 @@ public class ProblemManagerImpl implements ProblemManager {
 	@Autowired
 	private MethodRepository methodRepository;
 
-	public Problem getProblemByNumVariables(int numVariables) {
+	public Problem findByNumVariables(int numVariables) {
 		return problemRepository.findByNumVariables(numVariables);
 	}
 

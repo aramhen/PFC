@@ -9,6 +9,8 @@ public interface TeacherManager extends Serializable {
 
 	public List<Teacher> getTeacherList();
 
-	public Teacher getTeacherByName(String teacherName);
+	public Teacher findByName(String teacherName);
+	
+	public Teacher findByidTeachers(int idTeacher);
 
 }

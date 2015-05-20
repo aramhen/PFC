@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.university.equationsapp.domain.Student;
-import com.university.equationsapp.repository.StudentRepository;
+import com.university.equationsapp.service.StudentManager;
 
 @Controller
 public class StudentHomeController {
-	
+
 	@Autowired
-	private StudentRepository studentRepository;
+	private StudentManager studentManager;
 
 	@RequestMapping(value = "/studenthome.htm")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -31,8 +31,8 @@ public class StudentHomeController {
 		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
 		//We recover the student
 		int idStudent = 7;
-		
-		Student student = studentRepository.findOne(idStudent);
+
+		Student student = studentManager.findByIdStudents(idStudent);
 		myModel.put("studentName", student.getName());
 
 		return new ModelAndView("studenthome", "model", myModel);

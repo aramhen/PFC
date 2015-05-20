@@ -16,8 +16,12 @@ public class TeacherManagerImpl implements TeacherManager {
 	@Autowired
 	private TeacherRepository teacherRepository;
 
-	public Teacher getTeacherByName(String teacherName) {
+	public Teacher findByName(String teacherName) {
 		return teacherRepository.findByName(teacherName);
+	}
+
+	public Teacher findByidTeachers(int idTeacher) {
+		return teacherRepository.findOne(idTeacher);
 	}
 
 	public void setTeacherRepository(TeacherRepository teacherRepository) {

@@ -25,7 +25,6 @@ import com.google.gson.GsonBuilder;
 import com.university.equationsapp.common.constants.CommonConstants;
 import com.university.equationsapp.common.utils.WebUtils;
 import com.university.equationsapp.domain.Answer;
-import com.university.equationsapp.repository.StudentRepository;
 import com.university.equationsapp.service.AnswerManager;
 import com.university.equationsapp.web.json.DTOToJsonObject;
 import com.university.equationsapp.web.json.StudentListAnswerJsonDTO;
@@ -37,9 +36,6 @@ public class StudentListAnswerController {
 
 	@Autowired
 	private AnswerManager answerManager;
-
-	@Autowired
-	private StudentRepository studentRepository;
 
 	@RequestMapping(value = "/studentlistanswer.htm", method = RequestMethod.GET)
 	public String printWelcome(@ModelAttribute("answer") Answer answer, BindingResult result, ModelMap model,

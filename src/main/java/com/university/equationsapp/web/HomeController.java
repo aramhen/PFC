@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.university.equationsapp.domain.Teacher;
-import com.university.equationsapp.repository.TeacherRepository;
+import com.university.equationsapp.service.TeacherManager;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	private TeacherRepository teacherRepository;
+	private TeacherManager teacherManager;
 
 	@RequestMapping(value = "/home.htm")
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +32,7 @@ public class HomeController {
 		//We recover the teacher
 		int idTeacher = 7;
 
-		Teacher teacher = teacherRepository.findOne(idTeacher);
+		Teacher teacher = teacherManager.findByidTeachers(idTeacher);
 		myModel.put("teacherName", teacher.getName());
 
 		return new ModelAndView("home", "model", myModel);
