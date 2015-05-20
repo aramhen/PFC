@@ -57,6 +57,7 @@ public class HomeControllerTest {
 		t.setName(TEACHER_NAME_PARAM_VALUE);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void loadPage() throws Exception {
 		when(teacherManager.findByidTeachers(7)).thenReturn(t);
