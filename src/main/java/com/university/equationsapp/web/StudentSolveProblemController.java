@@ -1,5 +1,7 @@
 package com.university.equationsapp.web;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -47,7 +49,7 @@ public class StudentSolveProblemController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public StudentSolveProblemDTO printWelcome(@ModelAttribute("idProblem") Object idProblem, BindingResult result,
-			ModelMap model, HttpServletRequest request, HttpServletResponse response) throws SolveProblemException {
+			ModelMap model, HttpServletRequest request, HttpServletResponse response) throws SolveProblemException, ParseException {
 
 		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
 		//We recover the student answers and store it in session to recover it later
@@ -94,8 +96,11 @@ public class StudentSolveProblemController {
 				throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_ALREADY_SOLVED);
 			}
 		}
-		Date now = new Date();
-		if ((now.before(problem.getInitDate())) || (now.after(problem.getEndDate()))){
+		SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
+		Date actualDate = sdf.parse(sdf.format(new Date()));
+		Date initDate = sdf.parse(sdf.format(problem.getInitDate()));
+		Date endDate = sdf.parse(sdf.format(problem.getEndDate()));
+		if ((actualDate.before(initDate)) || (actualDate.after(endDate))){
 			logger.error("The problem " + idProblem + " is trying to be answered out of date by idStudent " + idStudent);
 			throw new SolveProblemException(CommonConstants.RB_ERROR_IDPROBLEM_OUT_DATE);
 		}

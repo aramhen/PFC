@@ -1,5 +1,6 @@
 package com.university.equationsapp.web;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -97,7 +98,7 @@ public class StudentListProblemController {
 		return json2;
 	}
 
-	private List<StudentListProblemJsonDTO> getListProblemDTO(List<Problem> problemList) {
+	private List<StudentListProblemJsonDTO> getListProblemDTO(List<Problem> problemList) throws ParseException {
 		StudentListProblemJsonDTO tmp = new StudentListProblemJsonDTO();
 		Problem node;
 		List<StudentListProblemJsonDTO> tmpList = new ArrayList<StudentListProblemJsonDTO>();
@@ -111,17 +112,22 @@ public class StudentListProblemController {
 		SimpleDateFormat format = new SimpleDateFormat(CommonConstants.DATE_FORMAT, new Locale(
 				CommonConstants.LOCALE_ES));
 		Iterator<Problem> itProblem = problemList.iterator();
+		SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
+		Date actualDate = sdf.parse(sdf.format(new Date()));
+		Date initDate;
+		Date endDate;
 
 		while (itProblem.hasNext()) {
 			node = itProblem.next();
 			tmp = new StudentListProblemJsonDTO();
-			inDate = false;
+			inDate = true;
 			alreadeAnswered = false;
-			Date actualDate = new Date();
+			initDate = sdf.parse(sdf.format(node.getInitDate()));
+			endDate = sdf.parse(sdf.format(node.getEndDate()));
 
 			//We check if the student can solve the problem or he is out of date or he already answered it and it's uniqueAnswer
-			if (actualDate.after(node.getInitDate()) && actualDate.before(node.getEndDate())) {
-				inDate = true;
+			if (actualDate.before(initDate) || actualDate.after(endDate)) {
+				inDate = false;
 			}
 			if (node.isUniqueAnswer()
 					&& (answerManager.findByProblemRefAndStudentRef(node.getIdProblems(), idStudent).size() > 0)) {

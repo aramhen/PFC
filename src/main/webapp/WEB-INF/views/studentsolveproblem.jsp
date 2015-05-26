@@ -123,18 +123,18 @@
 								</div>
 								<div class="form-group">
 									<div class="row" style="margin-right: 60px">
-										<div class="col-xs-1" style="text-align: right;">
+										<div class="col-xs-1" style="text-align: right; margin-left: 1%;">
 											<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableX" /></label>
 										</div>
 										<div class="col-xs-2 form-group">
-											<form:input path="variableX" class="form-control" placeholder="${SSP_placeholder_X}" />
+											<form:input path="variableX" class="form-control" placeholder="${SSP_placeholder_X}" maxlength="15"/>
 										</div>
 										<c:if test="${Problem.numVariables > 1}">
 											<div class="col-xs-1" style="text-align: right;">
 												<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableY" /></label>
 											</div>
 											<div class="col-xs-2 form-group">
-												<form:input path="variableY" class="form-control" placeholder="${SSP_placeholder_Y}" />
+												<form:input path="variableY" class="form-control" placeholder="${SSP_placeholder_Y}" maxlength="15"/>
 											</div>
 										</c:if>
 										<c:if test="${Problem.numVariables > 2}">
@@ -142,7 +142,7 @@
 												<label class="col-md-offset-2 subfield"><spring:message code="SSP_variableZ" /></label>
 											</div>
 											<div class="col-xs-2 form-group">
-												<form:input path="variableZ" class="form-control" placeholder="${SSP_placeholder_Z}" />
+												<form:input path="variableZ" class="form-control" placeholder="${SSP_placeholder_Z}" maxlength="15"/>
 											</div>
 										</c:if>
 										
@@ -158,12 +158,13 @@
 						</div>
 						<div class="row">
 							<div class="row col-xs-3" style="border-right: 1px solid #ccc;">
+							<!-- <div class="row col-xs-3" style="border-right: 1px solid #ccc; min-width: 130px;"> -->
 								<label><spring:message code="SSP_elements" /></label>
 								<div class="dropdown dropdownmargin">
 									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 										<spring:message code="SSP_matrices" /> <span class="caret"></span>
 									</button>
-									<ul class="dropdown-menu" style="text-align: right; max-width: 84%;">
+									<ul class="dropdown-menu" style="text-align: right; width: 200px;">
 										<div class="btn-group btn-group" style="margin-right: 2%;">
 											<a class="btn btn-default" id="1x2-matrix"><spring:message code="SSP_1x2" /></a><a class="btn btn-default" id="1x3-matrix"><spring:message code="SSP_1x3" /></a><a class="btn btn-default" id="1x4-matrix"><spring:message code="SSP_1x4" /></a>
 										</div>
@@ -414,17 +415,17 @@
 				variableX: {
 					required: true,
 					answer: true,
-					maxlength: 30
+					maxlength: 15
 				},
 				variableY: {
 					required: true,
 					answer: true,
-					maxlength: 30
+					maxlength: 15
 				},
 				variableZ: {
 					required: true,
 					answer: true,
-					maxlength: 30
+					maxlength: 15
 				}
 			},
 			messages: {
