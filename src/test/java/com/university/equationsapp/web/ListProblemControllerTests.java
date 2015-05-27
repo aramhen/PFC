@@ -41,8 +41,9 @@ import com.university.equationsapp.web.json.ListProblemJsonDTO;
 public class ListProblemControllerTests {
 
 	//Test Data
-	private static String URL = "/home.htm";
-	private static String VIEW = "home";
+	private static String URL = "/listproblem.htm";
+	private static String VIEW = "listproblem";
+	private static String URL_PROBLEM_PAGINATION = "/listproblempagination.htm";
 
 	@Mock
 	ProblemManager problemManager;
@@ -50,7 +51,7 @@ public class ListProblemControllerTests {
 	@InjectMocks
 	ListProblemController listProblemController;
 
-	private MockMvc mockMvcListProblem;
+	private MockMvc mockMvc;
 
 	List<Problem> pList;
 
@@ -61,7 +62,7 @@ public class ListProblemControllerTests {
 		// and for the mock service to be injected into the controller under
 		// test.
 		MockitoAnnotations.initMocks(this);
-		this.mockMvcListProblem = MockMvcBuilders.standaloneSetup(listProblemController).build();
+		this.mockMvc = MockMvcBuilders.standaloneSetup(listProblemController).build();
 
 		//Set up data test
 		pList = new ArrayList<Problem>();
@@ -99,14 +100,14 @@ public class ListProblemControllerTests {
 
 	@Test
 	public void loadPage() throws Exception {
-		mockMvcListProblem.perform(get(URL)).andExpect(status().isOk()).andExpect(view().name(VIEW));
+		mockMvc.perform(get(URL)).andExpect(status().isOk()).andExpect(view().name(VIEW));
 	}
 
 	@Test
 	public void getlistproblem() throws Exception {
 
 		when(problemManager.getProblemList()).thenReturn(pList);
-		ResultActions ra = mockMvcListProblem.perform(get(URL)).andExpect(status().isOk());
+		ResultActions ra = mockMvc.perform(get(URL_PROBLEM_PAGINATION)).andExpect(status().isOk());
 
 		List<ListProblemJsonDTO> problemsList = getListProblemDTO(pList);
 
