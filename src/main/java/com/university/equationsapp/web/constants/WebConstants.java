@@ -11,6 +11,6 @@ public final class WebConstants {
 	public static final int EQUATION_LENGTH_MIN = 0;
 	public static final int EQUATION_LENGTH_MAX = 30;
 	public static final int SOLUTION_LENGTH_MIN = 0;
-	public static final int SOLUTION_LENGTH_MAX = 30;
+	public static final int SOLUTION_LENGTH_MAX = 15;
 
 }

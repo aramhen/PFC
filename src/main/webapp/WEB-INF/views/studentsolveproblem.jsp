@@ -407,7 +407,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		jQuery.validator.addMethod("answer", function(value, element) {
-			return this.optional(element) || /^[a-z0-9.,/]+$/i.test(value);
+			return this.optional(element) || /^[a-z0-9.,-/]+$/i.test(value);
 		}, "");
 
 		$("#studentSolveProblemDTO").validate({
