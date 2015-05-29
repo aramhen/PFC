@@ -43,7 +43,7 @@
 		beans -->
 	<context:component-scan base-package="com.university.equationsapp.service" />
 
-	<!-- ARH TODO esto es para spring-data-jpa, explicar -->
+	<!-- Use spring-data-jpa -->
 	<jpa:repositories base-package="com.university.equationsapp.repository" />
 
 </beans>

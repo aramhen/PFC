@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:/test-context.xml" })
-public class ProblemCreatedControllerTest {
+public class ProblemCreatedControllerTests {
 
 	//Test Data
 	private static String URL = "/problemcreated.htm";

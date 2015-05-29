@@ -25,7 +25,7 @@ import com.university.equationsapp.service.TeacherManager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:/test-context.xml" })
-public class HomeControllerTest {
+public class HomeControllerTests {
 
 	//Test Data
 	private static String TEACHER_NAME_PARAM_VALUE = "Nombre_profesor";
