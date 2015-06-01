@@ -65,12 +65,15 @@ public class StudentListProblemController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Solving problem " + idProblem);
 		}
-		//TODO ARH en la memoria hay que explicar lo del redirectattributes seguramente
-		//http://stackoverflow.com/questions/14470111/spring-redirectattributes-addattribute-vs-addflashattribute
+
+		//We send the idProblem to the studentsolveproblem
 		redirectAttributes.addFlashAttribute("idProblem", idProblem);
 		return "redirect:/studentsolveproblem.htm";
 	}
 
+	/**
+	 * Returns to the datatable the problem list
+	 */
 	@RequestMapping(value = "/studentlistproblempagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
 	public @ResponseBody String springPaginationDataTables(HttpServletRequest request, HttpServletResponse response) {
 		//Need to fix special ascii characters showed in datatable
@@ -98,6 +101,9 @@ public class StudentListProblemController {
 		return json2;
 	}
 
+	/**
+	 * Parse a list of Problem into a list of StudentListProblemJsonDTO to use it in the Datatable
+	 */
 	private List<StudentListProblemJsonDTO> getListProblemDTO(List<Problem> problemList) throws ParseException {
 		StudentListProblemJsonDTO tmp = new StudentListProblemJsonDTO();
 		Problem node;
@@ -105,7 +111,7 @@ public class StudentListProblemController {
 		boolean inDate;
 		boolean alreadeAnswered;
 
-		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//TODO You have to implement here the recover of the student when this app is installed in the server
 		//We recover the student
 		int idStudent = 7;
 

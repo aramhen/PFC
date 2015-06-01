@@ -66,6 +66,9 @@ public class ListProblemController {
 		return "redirect:/listproblem.htm";
 	}
 
+	/**
+	 * Returns to the datatable the problem list
+	 */
 	@RequestMapping(value = "/listproblempagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
 	public @ResponseBody String springPaginationDataTables(HttpServletRequest request, HttpServletResponse response) {
 		//Need to fix special ascii characters showed in datatable
@@ -93,6 +96,9 @@ public class ListProblemController {
 		return json2;
 	}
 
+	/**
+	 * Parse a list of Problem into a list of ListProblemJsonDTO to use it in the Datatable
+	 */
 	private List<ListProblemJsonDTO> getListProblemDTO(List<Problem> problemList) {
 		ListProblemJsonDTO tmp = new ListProblemJsonDTO();
 		Problem node;

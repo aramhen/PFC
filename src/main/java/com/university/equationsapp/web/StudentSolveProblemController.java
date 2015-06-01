@@ -51,14 +51,14 @@ public class StudentSolveProblemController {
 	public StudentSolveProblemDTO printWelcome(@ModelAttribute("idProblem") Object idProblem, BindingResult result,
 			ModelMap model, HttpServletRequest request, HttpServletResponse response) throws SolveProblemException, ParseException {
 
-		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//TODO You have to implement here the recover of the student when this app is installed in the server
 		//We recover the student answers and store it in session to recover it later
 		int idStudent = 7;
 		request.getSession().setAttribute("idStudent", idStudent);
 
 		//We recover the problem the student is going to solve and check for errors
 		//When the users reload the page the ModelAttribute idProblem is missing, so we have to check if we have stored it in session
-		//We also check if the problem is uniqueAnswer and the student has already solved it
+		//We also check if the problem is uniqueAnswer and the student has already solved it or if the problem can be answered on this date
 		Problem problem = new Problem();
 		try {
 			int problemId = (Integer) idProblem;
@@ -142,6 +142,10 @@ public class StudentSolveProblemController {
 		return "redirect:/studentproblemsolved.htm";
 	}
 
+	/**
+	 * 
+	 * We handle the SolveProblemException we have thrown if anything has gone wrong
+	 */
 	@ExceptionHandler(SolveProblemException.class)
 	public ModelAndView handleSolveProblemExceptions(SolveProblemException ex) {
 		logger.debug("Handling Exception " + ex.getMessage());

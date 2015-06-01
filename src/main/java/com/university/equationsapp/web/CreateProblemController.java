@@ -67,8 +67,7 @@ public class CreateProblemController {
 	}
 
 	/**
-	 * Con esta funcion consigo insertar antes de cada llamada a la página (inicial o al recargar tras error) un objeto
-	 * en el modelo para poder invocarlo en la jsp
+	 * With this function we can insert, before each page render, this object so we can use it on the jsp
 	 */
 	@ModelAttribute("methodList")
 	public List<Method> populateMethods() {
@@ -77,7 +76,7 @@ public class CreateProblemController {
 
 	@ModelAttribute("idTeacher")
 	public int populateIdTeacher() {
-		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDTEACHER A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//TODO You have to implement here the recover of the teacher when this app is installed in the server
 		//We recover the teacher
 		int idTeacher = 1;
 		return idTeacher;

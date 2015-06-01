@@ -85,6 +85,9 @@ public class AnswerManagerImpl implements AnswerManager {
 		answerRepository.save(answer);
 	}
 
+	/**
+	 * Parse the steps from the student into TeX language to store it in the DB
+	 */
 	private String parseSteps(List<String> stepsList) {
 		Iterator<String> it = stepsList.iterator();
 		StringBuilder sb1 = new StringBuilder();
@@ -194,7 +197,7 @@ public class AnswerManagerImpl implements AnswerManager {
 				logger.error(CommonConstants.ERROR_MSG_PARSING + node);
 			}
 			sb1.append(sb2);
-			if(it.hasNext()){
+			if (it.hasNext()) {
 				sb1.append("<div style='margin: 3% auto; width: 15%; border: 1px solid #2e6da4;'/>");
 			}
 		}

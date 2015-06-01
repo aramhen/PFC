@@ -45,12 +45,15 @@ public class StudentListAnswerController {
 
 	}
 
+	/**
+	 * Returns to the datatable the answer list
+	 */
 	@RequestMapping(value = "/studentlistanswerpagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
 	public @ResponseBody String springPaginationDataTables(HttpServletRequest request, HttpServletResponse response) {
 		//Need to fix special ascii characters showed in datatable
 		response.setContentType("application/json; charset=iso-8859-1");
 
-		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDSTUDENT A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//TODO You have to implement here the recover of the student when this app is installed in the server
 		//We recover the student answers
 		int idStudent = 7;
 		//Create page list data
@@ -75,6 +78,9 @@ public class StudentListAnswerController {
 		return json2;
 	}
 
+	/**
+	 * Parse a list of Answer into a list of StudentListAnswerJsonDTO to use it in the Datatable
+	 */
 	private List<StudentListAnswerJsonDTO> getstudentlistanswerDTO(List<Answer> answerList) {
 		StudentListAnswerJsonDTO tmp = new StudentListAnswerJsonDTO();
 		Answer node;

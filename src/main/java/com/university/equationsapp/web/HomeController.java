@@ -28,7 +28,7 @@ public class HomeController {
 
 		Map<String, Object> myModel = new HashMap<String, Object>();
 
-		//TODO ARH IMPORTANTE ESTOY SETEANDO EL IDTEACHER A FUEGO, HAY QUE VER DE DONDE RECUPERARLO
+		//TODO You have to implement here the recover of the teacher when this app is installed in the server
 		//We recover the teacher
 		int idTeacher = 7;
 

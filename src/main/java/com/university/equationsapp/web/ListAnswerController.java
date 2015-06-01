@@ -43,7 +43,10 @@ public class ListAnswerController {
 		return "listanswer";
 
 	}
-
+	
+	/**
+	 * Returns to the datatable the answer list
+	 */
 	@RequestMapping(value = "/listanswerpagination.htm", method = RequestMethod.GET, produces = "application/json", headers = "Accept=*/*")
 	public @ResponseBody String springPaginationDataTables(HttpServletRequest request, HttpServletResponse response) {
 		//Need to fix special ascii characters showed in datatable
@@ -71,6 +74,9 @@ public class ListAnswerController {
 		return json2;
 	}
 
+	/**
+	 * Parse a list of Answer into a list of ListAnswerJsonDTO to use it in the Datatable
+	 */
 	private List<ListAnswerJsonDTO> getListAnswerDTO(List<Answer> answerList) {
 		ListAnswerJsonDTO tmp = new ListAnswerJsonDTO();
 		Answer node;

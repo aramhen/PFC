@@ -17,8 +17,6 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the answers database table.
- * 
- * @author Burt
  *
  */
 @Entity

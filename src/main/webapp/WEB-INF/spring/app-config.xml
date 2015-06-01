@@ -18,13 +18,11 @@
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 
-	<!-- Configures the @Controller programming model ARH TODO he añadido validator="validator" para la 
-		validacion para indcarle que use el bean validator creado arriba -->
+	<!-- Configures the @Controller programming model. validator="validator" is to use the upper bean to 
+		validate -->
 	<mvc:annotation-driven validator="validator" />
 
-	<!-- ARH TODO revisar comentarios Evita que tengamos que poner en el controlador la ruta a las jsps, 
-		el la pone con este prefijo y ademas añade de sufijo el .jsp, así sólo hay que poner el nombre de las 
-		jsps -->
+	<!-- Using the prfix y suffix we only have to put the name of the jsps in the views -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
 		<property name="prefix" value="/WEB-INF/views/"></property>
