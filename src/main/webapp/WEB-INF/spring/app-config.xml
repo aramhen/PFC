@@ -12,8 +12,8 @@
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
 	<context:component-scan base-package="com.university.equationsapp.web" />
 
-	<!-- Esto me permite usar los mensajes de validación personalizados, debo indicarlos por anotacion en 
-		los campos del bean asociado a la jsp y los busca luego en el messages.properties -->
+	<!-- This validator let you use personalized validation messages. We use it to use i18n in our validation 
+		messages -->
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
