@@ -17,7 +17,7 @@ In this web app, we have two differents users, teachers and students.
     - Frameworks: Spring v4.0.6, Bootstrap v3.3.2
     - Bootstrap Plugins: bootstrap-datepicker v1.0
     - Spring Modules: Spring MVC v4.0.6, Spring-data-jpa v1.7.0, spring-test v4.0.6
-    - JDK v1.6 y v1.7
+    - JDK v1.6
     - jQuery v.1.11.2
     - jQuery Plugins: Sortable v1.2.0, jQuery Validation Plugin v1.13.1
     - DataTables v1.10.5
